@@ -1,0 +1,101 @@
+.logo_bg{
+  height: 100%;
+  background: url(../../assets/imgs/login/login_bg.png);
+  background-size: 100% 100%;
+}
+@media screen and (min-width: 500px) {
+  .logo_bg{
+  height: auto;
+ }
+}
+.ajk_logo{
+  padding-top: 1.2rem;
+  text-align: center;
+}
+.logo_wrap{
+  width: 2.66rem;
+  line-height: 2.66rem;
+  border: 0.02rem solid #ee783f;
+  border-radius: 50%;
+  margin: 0 auto;
+  text-align: center;
+}
+.logo_wrap>img{
+  width: 1.92rem;
+  vertical-align: middle;
+}
+.logo_title{
+  width: 3.62rem;
+  margin-top: 0.4rem;
+}
+.login_form{
+  margin-top: 0.9rem;
+}
+.form_group{
+  width: 100%;
+  line-height: 1.2rem;
+  background-color: rgba(255,255,255,.3);
+  display: flex;
+  margin-bottom: 1px;
+}
+.form_group label{
+  display: inline-block;
+  width: 1.2rem;
+  line-height: 1.2rem;
+  background-color: rgba(255,255,255,.4);
+  text-align: center;
+}
+.form_group label img{
+  width: 0.48rem;
+  vertical-align: middle; 
+}
+.form_group input{
+  font-size: 0.34rem;
+  color: #fff;
+  height: 1.2rem;
+  background-color: transparent;
+  border: none;
+  margin-left: 0.2rem;
+}
+.rememberPassword_input{
+ display: none;
+
+}
+
+.checkbox{
+  display: inline-block;
+  line-height: 1.2rem;
+  display: flex;
+  align-items: center;
+}
+.checkbox span{
+ font-size: 0.3rem;
+  color: #fff;
+  margin-left: 0.2rem;
+}
+.password_control{
+  line-height: 1.2rem;
+  display: flex;
+  align-items: center;
+  margin-left: 0.7rem;
+}
+.getPassword{
+  font-size: 0.3rem;
+  color: #fff;
+  margin-left: 0.6rem;
+}
+.submit_button{
+  display: block;
+  width: 6.22rem;
+  line-height: 1.04rem;
+  margin: 0 auto;
+  background: url(../../assets/imgs/login/btn_bg.png) no-repeat;
+  background-size: 6.22rem 1.04rem;
+  color: #fff;
+  font-size: 0.48rem;
+  text-align: center;
+  margin-top: 1.9rem;
+}
+.getPassword:active{
+  text-decoration: underline;
+}

@@ -1,0 +1,145 @@
+.light_bg{
+  height: 100%;
+  width: 100%;
+  background: url('../../assets/imgs/light/light_bg.png')no-repeat;
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+
+.round{
+  position: relative;
+  width: 11.2rem;
+  height: 11.2rem;
+  left: 0.2rem;
+  top: 1.2rem;
+  border-radius: 50%;
+}
+.large_round{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: rgba(0,0,0,.1);
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: tranform 1s ease-in;
+}
+.middle_round{
+  width: 7.4rem;
+  height: 7.4rem;
+  background: url('../../assets/imgs/light/middle_round.png')no-repeat;
+  background-size: 7.4rem 7.4rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -3.7rem;
+  margin-top: -3.7rem;
+  z-index: 1;
+  border-radius: 50%;
+  transition: all 1s ease-in;
+}
+.small_round{
+  width: 3.8rem;
+  height: 3.8rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -1.9rem;
+  margin-top: -1.9rem;
+  z-index: 2
+}
+.light_wrap{
+  width: 1.36rem;
+  height: 5.4rem;
+  position: absolute;
+  top: 0.2rem;
+  left: 50%;
+  margin-left: -0.68rem;
+  transform-origin:50% 100%;
+}
+
+
+.light_model{
+  padding-top: 0.5rem;
+  padding-left: 0.8rem;
+}
+.light_figure{
+  text-align: center;
+  margin-left: 0.66rem;
+  display: inline-block;
+}
+.light_figure img{
+  width: 1.08rem;
+}
+.light_figure figcaption{
+  font-size: 0.28rem;
+  color: #cfcfcf;
+  margin-top: 0.14rem
+}
+.class_title{
+  font-size: 0.38rem;
+  color: #fff;
+  padding:0 0.2rem;
+  height: .6rem;
+  transform-origin:100% 50%;
+  width: 3.7rem;;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -.3rem;
+  text-indent: 0.2rem;
+}
+.class_title_active{
+  color: #769ee3
+}
+:global(.lights){
+  width: 1.36rem;
+  height: 1.36rem;
+  text-align: center;
+  background:url(../../assets/imgs/light/light_bg_off.png)no-repeat left top;
+  background-size: 1.36rem 1.36rem;
+  transform-origin:50% 50%;
+}
+:global(.lights_ON){
+  background:url(../../assets/imgs/light/light_bg_on.png)no-repeat left top;
+  background-size: 1.36rem 1.36rem;
+}
+:global(.lights_ON) > div{
+  background:url(../../assets/imgs/light/主灯_on.png)no-repeat no-repeat 0 0.2rem;
+  background-size: .52rem 0.48rem;
+}
+:global(.lights_ON)>p{
+  color: #769ee3!important;
+  text-shadow: 2px 2px 10px rgba(255,255,255,.5),-2px -2px 10px rgba(255,255,255,.5)
+}
+:global(.lights) img{
+  margin-top: 20px;
+  width: 0.52rem
+}
+:global(.lights) p{
+  font-size: 0.28rem;
+  color: #cfcfcf;
+  text-align: center;
+  line-height: 0.4rem;
+  margin-top: 0.1rem
+}
+:global(.light_img){
+  width: 0.52rem;
+  height: 0.48rem;
+  margin: 0 auto;
+  padding-top: 20px;
+  background:url(../../assets/imgs/light/主灯_off.png)no-repeat 0 0.2rem;
+  background-size: .52rem 0.48rem;
+}
+:global(.主灯){}
+:global(.主灯) img{
+  width: 0.52rem
+}
+:global(.卫浴灯_ON)>div{
+  background:url(../../assets/imgs/light/卫浴灯_ON.png)no-repeat no-repeat 0 0.2rem;
+  background-size: 0.68rem 0.64rem;
+}
+:global(.卫浴灯_OFF)>div{
+  background:url(../../assets/imgs/light/卫浴灯_OFF.png)no-repeat no-repeat 0 0.2rem;
+  background-size: 0.68rem 0.64rem;
+}

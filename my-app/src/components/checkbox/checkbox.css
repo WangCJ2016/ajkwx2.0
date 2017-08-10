@@ -1,0 +1,16 @@
+.checkbox_label{
+  display: block;
+   width: 0.5rem;
+  height: 0.5rem;
+  border: 1px solid #fff;
+}
+.checkbox_input{
+  display: none;
+}
+.checkbox_input:checked + .checkbox_label{
+  background: url('../../assets/imgs/login/check.png')no-repeat center center;
+  background-size: 0.3rem;
+}
+.checkbox{
+  height: .5rem;
+}

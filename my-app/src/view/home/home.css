@@ -1,0 +1,126 @@
+.home_bg{
+  height: 100%;
+  background: url(../../assets/imgs/home/home_bg.png);
+  background-size: 100% 100%;
+}
+
+.curtain_title{
+  font-size: 0.36rem;
+}
+.home_figure{
+  border: 2px solid rgba(255,255,255,.3);
+  border-radius: 50%;
+  text-align: center;
+  color: #fff;
+  position: absolute;
+}
+.home_figure>img{
+  padding-top: 0.1rem
+}
+.curtain{
+  width: 1.52rem;
+  height: 1.52rem;
+  top: 6.8rem;
+  right: 3.04rem;
+}
+.curtain > img{
+  width: 0.74rem;
+  padding-top: 0.2rem
+}
+.curtain >figcaption{
+  font-size: 0.28rem;
+}
+
+.lock{
+  width: 1.28rem;
+  height: 1.28rem;
+  top: 1.98rem;
+  left: 1.76rem;
+}
+.lock > img{
+  width: 0.52rem;
+}
+.lock >figcaption{
+  font-size: 0.24rem;
+}
+
+.light{
+  width: 1.96rem;
+  height: 1.96rem;
+  top: 3.96rem;
+  left: 50%;
+  margin-left: -0.98rem;
+}
+.light > img{
+  width: 1.12rem;
+}
+.light >figcaption{
+  font-size: 0.3rem;
+}
+
+.tv{
+  width: 1.5rem;
+  height: 1.5rem;
+  top: 3.0rem;
+  right: 0.84rem;
+}
+.tv > img{
+  width: 0.84rem;
+  padding-top: 0.2rem
+}
+.tv >figcaption{
+  font-size: 0.28rem;
+}
+
+.service{
+  width: 1.2rem;
+  height: 1.2rem;
+  top: 3.58rem;
+  left: 0.64rem;
+}
+.service > img{
+  width: 0.68rem;
+}
+.service >figcaption{
+  font-size: 0.24rem;
+}
+.air{
+  width: 1.46rem;
+  height: 1.46rem;
+  top: 5.28rem;
+  left: 0.38rem;
+}
+.air > img{
+  width: 0.74rem;
+  padding-top: 0.2rem
+}
+.air >figcaption{
+  font-size: 0.28rem;
+}
+
+.model{
+  width: 1.02rem;
+  height: 1.02rem;
+  top: 5.74rem;
+  right: 0.88rem
+}
+.model > img{
+  width: 0.5rem;
+}
+.model >figcaption{
+  font-size: 0.22rem;
+}
+.active{
+  border: 1px solid #fff;
+}
+.slogan{
+  position: absolute;
+  width: 4.22rem;
+  left: 50%;
+  margin-left: -2.11rem;
+  bottom: 1.02rem;
+}
+.slogan > img{
+  width: 100%;
+
+}
