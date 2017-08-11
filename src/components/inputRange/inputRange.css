@@ -1,0 +1,23 @@
+input[type="range"] {
+  height: 0.10rem;
+  margin: 0.82rem auto;
+  display: block;
+  width: 85%;
+  padding: 0;
+  cursor: pointer;
+  border: 0;
+  border-radius: 0.08rem;
+  outline: 0;
+  background-color: #ffb354;
+  -webkit-appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  cursor: default;
+  height: 0.5rem;
+  width: 0.5rem;
+  background: #e1e1e1;
+  border-radius: 50%;
+  border-color: #fff;
+}

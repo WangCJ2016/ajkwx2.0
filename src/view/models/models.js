@@ -2,9 +2,18 @@ import React from 'react'
 import classNames from 'classnames'
 import CSSModules from 'react-css-modules'
 import { immutableRenderDecorator } from 'react-immutable-render-mixin'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
 import styles from './models.css'
+import * as modelActions from '../../actions/model-actions'
 
+@connect(
+  state => ({modelState:state.modelStore}),
+  dispatch => ({
+    modelActions: bindActionCreators(modelActions, dispatch),
+  })
+)
 @immutableRenderDecorator
 @CSSModules(styles, { allowMultiple: true })
  class Models extends React.Component {
@@ -15,13 +24,18 @@ import styles from './models.css'
     }
     this.changeModel = this.changeModel.bind(this)
   }
-  changeModel(index){
+  componentDidMount(){
+    this.props.modelActions.initialModel()
+  }
+  changeModel(index,keyword){
     this.setState({
       model_activeIndex:index
     })
+    const scenceId = this.props.modelState.models.filter(model => model.name === keyword)[0].sceneId
+    this.props.modelActions.changeModel(scenceId)
   }
   modelRender(){
-    const modelArray = [{name:'getup',title:'起床'},{name:'sleep',title:'睡眠'},{name:'reading',title:'阅读'},{name:'checkout',title:'外出'},{name:'movie',title:'影视'},{name:'meeting',title:'会客'}]
+    const modelArray = [{name:'getup',title:'起床',keyword:'morning'},{name:'sleep',title:'睡眠',keyword:'sleep'},{name:'reading',title:'阅读',keyword:'read'},{name:'checkout',title:'外出',keyword:"checkout"},{name:'movie',title:'影视',keyword:"movie"},{name:'meeting',title:'会客',keyword:"meeting"}]
     return modelArray.map((model,index) => {
            const stylename = classNames({
             img_wrap:true,
@@ -30,7 +44,7 @@ import styles from './models.css'
            })
 
             return( 
-              <figure styleName='figure' key={model.name} onClick={this.changeModel.bind(this,index)}>
+              <figure styleName='figure' key={model.name} onClick={this.changeModel.bind(this,index,model.keyword)}>
                   <div styleName={stylename}>
                     <img src={require(`../../assets/imgs/models/${model.name}.png`)} styleName='img_getup' alt=""/>
                   </div>
@@ -42,7 +56,7 @@ import styles from './models.css'
           })
          }
   render(){
-    console.log(styles)
+    console.log(this.props)
     return(
       <div styleName='models_bg'>
         <div styleName='model_item'>

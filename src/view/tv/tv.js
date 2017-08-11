@@ -1,73 +1,80 @@
 import React from 'react'
 import CSSModules from 'react-css-modules'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
 import styles from './tv.css'
-import TvButton from './TvButton'
+import * as tvActions from '../../actions/tv-actions'
+import SlidePot from '../../components/slidePot/slide-pot'
+import TvOne from './tv-one'
 
+@connect(
+  state => ({tvState:state.tvStore}),
+  dispatch => ({
+    tvActions: bindActionCreators(tvActions, dispatch),
+  })
+)
 @CSSModules(styles, { allowMultiple: true })
 class Tv extends React.Component {
-  numRender(e){
-    console.log(e.target.getAttribute('data-key'))
+  state={
+    translateX:0,
+    transitionType:'',
+    translateIndex:0
+  }
+  pageX=0
+  winWidth = 0
+  componentDidMount(){
+    this.props.tvActions.initialTv()
+    this.winWidth = window.innerWidth
+  }
+  touchstart(e){
+    this.pageX = e.changedTouches[0].pageX
+    this.setState({transitionType:''})
+  }
+  touchmove(e){
+    const maxWith = -this.winWidth*(this.props.tvState.tvs.length-1)
+    const currentPageX = e.changedTouches[0].pageX
+    let translateX
+    if(this.state.translateX + currentPageX - this.pageX<0){
+      if(this.state.translateX + currentPageX - this.pageX<=maxWith){
+        translateX=maxWith
+      }else{
+        translateX=this.state.translateX + currentPageX - this.pageX
+      }
+    }else{
+      translateX=0
+    }
+    this.setState({
+      translateX: translateX
+    },function(){
+      this.pageX = currentPageX
+    })
+  }
+  touchend(){
+    const translateX = this.state.translateX
+    const translateIndex =  Math.round(translateX/this.winWidth)
+    this.setState({
+      translateIndex:translateIndex,
+      translateX:this.winWidth*translateIndex,
+      transitionType:'transform 0.5s ease-in'
+    })
   }
   render(){
+    console.log(this.props.tvState.tvs)
+    const { tvs } = this.props.tvState
+    const {translateX,transitionType,translateIndex } = this.state
+    const wrapWidth = tvs.length*100 + '%'
+    const tvWidth = 1/tvs.length *100 + '%'
     return (
       <div styleName='tv_bg'>
-        <div styleName="tvBox">
-          <TvButton classType='tv_on'/>
-          <TvButton classType='plus_off'/>
-          <TvButton classType='minus_off'/>
-        </div>
-        <div styleName="tvBox">
-          <TvButton classType='tv_on'/>
-          <TvButton classType='mute_off'/>
-          <TvButton classType='return_off'/>
-        </div>
-        <div styleName="dir_control">
-          <div styleName="channel_voice">
-            <span styleName="arr_up"></span>
-            <span styleName="arr_title">频道</span>
-            <span styleName="arr_down"></span>
-          </div>
-          <div styleName="arr_round" onClick={this.numRender.bind(this)}>
-            <span styleName="round_up" data-key='up'></span>
-            <span styleName="round_down"></span>
-            <span styleName="round_left"></span>
-            <span styleName="round_right"></span>
-            <div styleName="arr_center">
-              <div styleName="arr_ok">
-                ok
-              </div>
-            </div>
-          </div>
-          <div styleName="channel_voice">
-            <span styleName="arr_up"></span>
-            <span styleName="arr_title">音量</span>
-            <span styleName="arr_down"></span>
-          </div>
-        </div>
-        <div styleName="review_tv">
-          <p styleName="review_btn">点播</p>
-          <p styleName="review_btn">回看</p>
-        </div>
-        <div styleName="tv_num">
-          <div styleName="num_item">
-            <span styleName="num" data-key='1'>1</span>
-            <span styleName="num" data-key='2'>2</span>
-            <span styleName="num" data-key='3'>3</span>
-          </div>
-          <div styleName="num_item">
-            <span styleName="num" data-key='4'>4</span>
-            <span styleName="num" data-key='5'>5</span>
-            <span styleName="num" data-key='6'>6</span>
-          </div>
-          <div styleName="num_item">
-            <span styleName="num" data-key='7'>7</span>
-            <span styleName="num" data-key='8'>8</span>
-            <span styleName="num" data-key='9'>9</span>
-          </div>
-          <div styleName="num_item_last">
-            <span styleName="num" data-key='0'>0</span>
-          </div>
+        <SlidePot num={tvs.length} activeIndex={-translateIndex} />
+        <div styleName="tvwrap" style={{width:wrapWidth,transform:`translateX(${translateX}px)`,transition:transitionType}} 
+        onTouchStart={this.touchstart.bind(this)} 
+        onTouchMove={this.touchmove.bind(this)} 
+        onTouchEnd={this.touchend.bind(this)}>
+          {
+            tvs.length?tvs.map((tv,index) => <TvOne width={tvWidth} tv={tv} actions={this.props.tvActions} key={index}/>):null
+          }
         </div>
       </div>
     )

@@ -10,7 +10,7 @@ import * as actions from '../../actions/login-actions'
 
 
 @connect(
-  state => ({loginState:state.loginStore}),
+  state => ({loginState:state.loginStore,idStore:state.idStore}),
   dispatch => ({
     loginActions: bindActionCreators(actions, dispatch),
   })
@@ -68,7 +68,7 @@ class Login extends Component {
     this.props.loginActions.changeRemember(!isRemenber);
   }
   render() {
-    console.log(this.props.loginState)
+    alert('login')
     const {userName,password,isRemenber} = this.props.loginState;
     return (
       <div styleName='logo_bg'>

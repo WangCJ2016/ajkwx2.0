@@ -39,9 +39,9 @@ const cssFilename = 'static/css/[name].[contenthash:8].css';
 // (See https://github.com/webpack-contrib/extract-text-webpack-plugin/issues/27)
 // However, our output is structured with css, js and media folders.
 // To have this structure working with relative paths, we have to use custom options.
-const extractTextPluginOptions = shouldUseRelativeAssetPaths ? // Making sure that the publicPath goes back to to build folder.
-    { publicPath: Array(cssFilename.split('/').length).join('../') } :
-    {};
+// const extractTextPluginOptions = shouldUseRelativeAssetPaths ? // Making sure that the publicPath goes back to to build folder.
+//     { publicPath: Array(cssFilename.split('/').length).join('../') } :
+//     {};
 
 // This is the production configuration.
 // It compiles slowly and is focused on producing a fast and minimal bundle.
@@ -139,7 +139,6 @@ module.exports = {
                     /\.bmp$/,
                     /\.gif$/,
                     /\.jpe?g$/,
-                    /\.png$/,
                     /\.scss$/,
                     /\.less$/,
                     /\.svg$/
@@ -156,7 +155,7 @@ module.exports = {
                 loader: require.resolve('url-loader'),
                 options: {
                     limit: 10000,
-                    name: 'static/media/[name].[hash:8].[ext]',
+                    name: 'assets/[name]-[hash:5].[ext]'
                 },
             },
             // Process JS with Babel.
@@ -199,6 +198,8 @@ module.exports = {
                             use: [{
                                     loader: require.resolve('css-loader'),
                                     options: {
+                                        modules: true,
+                                        localIdentName: '[name]__[local]--[hash:base64:5]',
                                         importLoaders: 1,
                                         minimize: true,
                                         sourceMap: true,
@@ -225,8 +226,7 @@ module.exports = {
                                     },
                                 },
                             ],
-                        },
-                        extractTextPluginOptions
+                        }
                     )
                 ),
                 // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.

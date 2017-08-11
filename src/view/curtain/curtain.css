@@ -8,31 +8,35 @@
   height: auto;
  }
 }
-.curtain_title{
-  font-size: 0.36rem;
-  line-height: 1.6rem;
-  color: #fff;
-  text-align: center;
+.curtain_wrap,.curtainwrap{
+  height: 100%;
 }
+.curtain_wrap{
+  float: left;
+}
+.curtain_wrap{}
 .curtain_group{
-  padding: 0 0.5rem;
+  padding: 0.4rem 0.5rem 0;
   font-size: 0.36rem;
-  color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.0rem;
 }
 .curtain_name{
-  width: 1.5rem;
-  border: 0.02rem solid #fff;
+  padding-top: .5rem;
   line-height: 0.76rem;
   text-align: center;
+  color: #fff;
+  margin: 0 auto;
 }
 .curtain_btn{
-  width: 1.0rem;
-  line-height: 1.0rem;
+  width: 1.2rem;
+  line-height: 1.2rem;
   border-radius: 50%;
-  border: 0.04rem solid #fff;
+  border: 0.02rem solid #FFC356;
   text-align: center;
+  color: #FFC356;
+  font-weight: 200;
 }
+

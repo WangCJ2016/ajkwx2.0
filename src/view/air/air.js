@@ -65,7 +65,7 @@ class Air extends React.Component {
     const {translateX,transitionType,translateIndex } = this.state
     const wrapWidth = airs.length*100 + '%'
     const airWidth = 1/airs.length *100 + '%'
-    console.log(deviceType)
+    console.log(this.props)
     return(
       <div styleName='air_bg'>
         <SlidePot num={airs.length} activeIndex={-translateIndex} />

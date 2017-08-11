@@ -16,13 +16,13 @@ class Home extends React.Component {
   figuresRender(){
     const activeIndex = this.state.activeIndex
     const figures = [
-    {name:'curtain',title:'窗帘'},
-    {name:'lock',title:'门锁'},
-    {name:'light',title:'灯'},
-    {name:'tv',title:'电视'},
-    {name:'service',title:'服务'},
-    {name:'air',title:'空调'},
-    {name:'model',title:'情景'},
+    {name:'curtain',title:'窗帘',path:'curtain'},
+    {name:'lock',title:'门锁',path:`lock?name=${this.props.location.query.name}`},
+    {name:'light',title:'灯',path:'light'},
+    {name:'tv',title:'电视',path:'tv'},
+    {name:'service',title:'服务',path:'service'},
+    {name:'air',title:'空调',path:'air'},
+    {name:'model',title:'情景',path:'model'},
    ]
    return figures.map((figure,index) => {
       const stylename = classNames({
@@ -31,7 +31,7 @@ class Home extends React.Component {
             active:index === activeIndex
            })
       return (
-        <Link to={figure.name} key={figure.name} activeClassName='active'>
+        <Link to={figure.path} key={figure.name} activeClassName='active'>
           <figure styleName={stylename}  onClick={this.goDetail.bind(this,index)}>
             <img src={require(`../../assets/imgs/home/${figure.name}.png`)} alt="" />
             <figcaption>{figure.title}</figcaption>
@@ -46,6 +46,7 @@ class Home extends React.Component {
     })
   }
   render(){
+    console.log(this.props.location.query)
     return(
       <div styleName='home_bg'>
        {this.figuresRender()}

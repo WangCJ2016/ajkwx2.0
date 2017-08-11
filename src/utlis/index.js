@@ -40,12 +40,13 @@ export function encode64(input) {
   api: {
     base: 'http://www.live-ctrl.com/aijukex/',
     getLoginCode: 'we/we_generatePassword',
-    login: 'we/we_login',
+    login: 'we/we_loginx',
     queryHostDeviceByType:"we/we_queryHostDeviceByType",//主机信息
     queryHostScenes:"we/we_queryHostScenes",
     smartHostControl:"we/we_smartHostControl",//控制
     querySmartDeviceWays:"we/we_querySmartDeviceWays",//获取路数信息
-    queryDeviceType:"we/we_queryDeviceType"//获取设备类型
+    queryDeviceType:"we/we_queryDeviceType",//获取设备类型
+    queryTvDevices:"we/we_queryTvDevices" //获取电视信息
   }
 }
 //get/post请求

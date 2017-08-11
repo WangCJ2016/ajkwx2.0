@@ -1,5 +1,5 @@
 import React from 'react'
-import {Router, Route, IndexRoute ,browserHistory} from 'react-router'
+import {Router, Route, IndexRoute } from 'react-router'
 
 import Frame from '../layout/frame'
 import Login from '../view/login/login'
@@ -13,7 +13,7 @@ import Tv from '../view/tv/tv'
 import Air from '../view/air/air'
 
 const routes = history => (
-    <Router history={browserHistory}>
+    <Router history={history}>
       <Route path='/' component={Frame}>
         <IndexRoute component={Login}/>
         <Route path='/light' component={Light} />

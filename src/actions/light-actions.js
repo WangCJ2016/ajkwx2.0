@@ -1,23 +1,28 @@
-import { config,request } from '../utlis'
+import { config, request } from '../utlis'
+
+const houseId_session = sessionStorage.getItem('houseId')
+const token_session = sessionStorage.getItem('token')
 
 export function initialLights() {
-    return function(dispatch) {
-            request.get(config.api.base + config.api.queryHostScenes,{houseId:sessionStorage.getItem('houseId')})
+    return function(dispatch, getState) {
+        const token = getState().idStore.token || token_session
+        const houseId = getState().idStore.houseId || houseId_session
+        request.get(config.api.base + config.api.queryHostScenes, { houseId: houseId, token: token })
             .then(res => {
                 console.log(res)
                 dispatch(getModelScens(res.dataObject))
             })
         //灯
-        request.get(config.api.base + config.api.querySmartDeviceWays,{houseId:sessionStorage.getItem('houseId'),deviceType:'SWITCH'})
-        .then(res=>{
-            console.log(res)
-            let lights = []
-            lights = res.dataObject.filter(function(light) {
-                return light.name.indexOf('灯') > -1
+        request.get(config.api.base + config.api.querySmartDeviceWays, { houseId: houseId, token: token, deviceType: 'SWITCH' })
+            .then(res => {
+                console.log(res)
+                let lights = []
+                lights = res.dataObject.filter(function(light) {
+                    return light.name.indexOf('灯') > -1
+                })
+                dispatch(getLightsWays(lights))
+                console.log(lights)
             })
-            dispatch(getLightsWays(lights))
-            console.log(lights)
-        })
     }
 }
 
@@ -35,14 +40,15 @@ export function getLightsWays(data) {
 }
 
 export function modelsClick(sceneId) {
-    return function(dispatch) {
-        request.get(config.api.base + config.api.smartHostControl,
-            {
-            houseId:sessionStorage.getItem('houseId'),
-            deviceType:'SCENE',
-            sceneId:sceneId,
-            token:sessionStorage.getItem('token')
-            })        
+    return function(dispatch, getState) {
+        const token = getState().idStore.token || token_session
+        const houseId = getState().idStore.houseId || houseId_session
+        request.get(config.api.base + config.api.smartHostControl, {
+                houseId: houseId,
+                deviceType: 'SCENE',
+                sceneId: sceneId,
+                token: token
+            })
             .then((res) => {
                 console.log(res)
             });
@@ -78,34 +84,30 @@ export function homeLightChangeState(type) {
             return
     }
 }
-export function lightsClick(wayId,actionType,index){
-  return function(dispatch){
-    request.get(config.api.base + config.api.smartHostControl,
-            {
-            houseId:sessionStorage.getItem('houseId'),
-            deviceType:'SWITCH',
-            actionType:actionType,
-            wayId:wayId,
-            token:sessionStorage.getItem('token'),
-            brightness:80
-            })        
-            .then((res)=>{
+export function lightsClick(wayId, actionType, index) {
+    return function(dispatch, getState) {
+        const token = getState().idStore.token || token_session
+        const houseId = getState().idStore.houseId || houseId_session
+        request.get(config.api.base + config.api.smartHostControl, {
+                houseId: houseId,
+                deviceType: 'SWITCH',
+                actionType: actionType,
+                wayId: wayId,
+                token: token,
+                brightness: 80
+            })
+            .then((res) => {
                 console.log(res)
-                if(res&&res.success){
-                    dispatch(changelightstatus(index,actionType))
+                if (res && res.success) {
+                    dispatch(changelightstatus(index, actionType))
                 }
             })
-  }
+    }
 }
-export function changelightstatus(index,type){
-  return {
-    type:'CHANGELIGHTSTATUS',
-    id:index,
-    status:type
-  };
-}
-export function changeRouter(url){
-  return (dispatch)=>{
-   
-  };
+export function changelightstatus(index, type) {
+    return {
+        type: 'CHANGELIGHTSTATUS',
+        id: index,
+        status: type
+    };
 }
