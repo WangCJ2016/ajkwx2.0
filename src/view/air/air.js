@@ -26,13 +26,17 @@ class Air extends React.Component {
   componentDidMount(){
     this.props.airActions.initialAirCondition()
     this.winWidth = window.innerWidth
+    document.title = '空调'
   }
   touchstart(e){
+    e.stopPropagation() 
+    e.preventDefault()
     this.pageX = e.changedTouches[0].pageX
     this.setState({transitionType:''})
   }
   touchmove(e){
-    // e.preventDefault()
+    e.stopPropagation() 
+    e.preventDefault()
     const maxWith = -this.winWidth*(this.props.airState.airs.length-1)
     const currentPageX = e.changedTouches[0].pageX
     let translateX
@@ -51,7 +55,9 @@ class Air extends React.Component {
       this.pageX = currentPageX
     })
   }
-  touchend(){
+  touchend(e){
+    e.stopPropagation() 
+    e.preventDefault()
     const translateX = this.state.translateX
     const translateIndex =  Math.round(translateX/this.winWidth)
     this.setState({

@@ -68,7 +68,6 @@ class Login extends Component {
     this.props.loginActions.changeRemember(!isRemenber);
   }
   render() {
-    alert('login')
     const {userName,password,isRemenber} = this.props.loginState;
     return (
       <div styleName='logo_bg'>

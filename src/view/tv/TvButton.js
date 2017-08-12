@@ -12,7 +12,7 @@ class TvButton extends React.Component {
       [this.props.classType]:true
     })
     return(
-      <div styleName={btn_class} onClick={this.props.click}>
+      <div styleName={btn_class} onTouchEnd={this.props.click}>
             <div styleName="btn_img"></div>
       </div>
     )

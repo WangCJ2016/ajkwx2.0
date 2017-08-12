@@ -22,7 +22,6 @@
   position: absolute;
   left: 0;
   top: 0;
-  transition: tranform 1s ease-in;
 }
 .middle_round{
   width: 7.4rem;

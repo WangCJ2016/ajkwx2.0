@@ -13,6 +13,9 @@ class Home extends React.Component {
       activeIndex:0
     }
   }
+  componentDidMount(){
+    document.title = 'home'
+  }
   figuresRender(){
     const activeIndex = this.state.activeIndex
     const figures = [
@@ -32,7 +35,7 @@ class Home extends React.Component {
            })
       return (
         <Link to={figure.path} key={figure.name} activeClassName='active'>
-          <figure styleName={stylename}  onClick={this.goDetail.bind(this,index)}>
+          <figure styleName={stylename}  onTouchEnd={this.goDetail.bind(this,index)}>
             <img src={require(`../../assets/imgs/home/${figure.name}.png`)} alt="" />
             <figcaption>{figure.title}</figcaption>
           </figure>

@@ -122,7 +122,7 @@ class AirOne extends React.Component {
           </div>
         </div>
         <div styleName="air_round">
-          <div styleName="middle_round" onClick={this.switchClick.bind(this,deviceId)}>
+          <div styleName="middle_round" onTouchEnd={this.switchClick.bind(this,deviceId)}>
             {switchKey}
           </div>
           <span styleName="small_round up"></span>
@@ -131,25 +131,25 @@ class AirOne extends React.Component {
           <span styleName="small_round right"></span>
         </div>
         <div styleName="air_btn">
-          <figure styleName="air_figure" onClick={this.temChange.bind(this,'plus',deviceId)}>
+          <figure styleName="air_figure" onTouchEnd={this.temChange.bind(this,'plus',deviceId)}>
             <div styleName="air_figure_img">
               <img styleName='btn_tmp' src={require('../../assets/imgs/air/plus.png')} alt=""/>
             </div>
             <figcaption>温度+</figcaption>
           </figure>
-           <figure styleName="air_figure" onClick={this.temChange.bind(this,'minus',deviceId)}>
+           <figure styleName="air_figure" onTouchEnd={this.temChange.bind(this,'minus',deviceId)}>
             <div styleName="air_figure_img">
              <img styleName='btn_tmp' src={require('../../assets/imgs/air/minus.png')} alt=""/>
             </div>
             <figcaption>温度-</figcaption>
           </figure>
-           <figure styleName="air_figure" onClick={this.speedChange.bind(this,'minus',deviceId)}>
+           <figure styleName="air_figure" onTouchEnd={this.speedChange.bind(this,'minus',deviceId)}>
             <div styleName="air_figure_img">
               <img styleName='btn_speed' src={require('../../assets/imgs/air/speed.png')} alt=""/>
             </div>
             <figcaption>风速</figcaption>
           </figure>
-           <figure styleName="air_figure" onClick={this.modelChange.bind(this,'minus',deviceId)}>
+           <figure styleName="air_figure" onTouchEnd={this.modelChange.bind(this,'minus',deviceId)}>
             <div styleName="air_figure_img">
               <img styleName='btn_speed' src={require('../../assets/imgs/air/air_model.png')} alt=""/>
             </div>

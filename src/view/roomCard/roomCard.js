@@ -19,6 +19,7 @@ class RoomCard extends React.Component {
   }
   componentDidMount(){
     this.props.roomCardActions.initialState()
+    document.title = '房卡'
   }
   render(){
     console.log(this.props)

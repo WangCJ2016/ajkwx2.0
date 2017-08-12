@@ -71,27 +71,27 @@ class TvOne extends React.Component {
             <span styleName="arr_down"></span>
           </div>
           <div styleName="arr_round" >
-            <span styleName="round_up" data-key='up' onClick={this.tvBoxCtrl.bind(this,'UP')}></span>
-            <span styleName="round_down" onClick={this.tvBoxCtrl.bind(this,'DOWN')}></span>
-            <span styleName="round_left" onClick={this.tvBoxCtrl.bind(this,'LEFT')}></span>
-            <span styleName="round_right" onClick={this.tvBoxCtrl.bind(this,'RIGHT')}></span>
+            <span styleName="round_up" data-key='up' onTouchEnd={this.tvBoxCtrl.bind(this,'UP')}></span>
+            <span styleName="round_down" onTouchEnd={this.tvBoxCtrl.bind(this,'DOWN')}></span>
+            <span styleName="round_left" onTouchEnd={this.tvBoxCtrl.bind(this,'LEFT')}></span>
+            <span styleName="round_right" onTouchEnd={this.tvBoxCtrl.bind(this,'RIGHT')}></span>
             <div styleName="arr_center">
-              <div styleName="arr_ok" onClick={this.tvBoxCtrl.bind(this,'OK')}>
+              <div styleName="arr_ok" onTouchEnd={this.tvBoxCtrl.bind(this,'OK')}>
                 ok
               </div>
             </div>
           </div>
           <div styleName="channel_voice">
-            <span styleName="arr_up" onClick={this.tvBoxCtrl.bind(this,'VOL_PLUS')}></span>
+            <span styleName="arr_up" onTouchEnd={this.tvBoxCtrl.bind(this,'VOL_PLUS')}></span>
             <span styleName="arr_title">音量</span>
-            <span styleName="arr_down" onClick={this.tvBoxCtrl.bind(this,'VOL_SUB')}></span>
+            <span styleName="arr_down" onTouchEnd={this.tvBoxCtrl.bind(this,'VOL_SUB')}></span>
           </div>
         </div>
         <div styleName="review_tv">
           <p styleName="review_btn">点播</p>
           <p styleName="review_btn">回看</p>
         </div>
-        <div styleName="tv_num" onClick={this.numClick.bind(this)}>
+        <div styleName="tv_num" onTouchEnd={this.numClick.bind(this)}>
           <div styleName="num_item">
             <span styleName="num" data-key='1'>1</span>
             <span styleName="num" data-key='2'>2</span>

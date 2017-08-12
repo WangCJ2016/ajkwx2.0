@@ -10,7 +10,6 @@ import './assets/normalize.css'
 const store = configureStore()
 const history = hashHistory
 console.log(store.getState())
-alert(1)
 ReactDOM.render(
   <Provider store={store}>
     { routes(history) }

@@ -31,6 +31,7 @@ export function openTheDoor(deviceId){
     const token  = getState().idStore.token||token_session
     const houseId  = getState().idStore.houseId||houseId_session
     const customerId = getState().idStore.customerId||customer_session
+    console.log(getState())
     request.get(config.api.base + config.api.smartHostControl,{token:token,houseId:houseId,deviceType:deviceType,deviceId:deviceId,customerId:customerId})
     .then(res => {
       console.log(res)

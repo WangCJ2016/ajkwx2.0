@@ -16,6 +16,7 @@ const pxtorem = require('postcss-pxtorem');
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
 const publicPath = paths.servedPath;
+
 // Some apps do not use client-side routing with pushState.
 // For these, "homepage" can be set to "." to enable relative asset paths.
 const shouldUseRelativeAssetPaths = publicPath === './';
@@ -25,7 +26,7 @@ const shouldUseRelativeAssetPaths = publicPath === './';
 const publicUrl = publicPath.slice(0, -1);
 // Get environment variables to inject into our app.
 const env = getClientEnvironment(publicUrl);
-
+console.log(publicUrl)
 // Assert this just to be safe.
 // Development builds of React are slow and not intended for production.
 if (env.stringified['process.env'].NODE_ENV !== '"production"') {
@@ -63,7 +64,7 @@ module.exports = {
         filename: 'static/js/[name].[chunkhash:8].js',
         chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
         // We inferred the "public path" (such as / or /my-project) from homepage.
-        publicPath: publicPath,
+        publicPath: 'http://www.live-ctrl.com/wechatx/',
         // Point sourcemap entries to original disk location (format as URL on Windows)
         devtoolModuleFilenameTemplate: info =>
             path
@@ -139,6 +140,7 @@ module.exports = {
                     /\.bmp$/,
                     /\.gif$/,
                     /\.jpe?g$/,
+                    /\.png$/,
                     /\.scss$/,
                     /\.less$/,
                     /\.svg$/
@@ -155,7 +157,7 @@ module.exports = {
                 loader: require.resolve('url-loader'),
                 options: {
                     limit: 10000,
-                    name: 'assets/[name]-[hash:5].[ext]'
+                    name: 'static/media/[name].[hash:8].[ext]',
                 },
             },
             // Process JS with Babel.

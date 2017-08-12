@@ -2,10 +2,10 @@ import React from 'react'
 
 import styles from  './inputRange.css'
 
-const InputRange = ({change}) => {
+const InputRange = ({touchEnd,touchStart,touchMove}) => {
   return (
-           <div>
-              <input type="range" name="volume" min="0" max="100" onTouchEnd={change} />
+           <div className={styles.inputRange} onTouchEnd={touchEnd}>
+              <input type="range"  min="0" max="100" />
             </div>
           )
   }

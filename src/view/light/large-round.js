@@ -22,6 +22,8 @@ class LargeRound extends React.Component {
     this.props.initialLights()
   }
   touchstart(e){
+    e.stopPropagation() 
+    e.preventDefault()
     const pageX = e.changedTouches[0].pageX
     const pageY = e.changedTouches[0].pageY
     const to =((pageX-this.raduisX)/(pageY-this.raduisY))
@@ -40,6 +42,8 @@ class LargeRound extends React.Component {
     }
   }
   touchemove(e){
+    e.stopPropagation() 
+    e.preventDefault()
     const pageX = e.changedTouches[0].pageX
     const pageY = e.changedTouches[0].pageY
 
@@ -80,7 +84,7 @@ class LargeRound extends React.Component {
       })
       return (
          <div styleName='light_wrap' style={{transform:`rotateZ(${rotate}deg)`}} key={light.id}>
-            <div className={stylename} style={{transform:`rotateZ(${large_rotateZ-rotate}deg)`}} onClick={()=>this.props.lightsClick(light.wayId,changeStatus,index)}>
+            <div className={stylename} style={{transform:`rotateZ(${large_rotateZ-rotate}deg)`}} onTouchEnd={()=>this.props.lightsClick(light.wayId,changeStatus,index)}>
               <div className="light_img"></div>
               <p>{light.name}</p>
             </div>

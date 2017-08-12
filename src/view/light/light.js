@@ -19,6 +19,9 @@ class Light extends Component {
   state = {
     modelActiveIndex:-1
   } 
+  componentDidMount(){
+    document.title = '灯'
+  }
   modellightRender(){
     const modellight = ['卧室','房间']
     return modellight.map((model,index) => {
