@@ -1,5 +1,5 @@
 .curtain_bg{
-  height: 100%;
+  height: 12.06rem;
   background: url(../../assets/imgs/curtain/curtain_bg.png);
   background-size: 100% 100%;
 }
@@ -10,6 +10,7 @@
 }
 .curtain_wrap,.curtainwrap{
   height: 100%;
+  transition: tranform 1s ease-in;
 }
 .curtain_wrap{
   float: left;
@@ -29,6 +30,7 @@
   text-align: center;
   color: #fff;
   margin: 0 auto;
+  font-size: 0.4rem;
 }
 .curtain_btn{
   width: 1.2rem;
@@ -39,4 +41,3 @@
   color: #FFC356;
   font-weight: 200;
 }
-

@@ -7,6 +7,7 @@ import styles from './curtain.css'
 import CurtainOne from './curtain-one'
 import * as curtainActions from '../../actions/curtain-actions'
 import SlidePot from '../../components/slidePot/slide-pot'
+import SwipeType from '../../components/swipeTypeHoc/SwipeType'
 
 @connect(
   state => ({curtainState:state.curtainStore}),
@@ -14,71 +15,51 @@ import SlidePot from '../../components/slidePot/slide-pot'
     curtainActions: bindActionCreators(curtainActions, dispatch),
   })
 )
+@SwipeType
 @CSSModules(styles, { allowMultiple: true })
 class Curtain extends React.Component {
-  state={
-    translateX:0,
-    transitionType:'',
-    translateIndex:0
-  }
-  pageX=0
-  winWidth = 0
+  count = 0 
+  countActive = 0
   componentDidMount(){
     this.props.curtainActions.initialCurtain()
-    this.winWidth = window.innerWidth
+    this.props.componentDidMount()
     document.title = '窗'
   }
-  touchstart(e){
-    //  e.stopPropagation() 
-    // e.preventDefault()
-    this.pageX = e.changedTouches[0].pageX
-    this.setState({transitionType:''})
-  }
-  touchmove(e){
-    // e.stopPropagation() 
-    // e.preventDefault()
-    const maxWith = -this.winWidth*(this.props.curtainState.curtains.length-1)
-    const currentPageX = e.changedTouches[0].pageX
-    let translateX
-    if(this.state.translateX + currentPageX - this.pageX<0){
-      if(this.state.translateX + currentPageX - this.pageX<=maxWith){
-        translateX=maxWith
-      }else{
-        translateX=this.state.translateX + currentPageX - this.pageX
-      }
-    }else{
-      translateX=0
-    }
-    this.setState({
-      translateX: translateX
-    },function(){
-      this.pageX = currentPageX
-    })
-  }
-  touchend(e){
-    //  e.stopPropagation() 
-    // e.preventDefault()
-    const translateX = this.state.translateX
-    const translateIndex =  Math.round(translateX/this.winWidth)
-    this.setState({
-      translateIndex:translateIndex,
-      translateX:this.winWidth*translateIndex,
-      transitionType:'transform 0.5s ease-in'
-    })
-  }
+  
   render(){
     //console.log(this.props)
     const { curtains } = this.props.curtainState
-    const {translateX,transitionType,translateIndex } = this.state
     const wrapWidth = curtains.length*100 + '%'
     const curtainWidth = 1/curtains.length *100 + '%'
+    let translateX = 0
+    if(this.props.state.count - this.count === 1){
+      if(this.countActive<curtains.length-1){
+        this.countActive = this.countActive + 1
+      }else{
+        this.countActive = curtains.length - 1
+      }
+      translateX = -this.countActive*this.props.state.winWidth
+      this.count = this.props.state.count
+      console.log(translateX,this.count,this.countActive)
+    }
+    if(this.props.state.count - this.count === -1){
+      if(this.countActive>0){
+        this.countActive = this.countActive - 1
+      }else{
+        this.countActive = 0
+      }
+      translateX = -this.countActive*this.props.state.winWidth
+      this.count = this.props.state.count
+      console.log(translateX,this.count,this.countActive)
+    }
+    if(this.props.state.count - this.count === 0){
+      translateX = -this.countActive*this.props.state.winWidth
+    }
     return(
       <div styleName='curtain_bg'>
-         <div styleName="curtainwrap" style={{width:wrapWidth,transform:`translateX(${translateX}px)`,transition:transitionType}} 
-          onTouchStart={this.touchstart.bind(this)} 
-          onTouchMove={this.touchmove.bind(this)} 
-          onTouchEnd={this.touchend.bind(this)}>
-         
+         <SlidePot num={curtains.length} activeIndex={this.countActive} />
+         <div styleName="curtainwrap" style={{width:wrapWidth,transform:`translateX(${translateX}px)`}} 
+             onTouchStart={this.props.touchstart} onTouchMove={this.props.touchmove} onTouchEnd={this.props.touchend} onTouchCancel={this.props.touchcancel}>
            {
             curtains.length?curtains.map((curtain,index) => <CurtainOne width={curtainWidth} curtain={curtain} actions={this.props.curtainActions} key={index}/>):null
           }

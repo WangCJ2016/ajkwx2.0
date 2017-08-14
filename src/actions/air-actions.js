@@ -11,27 +11,30 @@ export function initialAirCondition() {
             .then(res => {
                 if (res && res.success) {
                     deviceType = res.dataObject
-                    console.log(deviceType)
                     dispatch(initialData(deviceType, 'deviceType'))
                     request.get(config.api.base + config.api.queryHostDeviceByType, { token: token, houseId: houseId, deviceType: res.dataObject })
                         .then(res => {
                             let airs = []
                             if (res && res.success) {
                                 if (deviceType === 'VIRTUAL_AIR_REMOTE') {
-                                    res.dataObject.map((air) => {
+                                    res.dataObject.forEach((air) => {
                                         let airInfo = {},
                                             coolWays, warmWays
                                         if (air.ways) {
                                             coolWays = air.ways.filter(way => {
                                                 if (way.remoteKey.indexOf('COOL') > -1) {
                                                     return way;
+                                                }else{
+                                                    return null
                                                 }
                                             }).map(way => {
                                                 return way.remoteKey;
-                                            });
+                                            })
                                             warmWays = air.ways.filter(way => {
                                                 if (way.remoteKey.indexOf('WARM') > -1) {
                                                     return way;
+                                                }else{
+                                                    return null
                                                 }
                                             }).map(way => {
                                                 return way.remoteKey;
@@ -43,7 +46,7 @@ export function initialAirCondition() {
                                         airs.push(airInfo)
                                     })
                                 } else {
-                                    res.dataObject.map((air) => {
+                                    res.dataObject.forEach((air) => {
                                         let airInfo = {},
                                             coolWays, warmWays
                                         coolWays = [16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28, 29, 30]

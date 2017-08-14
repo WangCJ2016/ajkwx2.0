@@ -54,37 +54,10 @@ export function modelsClick(sceneId) {
             });
     };
 }
-export function homeLightChangeState(type) {
-    switch (type) {
-        case 'homeon':
-            return {
-                type: 'HOMELIGHTCHANGESTATE',
-                payload: 'homeon',
-                unpayload: 'homeoff'
-            }
-        case 'homeoff':
-            return {
-                type: 'HOMELIGHTCHANGESTATE',
-                payload: 'homeoff',
-                unpayload: 'homeon'
-            }
-        case 'ledon':
-            return {
-                type: 'HOMELIGHTCHANGESTATE',
-                payload: 'ledon',
-                unpayload: 'ledoff'
-            }
-        case 'ledoff':
-            return {
-                type: 'HOMELIGHTCHANGESTATE',
-                payload: 'ledoff',
-                unpayload: 'ledon'
-            }
-        default:
-            return
-    }
-}
-export function lightsClick(wayId, actionType, index) {
+
+export function lightsClick(wayId, status, index) {
+    const actionType = status === 'ON'?'CLOSE':'OPEN'
+    const status_on = status === 'ON'?'OFF':'ON'
     return function(dispatch, getState) {
         const token = getState().idStore.token || token_session
         const houseId = getState().idStore.houseId || houseId_session
@@ -99,7 +72,7 @@ export function lightsClick(wayId, actionType, index) {
             .then((res) => {
                 console.log(res)
                 if (res && res.success) {
-                    dispatch(changelightstatus(index, actionType))
+                    dispatch(changelightstatus(index, status_on))
                 }
             })
     }

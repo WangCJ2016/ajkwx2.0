@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom'
 import React from 'react'
-import { hashHistory,browserHistory } from 'react-router'
+import { hashHistory } from 'react-router'
 import { Provider } from 'react-redux'
 
 import configureStore from './store'
@@ -9,7 +9,7 @@ import './assets/normalize.css'
 
 const store = configureStore()
 const history = hashHistory
-console.log(store.getState())
+
 ReactDOM.render(
   <Provider store={store}>
     { routes(history) }

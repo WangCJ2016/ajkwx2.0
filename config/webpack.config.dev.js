@@ -67,7 +67,7 @@ module.exports = {
             // There are also additional JS chunk files if you use code splitting.
             chunkFilename: 'static/js/[name].chunk.js',
             // This is the URL that app is served from. We use "/" in development.
-            publicPath: 'file:///Users/apple/Desktop/workspace/爱居客微信相关/ajkwx2.0/build/',
+            publicPath: publicPath,
             // Point sourcemap entries to original disk location (format as URL on Windows)
             devtoolModuleFilenameTemplate: info =>
                 path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),

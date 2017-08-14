@@ -11,7 +11,7 @@ class AirOne extends React.Component {
     switchKey:'ON',
     temIndex:-1,
     currentTemArray:[],
-    model:'制冷'
+    model:'cold'
   }
   componentDidMount(){
     this.setState({
@@ -78,17 +78,27 @@ class AirOne extends React.Component {
     })
   }
   //模式改变
-  modelChange(){
-    const currentModel = this.state.model==='制冷'?'制热':'制冷'
+  modelChange(deviceId){
+    if(this.state.switchKey==='ON') return
+    const currentModel = this.state.model==='cold'?'制热':'制冷'
     this.setState({
-      model:currentModel,
+      model:this.state.model==='cold'?'hot':'cold',
       temIndex:0,
       currentTemArray:currentModel==='制冷'?this.props.air.coolWays:this.props.air.warmWays
+    },function(){
+      console.log(this.props.air.warmWays,this.props.air.coolWays)
+      if(this.props.deviceType === 'VIRTUAL_AIR_REMOTE'){
+      this.props.actions.changeTem(this.state.currentTemArray[this.state.temIndex],deviceId)
+      }
+      if(this.props.deviceType === 'VIRTUAL_CENTRAL_AIR_REMOTE'){
+        this.props.actions.centerchangeTem(this.state.currentTemArray[this.state.temIndex],deviceId,this.state.model,this.state.speed)
+      }
     })
   }
   render(){
-    const { deviceId,coolWays,warmWays } = this.props.air
+    const { deviceId } = this.props.air
     const { switchKey,temIndex,model,currentTemArray} = this.state
+    console.log(this.props)
     return(
         <div styleName='air_wrap' style={{width:this.props.width}}>
           <div styleName="air_display">
@@ -103,7 +113,7 @@ class AirOne extends React.Component {
               <span styleName='air_display_title'>模式</span>
               <div styleName="air_model">
                 <img src={require(`../../assets/imgs/air/${model}.png`)} alt=""/>
-                <span>{model}</span>
+                <span>{model==='cold'?'制冷':'制热'}</span>
               </div>
             </div>
           </div>
@@ -131,7 +141,7 @@ class AirOne extends React.Component {
           <span styleName="small_round right"></span>
         </div>
         <div styleName="air_btn">
-          <figure styleName="air_figure" onTouchEnd={this.temChange.bind(this,'plus',deviceId)}>
+          <figure className={styles.air_figure} onTouchEnd={this.temChange.bind(this,'plus',deviceId)}>
             <div styleName="air_figure_img">
               <img styleName='btn_tmp' src={require('../../assets/imgs/air/plus.png')} alt=""/>
             </div>

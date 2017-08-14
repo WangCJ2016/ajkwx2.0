@@ -1,5 +1,5 @@
 .tv_bg{
-  height: 100%;
+  height: 12.06rem;
   background: url(../../assets/imgs/tv/tv_bg.png);
   background-size: 100% 100%;
   overflow: hidden;
@@ -11,6 +11,7 @@
 }
 .tv_wrap,.tvwrap{
   height: 100%;
+  transition: transform 1s ease-in;
 }
 .tv_wrap{
   float: left;
@@ -22,9 +23,7 @@
   background: url(../../assets/imgs/tv/btn_bg.png);
   background-size: 100% 100%;
 }
-.btn:active{
-  color: red
-}
+
 .tv_ON .btn_img{
   width: 100%;
   height: 100%;
@@ -88,7 +87,7 @@
 .tvBox{
   display: flex;
   justify-content: space-between;
-  padding: 0.4rem 0.8rem 0.1rem ;
+  padding: 0.2rem 0.8rem 0.1rem ;
 }
 .dir_control{
   margin: 0.3rem;
@@ -109,6 +108,8 @@
   display: inline-block;
   width: 0.9rem;
   height: 0.9rem;
+  border-radius: 50%;
+  position: relative;
 }
 .arr_title{
   text-align: center;
@@ -125,6 +126,12 @@
   position: absolute;
   left: 50%;
   margin-left: -0.45rem;
+  background-color: transparent;
+  transition: all 1s ease-in;
+  border:0.04rem solid #769ee3;
+}
+.round_up.active{
+  background-color: rgba(0,0,0,.3);
 }
 .arr_down{
   composes:arr_common;
@@ -209,7 +216,7 @@
 
 }
 .num{
-  margin: 0.2rem 0;
+  margin: 0.1rem 0;
   width: 1.0rem;
   line-height: 0.7rem;
   text-align: center;

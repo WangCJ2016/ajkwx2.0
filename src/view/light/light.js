@@ -62,7 +62,6 @@ class Light extends Component {
     if(index === 1 && this.state.modelActiveIndex === 1){
         scene=this.props.lightStore.models.filter(model => model.name === 'homeoff')
     }
-    console.log(scene)
     this.props.lightActions.modelsClick(scene[0].sceneId);
   }
 
@@ -75,7 +74,7 @@ class Light extends Component {
           {this.modellightRender()}
         </div>
         <div styleName="round">
-          <LargeRound lights={lights} initialLights={initialLights} lightsClick={lightsClick}/>
+          <LargeRound lights={lights} initialLights={initialLights} lightsClick={lightsClick} />
           <MiddleRound />
           <img styleName="small_round"  src={require('../../assets/imgs/light/small_round.png')} alt=''/>
         </div>

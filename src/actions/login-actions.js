@@ -1,6 +1,6 @@
 import { Toast } from 'antd-mobile'
 import { encode64, config, request } from '../utlis'
-import { browserHistory,hashHistory } from 'react-router'
+import { hashHistory } from 'react-router'
 
 
 export function getLoginCode(userName) {

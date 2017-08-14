@@ -68,7 +68,10 @@ class LargeRound extends React.Component {
     },function(){
       this.currentAngle = moveAngle
     })
-
+  }
+  touchEnd(e){
+    e.stopPropagation() 
+    e.preventDefault()
   }
   lightsRender(){
     const { lights } = this.props
@@ -76,7 +79,6 @@ class LargeRound extends React.Component {
       const rotate = -90 + (30*Math.round(index/2))*Math.pow(-1,index+1)
       const large_rotateZ = this.state.large_round_rotate
       const status = light.status
-      const changeStatus = status === 'ON'?'OFF':'ON'
       const stylename = classNames({
         lights:true,
         ['lights_'+status]:true,
@@ -84,7 +86,7 @@ class LargeRound extends React.Component {
       })
       return (
          <div styleName='light_wrap' style={{transform:`rotateZ(${rotate}deg)`}} key={light.id}>
-            <div className={stylename} style={{transform:`rotateZ(${large_rotateZ-rotate}deg)`}} onTouchEnd={()=>this.props.lightsClick(light.wayId,changeStatus,index)}>
+            <div className={stylename} style={{transform:`rotateZ(${large_rotateZ-rotate}deg)`}} onTouchEnd={()=>this.props.lightsClick(light.wayId,status,index)}>
               <div className="light_img"></div>
               <p>{light.name}</p>
             </div>
@@ -92,12 +94,13 @@ class LargeRound extends React.Component {
       )
     })
   }
-
   render(){
     const {large_round_rotate} = this.state
     const large_rotateZ = -large_round_rotate
+    console.log(this.props)
     return(
-      <div styleName="large_round" style={{transform:`rotateZ(${large_rotateZ}deg)`}} onTouchStart={this.touchstart.bind(this)} onTouchMove={this.touchemove.bind(this)}> 
+      <div styleName="large_round" style={{transform:`rotateZ(${large_rotateZ}deg)`}} 
+      onTouchStart={this.touchstart.bind(this)} onTouchMove={this.touchemove.bind(this)} onTouchEnd={this.touchEnd.bind(this)}> 
             {this.lightsRender()}
       </div>
     )

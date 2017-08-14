@@ -7,6 +7,7 @@ import styles from './air.css'
 import AirOne from './air-one'
 import * as airActions from '../../actions/air-actions'
 import SlidePot from '../../components/slidePot/slide-pot'
+import SwipeType from '../../components/swipeTypeHoc/SwipeType'
 
 @connect(
   state => ({airState:state.airStore}),
@@ -14,72 +15,59 @@ import SlidePot from '../../components/slidePot/slide-pot'
     airActions: bindActionCreators(airActions, dispatch),
   })
 )
+@SwipeType
 @CSSModules(styles, { allowMultiple: true })
 class Air extends React.Component {
-  state={
-    translateX:0,
-    transitionType:'',
-    translateIndex:0
-  }
-  pageX=0
-  winWidth = 0
+  count = 0 
+  countActive = 0
   componentDidMount(){
     this.props.airActions.initialAirCondition()
-    this.winWidth = window.innerWidth
-    document.title = '空调'
+    document.title = '空调' 
+    this.props.componentDidMount()
   }
-  touchstart(e){
-    e.stopPropagation() 
-    e.preventDefault()
-    this.pageX = e.changedTouches[0].pageX
-    this.setState({transitionType:''})
-  }
-  touchmove(e){
-    e.stopPropagation() 
-    e.preventDefault()
-    const maxWith = -this.winWidth*(this.props.airState.airs.length-1)
-    const currentPageX = e.changedTouches[0].pageX
-    let translateX
-    if(this.state.translateX + currentPageX - this.pageX<0){
-      if(this.state.translateX + currentPageX - this.pageX<=maxWith){
-        translateX=maxWith
-      }else{
-        translateX=this.state.translateX + currentPageX - this.pageX
-      }
-    }else{
-      translateX=0
-    }
-    this.setState({
-      translateX: translateX
-    },function(){
-      this.pageX = currentPageX
-    })
-  }
-  touchend(e){
-    e.stopPropagation() 
-    e.preventDefault()
-    const translateX = this.state.translateX
-    const translateIndex =  Math.round(translateX/this.winWidth)
-    this.setState({
-      translateIndex:translateIndex,
-      translateX:this.winWidth*translateIndex,
-      transitionType:'transform 0.5s ease-in'
-    })
-  }
+  componentWillUnmount() {
+    this.props.componentWillUnmount()
+ }
   render(){
     const {airs,deviceType} = this.props.airState
-    const {translateX,transitionType,translateIndex } = this.state
     const wrapWidth = airs.length*100 + '%'
     const airWidth = 1/airs.length *100 + '%'
-    console.log(this.props)
+    let translateX = 0
+    if(this.props.state.count - this.count === 1){
+      if(this.countActive<airs.length-1){
+        this.countActive = this.countActive + 1
+      }else{
+        this.countActive = airs.length - 1
+      }
+      translateX = -this.countActive*this.props.state.winWidth
+      this.count = this.props.state.count
+      console.log(translateX,this.count,this.countActive)
+    }
+    if(this.props.state.count - this.count === -1){
+      if(this.countActive>0){
+        this.countActive = this.countActive - 1
+      }else{
+        this.countActive = 0
+      }
+      translateX = -this.countActive*this.props.state.winWidth
+      this.count = this.props.state.count
+      console.log(translateX,this.count,this.countActive)
+    }
+    if(this.props.state.count - this.count === 0){
+      translateX = -this.countActive*this.props.state.winWidth
+    }
+    console.log(this.props.state)
     return(
+      <div>
       <div styleName='air_bg'>
-        <SlidePot num={airs.length} activeIndex={-translateIndex} />
-        <div styleName="airwrap" style={{width:wrapWidth,transform:`translateX(${translateX}px)`,transition:transitionType}} onTouchStart={this.touchstart.bind(this)} onTouchMove={this.touchmove.bind(this)} onTouchEnd={this.touchend.bind(this)}>
+        <SlidePot num={airs.length} activeIndex={this.countActive} />
+        <div styleName="airwrap" style={{width:wrapWidth,transform:`translateX(${translateX}px)`}} 
+        onTouchStart={this.props.touchstart} onTouchMove={this.props.touchmove} onTouchEnd={this.props.touchend} onTouchCancel={this.props.touchcancel}>
         {
           airs.length?airs.map((air,index) => <AirOne width={airWidth} key={index} deviceType={deviceType} air={air} actions={this.props.airActions}/>):null
         }
         </div>
+      </div>
       </div>
     )
   }

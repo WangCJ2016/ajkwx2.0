@@ -1,27 +1,34 @@
 .home_bg{
-  height: 100%;
+  height: 12.06rem;
   background: url(../../assets/imgs/home/home_bg.png);
   background-size: 100% 100%;
+  position: relative;
 }
 
 .curtain_title{
   font-size: 0.36rem;
 }
 .home_figure{
-  border: 2px solid rgba(255,255,255,.3);
+  border: 0.04rem solid rgba(255,255,255,.3);
   border-radius: 50%;
   text-align: center;
   color: #fff;
   position: absolute;
+  transition: tranform 1s ease-in;
 }
 .home_figure>img{
   padding-top: 0.1rem
 }
+.active{
+  border: 0.04rem solid #fff;
+  transform: scale(1.2,1.2);
+}
 .curtain{
-  width: 1.52rem;
-  height: 1.52rem;
+  width: 1.5rem;
+  height: 1.5rem;
   top: 6.8rem;
-  right: 3.04rem;
+  left: 50%;
+  margin-left: -0.75rem;
 }
 .curtain > img{
   width: 0.74rem;
@@ -32,10 +39,11 @@
 }
 
 .lock{
-  width: 1.28rem;
-  height: 1.28rem;
+  width: 1.5rem;
+  height: 1.5rem;
   top: 1.98rem;
-  left: 1.76rem;
+  left: 50%;
+  margin-left: -0.75rem;
 }
 .lock > img{
   width: 0.52rem;
@@ -61,7 +69,7 @@
 .tv{
   width: 1.5rem;
   height: 1.5rem;
-  top: 3.0rem;
+  top: 3.3rem;
   right: 0.84rem;
 }
 .tv > img{
@@ -73,9 +81,9 @@
 }
 
 .service{
-  width: 1.2rem;
-  height: 1.2rem;
-  top: 3.58rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  top: 3.3rem;
   left: 0.64rem;
 }
 .service > img{
@@ -85,10 +93,10 @@
   font-size: 0.24rem;
 }
 .air{
-  width: 1.46rem;
-  height: 1.46rem;
+  width: 1.5rem;
+  height: 1.5rem;
   top: 5.28rem;
-  left: 0.38rem;
+  left: 0.64rem;
 }
 .air > img{
   width: 0.74rem;
@@ -99,9 +107,9 @@
 }
 
 .model{
-  width: 1.02rem;
-  height: 1.02rem;
-  top: 5.74rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  top: 5.28rem;
   right: 0.88rem
 }
 .model > img{
@@ -110,9 +118,7 @@
 .model >figcaption{
   font-size: 0.22rem;
 }
-.active{
-  border: 1px solid #fff;
-}
+
 .slogan{
   position: absolute;
   width: 4.22rem;

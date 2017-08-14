@@ -10,7 +10,7 @@ class Home extends React.Component {
   constructor(){
     super()
     this.state = {
-      activeIndex:0
+      activeIndex:-1
     }
   }
   componentDidMount(){

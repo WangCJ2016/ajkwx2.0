@@ -8,7 +8,8 @@ const SlidePot = ({num,activeIndex}) => {
   const arry = numToarray(num)
   return (
     <div className={styles.slide_box}>
-      {arry.map((num,index) => {
+      {num>1?
+        arry.map((num,index) => {
         const classname = classNames({
           pot:true,
           pot_active:index === activeIndex
@@ -18,7 +19,7 @@ const SlidePot = ({num,activeIndex}) => {
                     <span className={classname}></span>
                   </p>
                 )
-          })
+          }):null
       }
     </div>
   )

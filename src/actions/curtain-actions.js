@@ -28,18 +28,7 @@ export function changeCurtainStatus(wayId,key,brightness){
   };
 }
 
-export function changeRange(name,precent){
-  return (dispatch,getState)=>{
-    let way = '';
-    if(name=='curtain'){
-      way = getState().reducers.CurtainReducer.curtainWayid;
-    }
-    if(name=='chuangsha'){
-      way = getState().reducers.CurtainReducer.chhuangshaWayid;
-    }
-   
-  };
-}
+
 
 function initialState(data){
   return {

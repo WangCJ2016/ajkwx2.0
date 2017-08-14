@@ -2,7 +2,6 @@ import React from 'react'
 import CSSModules from 'react-css-modules'
 
 import styles from './tv.css'
-import { numToarray } from '../../utlis'
 import TvButton from './TvButton'
 
 @CSSModules(styles, { allowMultiple: true })
@@ -71,7 +70,8 @@ class TvOne extends React.Component {
             <span styleName="arr_down"></span>
           </div>
           <div styleName="arr_round" >
-            <span styleName="round_up" data-key='up' onTouchEnd={this.tvBoxCtrl.bind(this,'UP')}></span>
+            <span styleName="round_up active" data-key='up' onTouchEnd={this.tvBoxCtrl.bind(this,'UP')}>
+            </span>
             <span styleName="round_down" onTouchEnd={this.tvBoxCtrl.bind(this,'DOWN')}></span>
             <span styleName="round_left" onTouchEnd={this.tvBoxCtrl.bind(this,'LEFT')}></span>
             <span styleName="round_right" onTouchEnd={this.tvBoxCtrl.bind(this,'RIGHT')}></span>

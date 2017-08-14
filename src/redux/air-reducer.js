@@ -1,5 +1,4 @@
-import {fromJS} from 'immutable';
-import * as airActions from '../actions/air-actions';
+import {fromJS} from 'immutable'
 
 const initialState = {
   airs:[],
@@ -9,6 +8,7 @@ export default function(state=initialState,action){
   switch (action.type) {
     case 'INTIALDATA':
       return fromJS(state).set(action.style,action.data).toJS()
+     default:
+        return state;
   }
-  return state;
 }
