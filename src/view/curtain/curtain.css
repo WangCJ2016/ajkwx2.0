@@ -11,6 +11,7 @@
 .curtain_wrap,.curtainwrap{
   height: 100%;
   transition: tranform 1s ease-in;
+  overflow: hidden;
 }
 .curtain_wrap{
   float: left;
@@ -33,11 +34,41 @@
   font-size: 0.4rem;
 }
 .curtain_btn{
-  width: 1.2rem;
-  line-height: 1.2rem;
+  width: 1.3rem;
+  height: 1.3rem;
+  line-height: 1.3rem;
   border-radius: 50%;
-  border: 0.02rem solid #FFC356;
   text-align: center;
-  color: #FFC356;
+  background-color: transparent;
+  position: relative;
+  border:0.04rem solid #fff;
+  box-sizing: border-box;
   font-weight: 200;
+  color: #FFC356;
+  font-size: 0.36rem;
+}
+.curtain_btn:after{
+  content: "";
+  position: absolute;
+  left: 0;
+  top:0;
+  color: #FFC356;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  z-index: -1;
+  border-radius: 50%;
+  transition: transform .2s ease-in;
+}
+
+.curtain_btn:active{
+  color: #fff;
+  border:0.04rem solid #ffc356
+}
+
+.curtain_btn:active:after{
+  transform: scale(.9,.9);
+  transform-origin: 50% 50%;
+  background-color: #ffc356;
+  color: #fff
 }

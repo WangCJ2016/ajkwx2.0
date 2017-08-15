@@ -1,12 +1,12 @@
 import React from 'react'
 import CSSModules from 'react-css-modules'
 import classNames from 'classnames'
-import { Link } from 'react-router'
+import { Link,hashHistory } from 'react-router'
 
 import styles from './home.css'
 
 @CSSModules(styles, { allowMultiple: true })
-class Home extends React.Component {
+class Home extends React.PureComponent {
   constructor(){
     super()
     this.state = {
@@ -34,22 +34,22 @@ class Home extends React.Component {
             active:index === activeIndex
            })
       return (
-        <Link to={figure.path} key={figure.name} activeClassName='active'>
-          <figure styleName={stylename}  onTouchEnd={this.goDetail.bind(this,index)}>
+        // <Link to={figure.path} key={figure.name} activeClassName='active'>
+          <figure styleName={stylename} key={figure.name}  onClick={this.goDetail.bind(this,index,figure.path)}>
             <img src={require(`../../assets/imgs/home/${figure.name}.png`)} alt="" />
             <figcaption>{figure.title}</figcaption>
           </figure>
-       </Link>
+       // </Link>
       )
    })
   }
-  goDetail(index){
+  goDetail(index,path){
     this.setState({
       activeIndex:index
     })
+    hashHistory.push(path)
   }
   render(){
-    console.log(this.props.location.query)
     return(
       <div styleName='home_bg'>
        {this.figuresRender()}

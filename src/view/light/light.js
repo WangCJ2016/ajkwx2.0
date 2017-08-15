@@ -1,12 +1,14 @@
-import React,{ Component } from 'react'
+import React from 'react'
 import CSSModules from 'react-css-modules'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import pureRender from 'pure-render-decorator';
 
 import styles from './light.css'
 import * as actions from '../../actions/light-actions'
 import MiddleRound from './middle-round'
 import LargeRound from './large-round'
+
 
 @connect(
   state => ({lightStore:state.lightStore}),
@@ -14,8 +16,9 @@ import LargeRound from './large-round'
     lightActions: bindActionCreators(actions, dispatch),
   })
 )
+@pureRender
 @CSSModules(styles, { allowMultiple: true })
-class Light extends Component {
+class Light extends React.Component {
   state = {
     modelActiveIndex:-1
   } 
@@ -48,7 +51,6 @@ class Light extends Component {
       modelActiveIndex:index
     })
     }
-     console.log(this.state.modelActiveIndex)
      let scene
      if(index === 0 && this.state.modelActiveIndex !== 0){
         scene=this.props.lightStore.models.filter(model => model.name === 'ledon')
@@ -66,6 +68,7 @@ class Light extends Component {
   }
 
   render() {
+    console.log(this.props)
     const {lights} = this.props.lightStore
     const {initialLights,lightsClick} = this.props.lightActions
     return (

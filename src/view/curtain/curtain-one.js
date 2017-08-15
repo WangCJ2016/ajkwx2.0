@@ -5,14 +5,11 @@ import styles from './curtain.css'
 import InputRange from '../../components/inputRange/inputRange'
 
 @CSSModules(styles, { allowMultiple: true })
-class CurtainOne extends React.Component {
+class CurtainOne extends React.PureComponent {
   curtainCtrl(wayId,key){
     this.props.actions.changeCurtainStatus(wayId,key,100)
   }
   rangeChange(wayId,e){
-    // e.stopPropagation() 
-    // e.preventDefault()
-   // alert(e.target.value)
     this.props.actions.changeCurtainStatus(wayId,'OPEN',e.target.value)
   }
   touchStart(e){
@@ -23,13 +20,16 @@ class CurtainOne extends React.Component {
     e.stopPropagation() 
     e.preventDefault()
   }
+  btnRender(){
+
+  }
   render(){
     //console.log(this.props)
     const { ways } = this.props.curtain
     return(
       <div styleName="curtain_wrap" style={{width:this.props.width}}>
           {
-            ways.length?ways.map(way => {
+            ways?ways.map(way => {
               return (
                 <div key={way.id}>
                    <p styleName="curtain_name">{way.name}</p>

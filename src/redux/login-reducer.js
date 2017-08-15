@@ -1,19 +1,31 @@
-import {fromJS} from 'immutable';
+import Immutable from 'seamless-immutable'
 
-const initialState = {
-  userName:localStorage.getItem('userName')||'',
-  password:localStorage.getItem('password')||'',
-  isRemenber:localStorage.getItem('isRemenber')||false,
-  deleteTime:localStorage.getItem('deleteTime')
-};
-export default (state = initialState,action)=>{
+let initialState 
+if(localStorage.getItem('deleteTime')>= new Date().getTime()){
+   initialState = {
+      userName:localStorage.getItem('userName')||'',
+      password:localStorage.getItem('password')||'',
+      isRemenber:localStorage.getItem('isRemenber')||false,
+      deleteTime:localStorage.getItem('deleteTime')
+  }
+}else{
+   initialState = {
+      userName:'',
+      password:'',
+      isRemenber:false,
+      deleteTime:''
+  }
+}
+
+
+export default (state = Immutable(initialState),action)=>{
   switch (action.type) {
     case 'REMOVELOCALDATA':
-      return fromJS(state).set('userName','').set('password','').set('isRemenber',false).toJS();
+      return Immutable.set(Immutable(state),'userName','').set(Immutable(state),'password','').set(Immutable(state),'isRemenber',false)
     case 'CHANGEUSERANDPASSWORD':
-      return fromJS(state).set(action.name,action.value).toJS();
+      return Immutable.set(Immutable(state),action.name,action.value)
     case 'CHANGEREMEMBER':
-      return fromJS(state).set('isRemenber',action.value).toJS();
+      return Immutable.set(Immutable(state),'isRemenber',action.value)
     default:
       return state;
   }

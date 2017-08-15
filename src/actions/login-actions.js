@@ -22,12 +22,10 @@ export function goHome(username, password, isRemenber) {
         request.get(config.api.base + config.api.login, { username: username, password: password })
             .then(res => {
                 if (res.success) {
-                    console.log(res)
                     hashHistory.push(`/home?name=${res.dataObject.house.name}`)
                     sessionStorage.setItem('houseId',encode64(res.dataObject.house.id.toString()))
                     sessionStorage.setItem('customerId',encode64(res.dataObject.customer.id.toString()))
                     sessionStorage.setItem('token',res.dataObject.customer.token)
-                    console.log(encode64(res.dataObject.customer.id.toString()))
                     dispatch(saveTokenHouseId(res.dataObject.customer.token, encode64(res.dataObject.house.id.toString()),encode64(res.dataObject.customer.id.toString())))
                     if (isRemenber) {
                         localStorage.setItem('userName', username)
@@ -72,7 +70,6 @@ export function changeRemember(value) {
 
 //保存token houseid
 export function saveTokenHouseId(token, houseId,customerId) {
-    console.log(customerId)
     return {
         type: 'SAVE',
         token: token,

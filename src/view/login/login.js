@@ -1,4 +1,4 @@
-import React,{ Component } from 'react'
+import React from 'react'
 import CSSModules from 'react-css-modules'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -16,7 +16,7 @@ import * as actions from '../../actions/login-actions'
   })
 )
 @CSSModules(styles, { allowMultiple: true })
-class Login extends Component {
+class Login extends React.PureComponent {
   constructor(){
     super();
     this.getLoginCode = this.getLoginCode.bind(this)
@@ -68,6 +68,7 @@ class Login extends Component {
     this.props.loginActions.changeRemember(!isRemenber);
   }
   render() {
+    console.log(1)
     const {userName,password,isRemenber} = this.props.loginState;
     return (
       <div styleName='logo_bg'>

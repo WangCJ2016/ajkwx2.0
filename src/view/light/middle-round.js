@@ -1,12 +1,13 @@
 import React from 'react'
 import CSSModules from 'react-css-modules'
 import classNames from 'classnames'
+import Immutable from 'seamless-immutable';
 
 import styles from './light.css'
 
 
 @CSSModules(styles, { allowMultiple: true })
-class MiddleRound extends React.Component {
+class MiddleRound extends React.PureComponent {
   state={
     middle_round_rotate:0,
     middle_roundIndex:1
@@ -28,6 +29,7 @@ class MiddleRound extends React.Component {
     })
   }
   render(){
+    console.log(this.props)
     return(
       <div styleName="middle_round" style={{transform:`rotateZ(${this.state.middle_round_rotate}deg)`}}>
             {this.lightclassRender()}

@@ -17,7 +17,7 @@ import SwipeType from '../../components/swipeTypeHoc/SwipeType'
 )
 @SwipeType
 @CSSModules(styles, { allowMultiple: true })
-class Air extends React.Component {
+class Air extends React.PureComponent {
   count = 0 
   countActive = 0
   componentDidMount(){

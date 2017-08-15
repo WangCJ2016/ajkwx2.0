@@ -1,17 +1,19 @@
 import React from 'react'
 import CSSModules from 'react-css-modules'
+import classNames from 'classnames'
 
 import styles from './air.css'
 import { numToarray } from '../../utlis'
 
 @CSSModules(styles, { allowMultiple: true })
-class AirOne extends React.Component {
+class AirOne extends React.PureComponent {
   state = {
     speed:3,
     switchKey:'ON',
     temIndex:-1,
     currentTemArray:[],
-    model:'cold'
+    model:'cold',
+    btnActiveIndex:-1
   }
   componentDidMount(){
     this.setState({
@@ -38,13 +40,14 @@ class AirOne extends React.Component {
     }
   }
   //温度加减
-  temChange(type,deviceId){
+  temChange(type,deviceId,btnActiveIndex){
     if (this.props.deviceType === 'VIRTUAL_AIR_REMOTE'){
         const index = type === 'plus'?(this.state.temIndex+1 >=this.state.currentTemArray.length?this.state.temIndex:this.state.temIndex+1):
                                       (this.state.temIndex-1 >= 0?this.state.temIndex-1:this.state.temIndex)
         this.setState({
           temIndex:index,
-          switchKey:'OFF'
+          switchKey:'OFF',
+          btnActiveIndex:btnActiveIndex
         },function(){
           this.props.actions.changeTem(this.state.currentTemArray[this.state.temIndex],deviceId)
         })
@@ -63,10 +66,11 @@ class AirOne extends React.Component {
     }
   }
   //风速改变
-  speedChange(deviceId){
+  speedChange(deviceId,btnActiveIndex){
     if (this.props.deviceType === 'VIRTUAL_AIR_REMOTE') return
     this.setState({
-      speed:(this.state.speed+1)%4
+      speed:(this.state.speed+1)%4,
+      btnActiveIndex:btnActiveIndex
     },function(){
       this.props.actions.centerchangeTem(this.state.currentTemArray[this.state.temIndex],deviceId,this.state.model,this.state.speed)
     })
@@ -78,13 +82,14 @@ class AirOne extends React.Component {
     })
   }
   //模式改变
-  modelChange(deviceId){
+  modelChange(deviceId,btnActiveIndex){
     if(this.state.switchKey==='ON') return
     const currentModel = this.state.model==='cold'?'制热':'制冷'
     this.setState({
       model:this.state.model==='cold'?'hot':'cold',
       temIndex:0,
-      currentTemArray:currentModel==='制冷'?this.props.air.coolWays:this.props.air.warmWays
+      currentTemArray:currentModel==='制冷'?this.props.air.coolWays:this.props.air.warmWays,
+      btnActiveIndex:btnActiveIndex
     },function(){
       console.log(this.props.air.warmWays,this.props.air.coolWays)
       if(this.props.deviceType === 'VIRTUAL_AIR_REMOTE'){
@@ -95,10 +100,21 @@ class AirOne extends React.Component {
       }
     })
   }
+  //btn
+  btnRender(){
+    const arry = ['plus','minus','speed','model']
+    return arry.map((classType,index) => {
+      return classNames({
+        air_figure:true,
+        active:index === this.state.btnActiveIndex
+      })
+    })
+  }
   render(){
     const { deviceId } = this.props.air
     const { switchKey,temIndex,model,currentTemArray} = this.state
-    console.log(this.props)
+    const btnClass = this.btnRender()
+    console.log(this.btnRender())
     return(
         <div styleName='air_wrap' style={{width:this.props.width}}>
           <div styleName="air_display">
@@ -141,25 +157,25 @@ class AirOne extends React.Component {
           <span styleName="small_round right"></span>
         </div>
         <div styleName="air_btn">
-          <figure className={styles.air_figure} onTouchEnd={this.temChange.bind(this,'plus',deviceId)}>
+          <figure styleName={btnClass[0]} onClick={this.temChange.bind(this,'plus',deviceId,0)} >
             <div styleName="air_figure_img">
               <img styleName='btn_tmp' src={require('../../assets/imgs/air/plus.png')} alt=""/>
             </div>
             <figcaption>温度+</figcaption>
           </figure>
-           <figure styleName="air_figure" onTouchEnd={this.temChange.bind(this,'minus',deviceId)}>
+           <figure styleName={btnClass[1]} onClick={this.temChange.bind(this,'minus',deviceId,1)}>
             <div styleName="air_figure_img">
              <img styleName='btn_tmp' src={require('../../assets/imgs/air/minus.png')} alt=""/>
             </div>
             <figcaption>温度-</figcaption>
           </figure>
-           <figure styleName="air_figure" onTouchEnd={this.speedChange.bind(this,'minus',deviceId)}>
+           <figure styleName={btnClass[2]} onClick={this.speedChange.bind(this,'minus',deviceId,2)}>
             <div styleName="air_figure_img">
               <img styleName='btn_speed' src={require('../../assets/imgs/air/speed.png')} alt=""/>
             </div>
             <figcaption>风速</figcaption>
           </figure>
-           <figure styleName="air_figure" onTouchEnd={this.modelChange.bind(this,'minus',deviceId)}>
+           <figure styleName={btnClass[3]} onClick={this.modelChange.bind(this,deviceId,3)}>
             <div styleName="air_figure_img">
               <img styleName='btn_speed' src={require('../../assets/imgs/air/air_model.png')} alt=""/>
             </div>

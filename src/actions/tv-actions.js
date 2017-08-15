@@ -29,11 +29,6 @@ export function tvCtrl(key,deviceId){
   };
 }
 
-export function tvBoxClick(action){
-  return (dispatch,getState)=>{
-    
-  };
-}
 
 function initialState(tv){
   return {

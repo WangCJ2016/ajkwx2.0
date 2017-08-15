@@ -1,13 +1,13 @@
-import {fromJS} from 'immutable'
+import Immutable from 'seamless-immutable'
 
 const initialState = {
   airs:[],
   deviceType:''
 };
-export default function(state=initialState,action){
+export default function(state=Immutable(initialState),action){
   switch (action.type) {
     case 'INTIALDATA':
-      return fromJS(state).set(action.style,action.data).toJS()
+      return Immutable.set(Immutable(state),action.style,action.data)
      default:
         return state;
   }

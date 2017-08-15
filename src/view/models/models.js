@@ -1,7 +1,6 @@
 import React from 'react'
 import classNames from 'classnames'
 import CSSModules from 'react-css-modules'
-import { immutableRenderDecorator } from 'react-immutable-render-mixin'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
@@ -14,9 +13,8 @@ import * as modelActions from '../../actions/model-actions'
     modelActions: bindActionCreators(modelActions, dispatch),
   })
 )
-@immutableRenderDecorator
 @CSSModules(styles, { allowMultiple: true })
- class Models extends React.Component {
+ class Models extends React.PureComponent {
   constructor(){
     super()
     this.state = {

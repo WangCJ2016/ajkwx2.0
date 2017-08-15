@@ -1,12 +1,12 @@
-import {fromJS} from 'immutable';
+import Immutable from 'seamless-immutable'
 
 const initialState = {
   models:[]
 };
-export default function(state=initialState,action){
+export default function(state=Immutable(initialState),action){
   switch (action.type) {
     case 'INITIALSTATE':
-      return fromJS(state).set('models',action.data).toJS()
+      return Immutable.set(Immutable(state),'models',action.data)
     default:
         return state
   }

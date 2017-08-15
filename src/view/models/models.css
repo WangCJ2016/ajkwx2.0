@@ -16,6 +16,7 @@
   border-radius: 0.3rem;
   text-align: center;
   line-height:2.22rem;
+  transition: all 1s;
 }
 .img{
   width: 1.28rem;
@@ -39,12 +40,12 @@
   background-color: #ea7f4c;
 }
 .sleep{
-  border: 0.04rem solid #9e999e;
+  border: 0.04rem solid #db4e79;
    margin-top: 0.5rem;
    margin-left: 1.26rem;
 }
 .sleep.active{
-  background-color: #9e999e;
+  background-color: #db4e79;
 }
 .sleep+figcaption{
    margin-left: 1.26rem;

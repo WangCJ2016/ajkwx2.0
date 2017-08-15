@@ -2,12 +2,13 @@ import React from 'react'
 import CSSModules from 'react-css-modules'
 import classNames from 'classnames'
 
+
 import styles from './light.css'
 import {quadrant} from '../../utlis'
 
 
 @CSSModules(styles, { allowMultiple: true })
-class LargeRound extends React.Component {
+class LargeRound extends React.PureComponent {
   state = {
     large_round_rotate:0
   }

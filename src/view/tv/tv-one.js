@@ -5,7 +5,7 @@ import styles from './tv.css'
 import TvButton from './TvButton'
 
 @CSSModules(styles, { allowMultiple: true })
-class TvOne extends React.Component {
+class TvOne extends React.PureComponent {
   state = {
     tv:'OFF',
     tvBox:'OFF'
@@ -65,16 +65,16 @@ class TvOne extends React.Component {
         </div>
         <div styleName="dir_control">
           <div styleName="channel_voice">
-            <span styleName="arr_up"></span>
+            <span styleName="arr_up round"></span>
             <span styleName="arr_title">频道</span>
-            <span styleName="arr_down"></span>
+            <span styleName="arr_down round"></span>
           </div>
           <div styleName="arr_round" >
-            <span styleName="round_up active" data-key='up' onTouchEnd={this.tvBoxCtrl.bind(this,'UP')}>
+            <span styleName="round_up round" data-key='up' onTouchEnd={this.tvBoxCtrl.bind(this,'UP')}>
             </span>
-            <span styleName="round_down" onTouchEnd={this.tvBoxCtrl.bind(this,'DOWN')}></span>
-            <span styleName="round_left" onTouchEnd={this.tvBoxCtrl.bind(this,'LEFT')}></span>
-            <span styleName="round_right" onTouchEnd={this.tvBoxCtrl.bind(this,'RIGHT')}></span>
+            <span styleName="round_down round" onTouchEnd={this.tvBoxCtrl.bind(this,'DOWN')}></span>
+            <span styleName="round_left round" onTouchEnd={this.tvBoxCtrl.bind(this,'LEFT')}></span>
+            <span styleName="round_right round" onTouchEnd={this.tvBoxCtrl.bind(this,'RIGHT')}></span>
             <div styleName="arr_center">
               <div styleName="arr_ok" onTouchEnd={this.tvBoxCtrl.bind(this,'OK')}>
                 ok
@@ -82,9 +82,9 @@ class TvOne extends React.Component {
             </div>
           </div>
           <div styleName="channel_voice">
-            <span styleName="arr_up" onTouchEnd={this.tvBoxCtrl.bind(this,'VOL_PLUS')}></span>
+            <span styleName="arr_up round" onTouchEnd={this.tvBoxCtrl.bind(this,'VOL_PLUS')}></span>
             <span styleName="arr_title">音量</span>
-            <span styleName="arr_down" onTouchEnd={this.tvBoxCtrl.bind(this,'VOL_SUB')}></span>
+            <span styleName="arr_down round" onTouchEnd={this.tvBoxCtrl.bind(this,'VOL_SUB')}></span>
           </div>
         </div>
         <div styleName="review_tv">

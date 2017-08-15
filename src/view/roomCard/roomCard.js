@@ -13,7 +13,7 @@ import * as roomCardActions from '../../actions/roomCard-actions'
   })
 )
 @CSSModules(styles, { allowMultiple: true })
-class RoomCard extends React.Component {
+class RoomCard extends React.PureComponent {
   doorSwtich(){
     this.props.roomCardActions.openTheDoor(this.props.roomCardState.deviceId)
   }
@@ -32,15 +32,15 @@ class RoomCard extends React.Component {
         </div>
         <div styleName='round_bg'>
           <figure styleName='figure_source'>
-            <img src={require('../../assets/imgs/roomCard/source.png')} alt="" styleName='icon_source'/>
+            <div styleName="icon_div_source"></div>
             <figcaptin styleName='selectTitle'>电源</figcaptin>
           </figure>
           <figure styleName='figure_elevator'>
-            <img src={require('../../assets/imgs/roomCard/elevator.png')} alt="" styleName='icon_elevator'/>
+            <div styleName="icon_div_elevator"></div>
             <figcaptin styleName='selectTitle'>电梯</figcaptin>
           </figure>
-          <figure styleName='figure_door'> 
-            <img src={require('../../assets/imgs/roomCard/door.png')} alt="" styleName='icon_door' onClick={this.doorSwtich.bind(this)}/>
+          <figure styleName='figure_door' onClick={this.doorSwtich.bind(this)}> 
+            <div styleName="icon_div_door"></div>
             <figcaptin styleName='selectTitle'>门</figcaptin>
           </figure>
           <div styleName='center'>

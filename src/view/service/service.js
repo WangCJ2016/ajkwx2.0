@@ -13,10 +13,10 @@ import * as serviceActions from '../../actions/service-actions'
   })
 )
 @CSSModules(styles, { allowMultiple: true })
-class Service extends React.Component {
+class Service extends React.PureComponent {
   state={
-    clean:'OFF',
-    disturb:'OFF'
+    clean:'CLOSE',
+    disturb:'CLOSE'
   }
   componentDidMount(){
     document.title = '服务'
@@ -25,7 +25,7 @@ class Service extends React.Component {
   submitService(type){
     const { lights } = this.props.serviceState 
     this.setState({
-      [type]:this.state[type]==='OFF'?'ON':'OFF'
+      [type]:this.state[type]==='CLOSE'?'OPEN':'CLOSE'
     },function(){
       if (type==='clean') {
         const cleanlight = lights.filter(light => light.name === "请即清理")

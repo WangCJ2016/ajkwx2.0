@@ -1,12 +1,13 @@
-import {fromJS} from 'immutable';
+import Immutable from 'seamless-immutable'
+
 const initailState = {
   curtains:[]
 };
 
-export default function(state=initailState,action){
+export default function(state=Immutable(initailState),action){
   switch (action.type) {
     case 'INITIALSTATE':
-      return fromJS(state).set('curtains',action.data).toJS();
+      return Immutable.set(Immutable(state),'curtains',action.data)
     default:
         return state;
   }

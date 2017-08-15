@@ -17,7 +17,7 @@ import SwipeType from '../../components/swipeTypeHoc/SwipeType'
 )
 @SwipeType
 @CSSModules(styles, { allowMultiple: true })
-class Tv extends React.Component {
+class Tv extends React.PureComponent {
   count = 0 
   countActive = 0
   componentDidMount(){
@@ -53,7 +53,6 @@ class Tv extends React.Component {
     if(this.props.state.count - this.count === 0){
       translateX = -this.countActive*this.props.state.winWidth
     }
-    console.log(this.props.state)
     return (
       <div styleName='tv_bg'>
         <SlidePot num={tvs.length} activeIndex={this.countActive} />

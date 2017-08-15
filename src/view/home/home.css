@@ -23,46 +23,49 @@
   border: 0.04rem solid #fff;
   transform: scale(1.2,1.2);
 }
-.curtain{
+.light{
   width: 1.5rem;
   height: 1.5rem;
   top: 6.8rem;
   left: 50%;
   margin-left: -0.75rem;
 }
-.curtain > img{
+.light > img{
   width: 0.74rem;
   padding-top: 0.2rem
 }
-.curtain >figcaption{
+.light >figcaption{
   font-size: 0.28rem;
 }
 
-.lock{
+.curtain{
   width: 1.5rem;
   height: 1.5rem;
   top: 1.98rem;
   left: 50%;
   margin-left: -0.75rem;
 }
-.lock > img{
-  width: 0.52rem;
+.curtain > img{
+  width: 0.62rem;
+  padding-top: 0.2rem;
 }
-.lock >figcaption{
+.curtain >figcaption{
+  margin-top: 0.2rem;
   font-size: 0.24rem;
 }
 
-.light{
+.lock{
   width: 1.96rem;
   height: 1.96rem;
   top: 3.96rem;
   left: 50%;
   margin-left: -0.98rem;
 }
-.light > img{
-  width: 1.12rem;
+.lock > img{
+  width: .8rem;
 }
-.light >figcaption{
+.lock >figcaption{
+  margin-top: 0.2rem;
   font-size: 0.3rem;
 }
 
@@ -88,9 +91,11 @@
 }
 .service > img{
   width: 0.68rem;
+  padding-top: 0.2rem;
 }
 .service >figcaption{
   font-size: 0.24rem;
+  margin-top: 0.1rem;
 }
 .air{
   width: 1.5rem;
@@ -113,9 +118,11 @@
   right: 0.88rem
 }
 .model > img{
-  width: 0.5rem;
+  width: 0.6rem;
+  padding-top: 0.2rem;
 }
 .model >figcaption{
+  margin-top: 0.1rem;
   font-size: 0.22rem;
 }
 

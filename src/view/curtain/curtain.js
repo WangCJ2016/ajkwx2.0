@@ -17,7 +17,7 @@ import SwipeType from '../../components/swipeTypeHoc/SwipeType'
 )
 @SwipeType
 @CSSModules(styles, { allowMultiple: true })
-class Curtain extends React.Component {
+class Curtain extends React.PureComponent {
   count = 0 
   countActive = 0
   componentDidMount(){
@@ -27,7 +27,6 @@ class Curtain extends React.Component {
   }
   
   render(){
-    //console.log(this.props)
     const { curtains } = this.props.curtainState
     const wrapWidth = curtains.length*100 + '%'
     const curtainWidth = 1/curtains.length *100 + '%'
@@ -58,10 +57,10 @@ class Curtain extends React.Component {
     return(
       <div styleName='curtain_bg'>
          <SlidePot num={curtains.length} activeIndex={this.countActive} />
-         <div styleName="curtainwrap" style={{width:wrapWidth,transform:`translateX(${translateX}px)`}} 
+         <div styleName="curtainwrap " style={{width:wrapWidth,transform:`translateX(${translateX}px)`}} 
              onTouchStart={this.props.touchstart} onTouchMove={this.props.touchmove} onTouchEnd={this.props.touchend} onTouchCancel={this.props.touchcancel}>
            {
-            curtains.length?curtains.map((curtain,index) => <CurtainOne width={curtainWidth} curtain={curtain} actions={this.props.curtainActions} key={index}/>):null
+            curtains?curtains.map((curtain,index) => <CurtainOne width={curtainWidth} curtain={curtain} actions={this.props.curtainActions} key={index}/>):null
           }
          </div>
       </div>

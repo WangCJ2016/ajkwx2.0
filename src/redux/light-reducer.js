@@ -1,19 +1,18 @@
-import {fromJS} from 'immutable';
+import Immutable from 'seamless-immutable'
 
-const initialState = {
+let initialState = {
   models:[],
   lights:[]
-};
+}
+initialState = Immutable(initialState)
 export default function(state=initialState,action){
   switch (action.type) {
     case 'GETMODELSCENE':
-      return fromJS(state).set('models',action.models).toJS()
-    case 'HOMELIGHTCHANGESTATE':
-      return fromJS(state).setIn(['modelState',action.payload],true).setIn(['modelState',action.unpayload],false).toJS()
+      return Immutable.set(Immutable(state),"models",action.models)
     case 'GETLIGHTWAYS':
-      return fromJS(state).set('lights',action.lights).toJS()
+      return Immutable.set(Immutable(state),"lights",action.lights)
     case 'CHANGELIGHTSTATUS':
-        return fromJS(state).setIn(['lights',action.id,'status'],action.status).toJS()
+        return Immutable.setIn(Immutable(state),['lights',action.id,'status'],action.status)
     default:
       return state
   }
