@@ -68,7 +68,6 @@ class Light extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     const {lights} = this.props.lightStore
     const {initialLights,lightsClick} = this.props.lightActions
     return (

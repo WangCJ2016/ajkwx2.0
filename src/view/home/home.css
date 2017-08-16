@@ -14,14 +14,51 @@
   text-align: center;
   color: #fff;
   position: absolute;
-  transition: tranform 1s ease-in;
+  transition: tranform 1s ease-out;
 }
 .home_figure>img{
   padding-top: 0.1rem
 }
+.home_figure::after{
+  content: '';
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: transparent;
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.1);
+  transition-delay: 0.2s;
+  transition: transform 1s;
+  z-index: -1;
+  opacity: 0;
+
+}
+.home_figure.active{
+  
+  
+}
+.home_figure.active:after{
+  animation: sonarEffect 1.3s ease-out 75ms infinite;
+}
+@keyframes sonarEffect {
+  0% {
+    opacity: 0.3;
+  }
+  30% {
+    opacity: 0.5;
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.1), 0 0 10px 10px #978671, 0 0 0 10px rgba(255,255,255,0.5);
+  }
+  100% {
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.1), 0 0 10px 10px #978671, 0 0 0 10px rgba(255,255,255,0.5);
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
 .active{
-  border: 0.04rem solid #fff;
-  transform: scale(1.2,1.2);
+  
+  transform: scale(1,1);
 }
 .light{
   width: 1.5rem;
@@ -76,11 +113,12 @@
   right: 0.84rem;
 }
 .tv > img{
-  width: 0.84rem;
+  width: 0.6rem;
   padding-top: 0.2rem
 }
 .tv >figcaption{
   font-size: 0.28rem;
+  margin-top: 0.1rem
 }
 
 .service{
@@ -104,11 +142,12 @@
   left: 0.64rem;
 }
 .air > img{
-  width: 0.74rem;
+  width: 0.6rem;
   padding-top: 0.2rem
 }
 .air >figcaption{
   font-size: 0.28rem;
+   margin-top: 0.1rem;
 }
 
 .model{

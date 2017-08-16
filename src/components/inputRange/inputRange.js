@@ -19,7 +19,7 @@ class InputRange extends React.PureComponent {
    render(){
      return (
            <div className={styles.inputRange} onTouchEnd={this.props.touchEnd}>
-              <input type="range"  min="0" max="100" onChange={this.change} style={{'background':'linear-gradient(to right, #ffc356, white ' + this.state.value + '%, white)'}}/>
+              <input type="range"  min="0" max="100" onChange={this.change} style={{'background':'linear-gradient(to right, #6095f0, white ' + this.state.value + '%, white)'}}/>
             </div>
           )
    }

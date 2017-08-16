@@ -41,10 +41,10 @@
   text-align: center;
   background-color: transparent;
   position: relative;
-  border:0.04rem solid #fff;
+  border:0.04rem solid #6095f0;
   box-sizing: border-box;
   font-weight: 200;
-  color: #FFC356;
+  color: #6095f0;
   font-size: 0.36rem;
 }
 .curtain_btn:after{
@@ -52,7 +52,7 @@
   position: absolute;
   left: 0;
   top:0;
-  color: #FFC356;
+  color: #6095f0;
   width: 100%;
   height: 100%;
   background-color: transparent;
@@ -63,12 +63,12 @@
 
 .curtain_btn:active{
   color: #fff;
-  border:0.04rem solid #ffc356
+  border:0.04rem solid #6095f0
 }
 
 .curtain_btn:active:after{
   transform: scale(.9,.9);
   transform-origin: 50% 50%;
-  background-color: #ffc356;
+  background-color: #6095f0;
   color: #fff
 }

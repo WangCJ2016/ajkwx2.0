@@ -20,8 +20,6 @@ if(localStorage.getItem('deleteTime')>= new Date().getTime()){
 
 export default (state = Immutable(initialState),action)=>{
   switch (action.type) {
-    case 'REMOVELOCALDATA':
-      return Immutable.set(Immutable(state),'userName','').set(Immutable(state),'password','').set(Immutable(state),'isRemenber',false)
     case 'CHANGEUSERANDPASSWORD':
       return Immutable.set(Immutable(state),action.name,action.value)
     case 'CHANGEREMEMBER':

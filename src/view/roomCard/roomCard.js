@@ -22,14 +22,10 @@ class RoomCard extends React.PureComponent {
     document.title = '房卡'
   }
   render(){
-    console.log(this.props)
     const roomName = this.props.location.query.name
     return(
       <div styleName='roomCard_bg'>
-        <div styleName='location'>
-          <img styleName='location_img' src={require('../../assets/imgs/roomCard/location.png')} alt=""/>
-          <span styleName='location_title'>中国，杭州市</span>
-        </div>
+        
         <div styleName='round_bg'>
           <figure styleName='figure_source'>
             <div styleName="icon_div_source"></div>

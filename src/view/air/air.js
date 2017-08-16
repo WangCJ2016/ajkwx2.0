@@ -56,7 +56,6 @@ class Air extends React.PureComponent {
     if(this.props.state.count - this.count === 0){
       translateX = -this.countActive*this.props.state.winWidth
     }
-    console.log(this.props.state)
     return(
       <div>
       <div styleName='air_bg'>

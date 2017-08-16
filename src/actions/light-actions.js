@@ -16,12 +16,13 @@ export function initialLights() {
         request.get(config.api.base + config.api.querySmartDeviceWays, { houseId: houseId, token: token, deviceType: 'SWITCH' })
             .then(res => {
                 console.log(res)
-                let lights = []
+                if(res&&res.success){
+                    let lights = []
                 lights = res.dataObject.filter(function(light) {
                     return light.name.indexOf('灯') > -1
                 })
                 dispatch(getLightsWays(lights))
-                console.log(lights)
+                }
             })
     }
 }

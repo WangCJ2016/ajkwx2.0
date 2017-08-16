@@ -34,12 +34,13 @@
   align-items: center;
   position: absolute;
   margin: 0;
+  padding: 0 0.2rem
 }
 .figure_source{
   composes: figure;
   top: 0.34rem;
   left: 50%;
-  margin-left: -0.5rem;
+  margin-left: -0.574rem;
 }
 .figure_elevator{
   composes: figure;
@@ -48,47 +49,51 @@
 }
 .figure_door{
   composes: figure;
-  top: 3.7rem;
+  top: 3.5rem;
   right: 1.04rem;
 }
 .icon_div_source{
-  width: 0.66rem;
-  height: 0.76rem;
+  width: 0.75rem;
+  height: 0.86rem;
   background:url(../../assets/imgs/roomCard/source.png)no-repeat center center;
   background-size: 100% 100%;
   transition: transform .2s;
 }
-.icon_div_source:active{
+.figure:active .icon_div_source{
   background:url(../../assets/imgs/roomCard/source_active.png)no-repeat center center;
   background-size: 100% 100%;
   transform: scale(1.2,1.2);
 }
 .icon_div_door{
-  width: 0.62rem;
-  height: 0.9rem;
+  width: 0.7rem;
+  height: 1.016rem;
   background:url(../../assets/imgs/roomCard/door.png)no-repeat center center;
   background-size: 100% 100%;
   transition: transform .2s;
 }
-.icon_div_door:active{
+.figure:active .icon_div_door{
   background:url(../../assets/imgs/roomCard/door_active.png)no-repeat center center;
   background-size: 100% 100%;
   transform: scale(1.2,1.2);
 }
+
 .icon_div_elevator{
-  width: 0.74rem;
-  height: 0.74rem;
+  width: 0.8rem;
+  height: 0.8rem;
   background:url(../../assets/imgs/roomCard/elevator.png)no-repeat center center;
   background-size: 100% 100%;
   transition: transform .2s;
 }
-.icon_div_elevator:active{
+.figure:active .icon_div_elevator{
   background:url(../../assets/imgs/roomCard/elevator_active.png)no-repeat center center;
   background-size: 100% 100%;
  transform: scale(1.2,1.2);
 }
+.figure:active .selectTitle{
+  color: #6095f0
+}
 .selectTitle{
-  font-size: 0.3rem;
+  font-size: 0.36rem;
   color: #fff;
   text-align: center;
   margin-top: 0.2rem;

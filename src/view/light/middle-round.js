@@ -1,7 +1,7 @@
 import React from 'react'
 import CSSModules from 'react-css-modules'
 import classNames from 'classnames'
-import Immutable from 'seamless-immutable';
+
 
 import styles from './light.css'
 

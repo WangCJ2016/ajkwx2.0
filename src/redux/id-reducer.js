@@ -4,11 +4,16 @@ const initialState = {
   token:'',
   houseId:'',
   customerId:''
-};
+}
 export default (state = Immutable(initialState),action)=>{
   switch (action.type) {
     case 'SAVE':
-      return Immutable.set(Immutable(state),'customerId',action.customerId).set(Immutable(state),'token',action.token).set(Immutable(state),'houseId',action.houseId)
+      const idState = {
+        token:action.token,
+        houseId:action.houseId,
+        customerId:action.customerId
+      } 
+      return Immutable.merge(state, idState)
     default:
       return state;
   }

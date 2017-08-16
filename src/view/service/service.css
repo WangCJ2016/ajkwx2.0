@@ -20,8 +20,9 @@
 .service_item{
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   height: 2.8rem;
+  align-items: center;
 }
 .swape{
   width: 0.98rem;
@@ -31,7 +32,7 @@
 }
 .content{
   font-size: 0.3rem;
-  color: #000;
+  color: #fff;
 }
 .selectedlight{
   width: 0.8rem;
@@ -39,3 +40,4 @@
 .unselectedlight{
   width: 0.72rem;
 }
+.active{}

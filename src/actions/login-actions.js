@@ -44,14 +44,7 @@ export function goHome(username, password, isRemenber) {
 
     };
 }
-export function removeLocalData() {
-    localStorage.removeItem('userName')
-    localStorage.removeItem('password')
-    localStorage.removeItem('isRemenber')
-    return {
-        type: 'REMOVELOCALDATA'
-    };
-}
+
 
 
 export function changeUserAndPassword(name, value) {

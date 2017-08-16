@@ -2,6 +2,7 @@ import React from 'react'
 import CSSModules from 'react-css-modules'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import classNames from 'classnames'
 
 import styles from './service.css'
 import * as serviceActions from '../../actions/service-actions'
@@ -23,9 +24,20 @@ class Service extends React.PureComponent {
     this.props.serviceActions.initailState()
   }
   submitService(type){
+
     const { lights } = this.props.serviceState 
+    const status = this.state[type]==='CLOSE'?'OPEN':'CLOSE'
+    let antherTpye = ''
+    if (status === 'OPEN') {
+      if (type === 'clean') {
+        antherTpye = 'disturb'
+      }else{
+        antherTpye = 'clean'
+      }
+    }
     this.setState({
-      [type]:this.state[type]==='CLOSE'?'OPEN':'CLOSE'
+      [type]:status,
+      [antherTpye]:'CLOSE'
     },function(){
       if (type==='clean') {
         const cleanlight = lights.filter(light => light.name === "请即清理")
@@ -37,18 +49,27 @@ class Service extends React.PureComponent {
       }
     })
   }
+
   render() {
     console.log(this.state)
+    const cleanStyle = classNames({
+      service_item:true,
+      active:this.state.clean==='CLOSE'?false:true
+    })
+     const disturbStyle = classNames({
+      service_item:true,
+      active:this.state.disturb==='CLOSE'?false:true
+    })
     return (
       <div styleName='service_bg'>
         <div styleName='marignTop'></div>
         <div styleName='rect'>
-          <div styleName='service_item' onClick={this.submitService.bind(this,'clean')}>
+          <div styleName={cleanStyle} onClick={this.submitService.bind(this,'clean')}>
             <img src={require('../../assets/imgs/service/swape.png')} alt="" styleName='swape'/>
             <p styleName='content'>请即清理</p>
             <img src={require(`../../assets/imgs/service/click_${this.state.clean}.png`)} alt="" styleName='selectedlight'/>
           </div>
-          <div styleName='service_item' onClick={this.submitService.bind(this,'disturb')}>
+          <div styleName={disturbStyle} onClick={this.submitService.bind(this,'disturb')}>
             <img src={require('../../assets/imgs/service/ring.png')} alt="" styleName='ring'/>
             <p styleName='content'>请勿打扰</p>
             <img src={require(`../../assets/imgs/service/click_${this.state.disturb}.png`)} alt="" styleName='selectedlight' />

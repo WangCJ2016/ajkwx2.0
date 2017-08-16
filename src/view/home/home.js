@@ -1,7 +1,7 @@
 import React from 'react'
 import CSSModules from 'react-css-modules'
 import classNames from 'classnames'
-import { Link,hashHistory } from 'react-router'
+import { hashHistory } from 'react-router'
 
 import styles from './home.css'
 
@@ -10,11 +10,21 @@ class Home extends React.PureComponent {
   constructor(){
     super()
     this.state = {
-      activeIndex:-1
+      activeIndex:0
     }
   }
   componentDidMount(){
-    document.title = 'home'
+    document.title = ' '
+    this.timer = setInterval(() => {
+      const activeIndex = this.state.activeIndex+1
+      this.setState({
+        activeIndex:activeIndex%7
+      })
+    },3900)
+  }
+  componentWillUnmount(){
+    clearInterval(this.timer)
+    //clearTimeout(this.timer2)
   }
   figuresRender(){
     const activeIndex = this.state.activeIndex
@@ -29,13 +39,13 @@ class Home extends React.PureComponent {
    ]
    return figures.map((figure,index) => {
       const stylename = classNames({
-            home_figure:true,
             [figure.name]:true,
+            home_figure:true,
             active:index === activeIndex
            })
       return (
         // <Link to={figure.path} key={figure.name} activeClassName='active'>
-          <figure styleName={stylename} key={figure.name}  onClick={this.goDetail.bind(this,index,figure.path)}>
+          <figure styleName={stylename} key={figure.name}  onTouchEnd={this.goDetail.bind(this,index,figure.path)}>
             <img src={require(`../../assets/imgs/home/${figure.name}.png`)} alt="" />
             <figcaption>{figure.title}</figcaption>
           </figure>
@@ -47,7 +57,10 @@ class Home extends React.PureComponent {
     this.setState({
       activeIndex:index
     })
-    hashHistory.push(path)
+    // this.timer2 = setTimeout(() => {
+      hashHistory.push(path)
+     // },200)
+    //hashHistory.push(path)
   }
   render(){
     return(

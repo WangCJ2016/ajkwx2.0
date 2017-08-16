@@ -6,15 +6,18 @@ const deviceType = 'VIRTUAL_TV_DVD_REMOTE';
 
 export function initialTv() {
   return function(dispatch,getState){
+    console.log(getState())
     const token = getState().idStore.token || token_session
     const houseId = getState().idStore.houseId || houseId_session
     request.get(config.api.base + config.api.queryTvDevices,{houseId:houseId,token:token})
     .then(res => {
-      let arry = []
-      for(let i in res.dataObject){
-        arry.push(res.dataObject[i])
+      if (res&&res.success) {
+        let arry = []
+        for(let i in res.dataObject){
+          arry.push(res.dataObject[i])
+        }
+        dispatch(initialState(arry))
       }
-      dispatch(initialState(arry))
     })
   };
 }
