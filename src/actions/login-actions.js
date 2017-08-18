@@ -11,7 +11,7 @@ export function getLoginCode(userName) {
                 if (res && res.success) {
                     Toast.info('获取验证码成功', 2)
                 } else {
-                    Toast.info('服务器开小差了，请稍后再试', 2)
+                    Toast.info(res.msg, 2)
                 }
             });
 
@@ -22,6 +22,7 @@ export function goHome(username, password, isRemenber) {
         request.get(config.api.base + config.api.login, { username: username, password: password })
             .then(res => {
                 if (res.success) {
+                    console.log(res)
                     hashHistory.push(`/home?name=${res.dataObject.house.name}`)
                     sessionStorage.setItem('houseId',encode64(res.dataObject.house.id.toString()))
                     sessionStorage.setItem('customerId',encode64(res.dataObject.customer.id.toString()))
@@ -37,6 +38,17 @@ export function goHome(username, password, isRemenber) {
                         localStorage.removeItem('password')
                         localStorage.removeItem('isRemenber')
                     }
+                    request.get(config.api.base + config.api.querySmartDeviceWays, 
+                        { houseId: encode64(res.dataObject.house.id.toString()),
+                          token: res.dataObject.customer.token,
+                          deviceType: 'SWITCH' 
+                      })
+                      .then(res => {
+                        if(res&&res.success){
+                        sessionStorage.setItem('serveId',res.dataObject.serverId)
+                        dispatch(saveserverId(res.dataObject.serverId))
+                     }
+                    })
                 } else {
                     Toast.info('用户名和密码不匹配', 2)
                 }
@@ -68,5 +80,11 @@ export function saveTokenHouseId(token, houseId,customerId) {
         token: token,
         houseId: houseId,
         customerId:customerId
+    };
+}
+export function saveserverId(id) {
+    return {
+        type: 'SERVERID',
+        data:id
     };
 }

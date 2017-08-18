@@ -12,6 +12,7 @@ class MiddleRound extends React.PureComponent {
     middle_round_rotate:0,
     middle_roundIndex:1
   }
+ 
   lightclassRender(){
     const classarray = ['卫生间','卧室','走廊','其他']
     return classarray.map((classs,index) => {
@@ -29,7 +30,6 @@ class MiddleRound extends React.PureComponent {
     })
   }
   render(){
-    console.log(this.props)
     return(
       <div styleName="middle_round" style={{transform:`rotateZ(${this.state.middle_round_rotate}deg)`}}>
             {this.lightclassRender()}

@@ -54,7 +54,6 @@ import * as modelActions from '../../actions/model-actions'
           })
          }
   render(){
-    console.log(this.props)
     return(
       <div styleName='models_bg'>
         <div styleName='model_item'>

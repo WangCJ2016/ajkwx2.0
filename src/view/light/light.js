@@ -2,28 +2,59 @@ import React from 'react'
 import CSSModules from 'react-css-modules'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import pureRender from 'pure-render-decorator';
+
 
 import styles from './light.css'
 import * as actions from '../../actions/light-actions'
 import MiddleRound from './middle-round'
 import LargeRound from './large-round'
-
+import { request,config } from '../../utlis'
 
 @connect(
-  state => ({lightStore:state.lightStore}),
+  state => ({lightStore:state.lightStore,idStore:state.idStore}),
   dispatch => ({
     lightActions: bindActionCreators(actions, dispatch),
   })
 )
-@pureRender
 @CSSModules(styles, { allowMultiple: true })
-class Light extends React.Component {
+class Light extends React.PureComponent {
   state = {
     modelActiveIndex:-1
   } 
   componentDidMount(){
     document.title = '灯'
+    this.props.lightActions.initialLights()
+    window.addEventListener("beforeunload", () => {
+      this.submitLights()
+    })
+  }
+  componentWillUnmount(){
+    this.submitLights()
+    window.removeEventListener("beforeunload", () => {
+      this.submitLights()
+    })
+  }
+  submitLights(){
+     let  onWayIds = ''
+    this.props.lightStore.lights
+    .filter((light) => light.status === 'ON')
+    .forEach(light => {
+      onWayIds = onWayIds + ',' +light.wayId
+    })
+     let offWayIds = ''
+    this.props.lightStore.lights
+    .filter((light) => light.status === 'OFF')
+    .forEach(light => {
+      offWayIds = offWayIds + ',' +light.wayId
+    })
+    //console.log(onWayIds)
+    request.get(config.api.base + config.api.modifyWaysStatus,{
+      onWayIds:onWayIds.slice(1),
+      offWayIds:offWayIds.slice(1)
+    })
+    .then(res => {
+      console.log(res)
+    })
   }
   modellightRender(){
     const modellight = ['卧室','房间']
@@ -41,7 +72,6 @@ class Light extends React.Component {
     })
   }
   modelClick(index){
-    console.log(this.state.modelActiveIndex,index)
     if(this.state.modelActiveIndex === index){
       this.setState({
       modelActiveIndex:-1
@@ -69,14 +99,15 @@ class Light extends React.Component {
 
   render() {
     const {lights} = this.props.lightStore
-    const {initialLights,lightsClick} = this.props.lightActions
+    const serveId = this.props.idStore.serveId ||sessionStorage.getItem('serveId')
+    const {lightsClick,getLightsWays} = this.props.lightActions
     return (
       <div styleName='light_bg' >
         <div styleName="light_model">
           {this.modellightRender()}
         </div>
         <div styleName="round">
-          <LargeRound lights={lights} initialLights={initialLights} lightsClick={lightsClick} />
+          <LargeRound lights={lights} serveId={serveId} getLightsWays={getLightsWays}  lightsClick={lightsClick} />
           <MiddleRound />
           <img styleName="small_round"  src={require('../../assets/imgs/light/small_round.png')} alt=''/>
         </div>

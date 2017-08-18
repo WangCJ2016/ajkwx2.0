@@ -34,9 +34,9 @@ class CurtainOne extends React.PureComponent {
                 <div key={way.id}>
                    <p styleName="curtain_name">{way.name}</p>
                    <div styleName="curtain_group">
-                    <p styleName="curtain_btn" onTouchEnd={this.curtainCtrl.bind(this,way.wayId,'OPEN')}>打开</p>
-                    <p styleName="curtain_btn" onTouchEnd={this.curtainCtrl.bind(this,way.wayId,'STOP')}>停止</p>
-                    <p styleName="curtain_btn" onTouchEnd={this.curtainCtrl.bind(this,way.wayId,'CLOSE')}>关闭</p>
+                    <p styleName="curtain_btn" onClick={this.curtainCtrl.bind(this,way.wayId,'OPEN')}>打开</p>
+                    <p styleName="curtain_btn" onClick={this.curtainCtrl.bind(this,way.wayId,'STOP')}>停止</p>
+                    <p styleName="curtain_btn" onClick={this.curtainCtrl.bind(this,way.wayId,'CLOSE')}>关闭</p>
                   </div>
                   <InputRange touchStart={this.touchStart.bind(this)} touchMove={this.touchMove.bind(this)} touchEnd={this.rangeChange.bind(this,way.wayId)}/>       
                 </div>

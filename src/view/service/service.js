@@ -51,7 +51,6 @@ class Service extends React.PureComponent {
   }
 
   render() {
-    console.log(this.state)
     const cleanStyle = classNames({
       service_item:true,
       active:this.state.clean==='CLOSE'?false:true

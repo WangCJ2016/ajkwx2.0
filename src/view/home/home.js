@@ -1,7 +1,7 @@
 import React from 'react'
 import CSSModules from 'react-css-modules'
 import classNames from 'classnames'
-import { hashHistory } from 'react-router'
+import { Link } from 'react-router'
 
 import styles from './home.css'
 
@@ -44,23 +44,21 @@ class Home extends React.PureComponent {
             active:index === activeIndex
            })
       return (
-        // <Link to={figure.path} key={figure.name} activeClassName='active'>
-          <figure styleName={stylename} key={figure.name}  onTouchEnd={this.goDetail.bind(this,index,figure.path)}>
+        <Link to={figure.path} key={figure.name} activeClassName='active'>
+          <figure styleName={stylename} key={figure.name}  onClick={this.goDetail.bind(this,index,figure.path)}>
             <img src={require(`../../assets/imgs/home/${figure.name}.png`)} alt="" />
             <figcaption>{figure.title}</figcaption>
           </figure>
-       // </Link>
+        </Link>
       )
    })
   }
   goDetail(index,path){
+    console.log(3)
     this.setState({
       activeIndex:index
     })
-    // this.timer2 = setTimeout(() => {
-      hashHistory.push(path)
-     // },200)
-    //hashHistory.push(path)
+    
   }
   render(){
     return(

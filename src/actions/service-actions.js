@@ -11,12 +11,11 @@ export function initailState(){
     const houseId  = getState().idStore.houseId||houseId_session
      request.get(config.api.base + config.api.querySmartDeviceWays, { houseId: houseId, token: token, deviceType: 'SWITCH' })
             .then(res => {
-                console.log(res)
+                //console.log(res)
                 let lights = []
-                lights = res.dataObject.filter(function(light) {
+                lights = res.dataObject.ways.filter(function(light) {
                     return light.name.indexOf('请勿打扰') > -1 ||light.name.indexOf("请即清理") > -1
                 })
-                console.log(lights)
                 dispatch(setWayId(lights))
             })
   }

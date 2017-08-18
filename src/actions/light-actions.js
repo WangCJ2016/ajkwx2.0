@@ -9,16 +9,15 @@ export function initialLights() {
         const houseId = getState().idStore.houseId || houseId_session
         request.get(config.api.base + config.api.queryHostScenes, { houseId: houseId, token: token })
             .then(res => {
-                console.log(res)
                 dispatch(getModelScens(res.dataObject))
             })
         //灯
         request.get(config.api.base + config.api.querySmartDeviceWays, { houseId: houseId, token: token, deviceType: 'SWITCH' })
             .then(res => {
-                console.log(res)
                 if(res&&res.success){
+                    dispatch(getServeId(res.dataObject.serverId))
                     let lights = []
-                lights = res.dataObject.filter(function(light) {
+                lights = res.dataObject.ways.filter(function(light) {
                     return light.name.indexOf('灯') > -1
                 })
                 dispatch(getLightsWays(lights))
@@ -39,7 +38,12 @@ export function getLightsWays(data) {
         lights: data
     }
 }
-
+export function getServeId(data){
+    return {
+        type: 'GETSERVEID',
+        serveId: data
+    }
+}
 export function modelsClick(sceneId) {
     return function(dispatch, getState) {
         const token = getState().idStore.token || token_session
@@ -58,7 +62,7 @@ export function modelsClick(sceneId) {
 
 export function lightsClick(wayId, status, index) {
     const actionType = status === 'ON'?'CLOSE':'OPEN'
-    const status_on = status === 'ON'?'OFF':'ON'
+    //const status_on = status === 'ON'?'OFF':'ON'
     return function(dispatch, getState) {
         const token = getState().idStore.token || token_session
         const houseId = getState().idStore.houseId || houseId_session
@@ -73,7 +77,7 @@ export function lightsClick(wayId, status, index) {
             .then((res) => {
                 console.log(res)
                 if (res && res.success) {
-                    dispatch(changelightstatus(index, status_on))
+                    dispatch(changelightstatus(index, status))
                 }
             })
     }

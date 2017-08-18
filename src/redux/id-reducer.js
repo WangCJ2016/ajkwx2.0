@@ -3,7 +3,8 @@ import Immutable from 'seamless-immutable'
 const initialState = {
   token:'',
   houseId:'',
-  customerId:''
+  customerId:'',
+  serveId:''
 }
 export default (state = Immutable(initialState),action)=>{
   switch (action.type) {
@@ -14,6 +15,8 @@ export default (state = Immutable(initialState),action)=>{
         customerId:action.customerId
       } 
       return Immutable.merge(state, idState)
+      case 'SERVERID':
+      return Immutable.set(state,'serveId',action.data)
     default:
       return state;
   }

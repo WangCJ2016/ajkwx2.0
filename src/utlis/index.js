@@ -46,7 +46,8 @@ export function encode64(input) {
     smartHostControl:"we/we_smartHostControl",//控制
     querySmartDeviceWays:"we/we_querySmartDeviceWays",//获取路数信息
     queryDeviceType:"we/we_queryDeviceType",//获取设备类型
-    queryTvDevices:"we/we_queryTvDevices" //获取电视信息
+    queryTvDevices:"we/we_queryTvDevices", //获取电视信息
+    modifyWaysStatus:"we/we_modifyWaysStatus" //上传灯的状态
   }
 }
 //get/post请求

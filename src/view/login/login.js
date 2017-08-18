@@ -23,7 +23,6 @@ class Login extends React.PureComponent {
     this.login = this.login.bind(this)
     this.checkboxChange = this.checkboxChange.bind(this)
   }
-
   handleChange(name,e){
     this.props.loginActions.changeUserAndPassword(name,e.target.value)
   }

@@ -134,7 +134,7 @@ class AirOne extends React.PureComponent {
           </div>
         </div>
         <div styleName="air_round">
-          <div styleName="middle_round" onTouchEnd={this.switchClick.bind(this,deviceId)}>
+          <div styleName="middle_round" onClick={this.switchClick.bind(this,deviceId)}>
             {switchKey}
           </div>
           <span styleName="small_round up"></span>
