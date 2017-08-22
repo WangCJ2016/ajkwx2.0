@@ -67,8 +67,7 @@ class Login extends React.PureComponent {
     this.props.loginActions.changeRemember(!isRemenber);
   }
   render() {
-    console.log(1)
-    const {userName,password,isRemenber} = this.props.loginState;
+    const {userName,password,isRemenber} = this.props.loginState
     return (
       <div styleName='logo_bg'>
         <div styleName="ajk_logo">

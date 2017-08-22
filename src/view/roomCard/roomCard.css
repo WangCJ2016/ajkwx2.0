@@ -29,68 +29,52 @@
   margin-left: -3.5rem;
 }
 .figure{
-  display: flex;
-  flex-direction: column;
   align-items: center;
   position: absolute;
   margin: 0;
-  padding: 0 0.2rem
+  width:1.32rem;
 }
-.figure_source{
-  composes: figure;
-  top: 0.34rem;
-  left: 50%;
-  margin-left: -0.574rem;
+.figure.active>div{
+  border-color: #6095f0
 }
-.figure_elevator{
-  composes: figure;
-  top: 3.7rem;
-  left: 1.16rem;
+.figure.active .selectTitle{
+  color: #6095f0
 }
-.figure_door{
-  composes: figure;
-  top: 3.5rem;
-  right: 1.04rem;
-}
-.icon_div_source{
-  width: 0.75rem;
-  height: 0.86rem;
-  background:url(../../assets/imgs/roomCard/source.png)no-repeat center center;
-  background-size: 100% 100%;
-  transition: transform .2s;
-}
-.figure:active .icon_div_source{
-  background:url(../../assets/imgs/roomCard/source_active.png)no-repeat center center;
-  background-size: 100% 100%;
-  transform: scale(1.2,1.2);
-}
-.icon_div_door{
-  width: 0.7rem;
-  height: 1.016rem;
-  background:url(../../assets/imgs/roomCard/door.png)no-repeat center center;
-  background-size: 100% 100%;
-  transition: transform .2s;
-}
-.figure:active .icon_div_door{
-  background:url(../../assets/imgs/roomCard/door_active.png)no-repeat center center;
-  background-size: 100% 100%;
-  transform: scale(1.2,1.2);
+.figure > div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 1.32rem;
+  border-radius: 50%;
+  border:0.02rem solid #fff;
 }
 
-.icon_div_elevator{
-  width: 0.8rem;
-  height: 0.8rem;
-  background:url(../../assets/imgs/roomCard/elevator.png)no-repeat center center;
-  background-size: 100% 100%;
-  transition: transform .2s;
+.figure_source{
+  top: 0.34rem;
+  left: 50%;
+  margin-left: -0.66rem;
 }
-.figure:active .icon_div_elevator{
-  background:url(../../assets/imgs/roomCard/elevator_active.png)no-repeat center center;
-  background-size: 100% 100%;
- transform: scale(1.2,1.2);
+.figure_source >div > img{
+  width: 0.78rem;
 }
-.figure:active .selectTitle{
-  color: #6095f0
+.figure_source.avtive>div{
+  border-color: #6095f0;
+}
+.figure_elevator{
+  top: 3.5rem;
+  left: .5rem;
+}
+.figure_elevator >div > img{
+  width: 0.66rem;
+}
+.figure_door{
+  top: 3.5rem;
+  right: .5rem;
+}
+.figure_door >div > img{
+  width: 0.62rem;
 }
 .selectTitle{
   font-size: 0.36rem;
@@ -99,18 +83,18 @@
   margin-top: 0.2rem;
 }
 .center{
-  width: 1.66rem;
-  height: 1.92rem;
-  background: url(../../assets/imgs/roomCard/hexagon.png);
-  background-size: 100% 100%;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
   position: absolute;
   left: 50%;
-  margin-left: -0.83rem;
+  margin-left: -1rem;
   top: 50%;
-  margin-top: -0.96rem;
+  margin-top: -1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  color: #fff;
 }
 .center_title{
   font-size: 0.4rem;

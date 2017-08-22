@@ -1,3 +1,6 @@
+import { Toast } from 'antd-mobile'
+import { hashHistory } from 'react-router'
+
 import { request,config } from '../utlis'
 
 const deviceType = 'FINGERPRINT_LOCK';
@@ -39,6 +42,12 @@ export function openTheDoor(deviceId){
       customerId:customerId})
     .then(res => {
       console.log(res)
+      if(res&&res.success){
+        Toast.info('开锁成功')
+        setTimeout(() => {
+          hashHistory.push('/home')
+        },2000)
+      }
     })
   }
 }

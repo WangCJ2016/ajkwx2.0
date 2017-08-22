@@ -7,6 +7,7 @@
 .checkbox_input{
   display: none;
 }
+
 .checkbox_input:checked + .checkbox_label{
   background: url('../../assets/imgs/login/check.png')no-repeat center center;
   background-size: 0.3rem;

@@ -61,12 +61,12 @@
   transition: transform .2s ease-in;
 }
 
-.curtain_btn:active{
+.curtain_btn.active{
   color: #fff;
   border:0.04rem solid #6095f0
 }
 
-.curtain_btn:active:after{
+.curtain_btn.active:after{
   transform: scale(.9,.9);
   transform-origin: 50% 50%;
   background-color: #6095f0;

@@ -54,7 +54,6 @@ class Home extends React.PureComponent {
    })
   }
   goDetail(index,path){
-    console.log(3)
     this.setState({
       activeIndex:index
     })
