@@ -99,7 +99,7 @@ class LargeRound extends React.PureComponent {
       const stylename = classNames({
         lights:true,
         ['lights_'+status]:true,
-        [light.name]:true
+        [light.name+'_'+status]:true
       })
       return (
          <div styleName='light_wrap' style={{transform:`rotateZ(${rotate}deg)`}} key={light.id}>

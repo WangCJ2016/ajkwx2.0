@@ -30,7 +30,7 @@
     height: 100%;
 
     border-radius: 50%;
-    background-color: rgba(0,0,0,.1);
+    background-color: rgba(0,0,0,.12);
 }
 .middle_round
 {
@@ -133,13 +133,13 @@
     transform-origin: 50% 50%;
     text-align: center;
 
-    background: url(../../assets/imgs/light/light_bg_on.png)no-repeat left top;
-    background-size: 1.5rem 1.5rem;
+    background: url(../../assets/imgs/light/light_bg_off.png)no-repeat left top;
+    background-size: 100% 100%;
 }
 :global(.lights_ON)
 {
-    background: url(../../assets/imgs/light/light_bg_on.png)no-repeat left top;
-    background-size: 1.5rem 1.5rem;
+    background: url(../../assets/imgs/light/light_bg_on.png)no-repeat center center;
+    background-size: 108% 108%;
 }
 :global(.lights_ON) > div
 {
@@ -174,7 +174,7 @@
     margin: 0 auto;
     padding-top: 20px;
 
-    background: url(../../assets/imgs/light/主灯_ON.png)no-repeat 0 .2rem;
+    background: url(../../assets/imgs/light/主灯.png)no-repeat 0 .2rem;
     background-size: .7rem .646rem;
 }
 
@@ -182,12 +182,12 @@
 {
     width: .52rem;
 }
-:global(.卫浴灯) > div
+:global(.卫浴灯_OFF) > div
 {
-    background: url(../../assets/imgs/light/卫浴灯_ON.png)no-repeat no-repeat 0 .2rem;
+    background: url(../../assets/imgs/light/卫浴灯.png)no-repeat no-repeat 0 .2rem;
     background-size: .68rem .64rem;
 }
-:global(.卫浴灯_OFF) > div
+:global(.卫浴灯_ON) > div
 {
     background: url(../../assets/imgs/light/卫浴灯_ON.png)no-repeat no-repeat 0 .2rem;
     background-size: .68rem .64rem;

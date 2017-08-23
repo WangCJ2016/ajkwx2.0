@@ -18,7 +18,7 @@ import * as modelActions from '../../actions/model-actions'
   constructor(){
     super()
     this.state = {
-      model_activeIndex:0
+      model_activeIndex:-1
     }
     this.changeModel = this.changeModel.bind(this)
   }
@@ -42,8 +42,8 @@ import * as modelActions from '../../actions/model-actions'
            })
 
             return( 
-              <figure styleName='figure' key={model.name} onClick={this.changeModel.bind(this,index,model.keyword)}>
-                  <div styleName={stylename}>
+              <figure styleName='figure' key={model.name} >
+                  <div styleName={stylename} onClick={this.changeModel.bind(this,index,model.keyword)}>
                     <img src={require(`../../assets/imgs/models/${model.name}.png`)} styleName='img_getup' alt=""/>
                   </div>
                   <figcaption styleName='figcaption'>

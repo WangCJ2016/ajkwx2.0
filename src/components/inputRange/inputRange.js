@@ -11,7 +11,6 @@ class InputRange extends React.PureComponent {
     this.change = this.change.bind(this)
    }
    change(e){
-     console.log(e.target.value)
      this.setState({
      	 value:e.target.value
      })
