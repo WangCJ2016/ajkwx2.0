@@ -58,7 +58,7 @@ class TvOne extends React.PureComponent {
           <TvButton classType='plus_off' click={this.tvCtrl.bind(this,'VOL_PLUS')}/>
           <TvButton classType='minus_off' click={this.tvCtrl.bind(this,'VOL_SUB')}/>
         </div>
-        <div styleName="tvBox">
+        <div styleName="tvBox tvBox2">
           <TvButton classType={`tv_${this.state.tvBox}`} click={this.tvBoxCtrl.bind(this,this.state.tvBox)} />
           <TvButton classType='mute_off' click={this.tvBoxCtrl.bind(this,'MUTE')}/>
           <TvButton classType='return_off' click={this.tvBoxCtrl.bind(this,'RETURN')}/>

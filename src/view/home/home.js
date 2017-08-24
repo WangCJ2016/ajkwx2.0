@@ -57,7 +57,6 @@ class Home extends React.PureComponent {
     this.setState({
       activeIndex:index
     })
-    
   }
   render(){
     return(
