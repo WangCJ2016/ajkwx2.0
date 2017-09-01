@@ -92,7 +92,7 @@ export function changeTem(key, deviceId) {
 }
 //中央空调温度变化
 export function centerchangeTem(key, deviceId, model, speed) {
-    const mode = model === '制冷' ? 'COOL' : 'WARM'
+    const mode = model === 'cold' ? 'COOL' : 'WARM'
     return function(dispatch,getState) {
         const token  = getState().idStore.token||token_session
         const houseId  = getState().idStore.houseId||houseId_session
@@ -132,7 +132,10 @@ export function airswitch(key, deviceId) {
                     deviceType: deviceType,
                     token: token,
                     deviceId: deviceId,
-                    key: key
+                    onOff : "OFF",
+                    mode: 'COOL',
+                    wind: 0,
+                    temp: 25
                 }
             } else {
                 data = {

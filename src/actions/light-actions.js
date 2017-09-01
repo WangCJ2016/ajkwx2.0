@@ -62,7 +62,7 @@ export function modelsClick(sceneId) {
 
 export function lightsClick(wayId, status, index) {
     const actionType = status === 'ON'?'CLOSE':'OPEN'
-    //const status_on = status === 'ON'?'OFF':'ON'
+    const status_on = status === 'ON'?'OFF':'ON'
     return function(dispatch, getState) {
         const token = getState().idStore.token || token_session
         const houseId = getState().idStore.houseId || houseId_session
@@ -77,7 +77,7 @@ export function lightsClick(wayId, status, index) {
             .then((res) => {
                 console.log(res)
                 if (res && res.success) {
-                    dispatch(changelightstatus(index, status))
+                    dispatch(changelightstatus(index, status_on))
                 }
             })
     }

@@ -34,7 +34,7 @@ class CurtainOne extends React.PureComponent {
       activeIndex = this.state.chuanglianActiveIndex
       type = 'chuanglianActiveIndex'
     }
-    if (way.name.indexOf('窗纱')>-1) {
+    if (way.name.indexOf('纱帘')>-1) {
       activeIndex = this.state.chuangshaActiveIndex
       type = 'chuangshaActiveIndex'
     }

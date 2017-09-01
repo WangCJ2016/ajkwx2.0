@@ -65,8 +65,8 @@ class TvOne extends React.PureComponent {
         </div>
         <div styleName="dir_control">
           <div styleName="channel_voice">
-            <span styleName="arr_up round"></span>
-            <span styleName="arr_title">频道</span>
+            <span styleName="arr_up round" onClick={this.tvBoxCtrl.bind(this,'UP')}></span>
+            <span styleName="arr_title" onClick={this.tvBoxCtrl.bind(this,'DOWN')}>频道</span>
             <span styleName="arr_down round"></span>
           </div>
           <div styleName="arr_round" >

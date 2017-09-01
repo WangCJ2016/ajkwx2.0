@@ -82,25 +82,35 @@ class AirOne extends React.PureComponent {
   modelChange(deviceId){
     if(this.state.switchKey==='ON') return
     const currentModel = this.state.model==='cold'?'制热':'制冷'
-    this.setState({
-      model:this.state.model==='cold'?'hot':'cold',
-      temIndex:0,
-      currentTemArray:currentModel==='制冷'?this.props.air.coolWays:this.props.air.warmWays
-    },function(){
-      console.log(this.props.air.warmWays,this.props.air.coolWays)
-      if(this.props.deviceType === 'VIRTUAL_AIR_REMOTE'){
-      this.props.actions.changeTem(this.state.currentTemArray[this.state.temIndex],deviceId)
-      }
-      if(this.props.deviceType === 'VIRTUAL_CENTRAL_AIR_REMOTE'){
-        this.props.actions.centerchangeTem(this.state.currentTemArray[this.state.temIndex],deviceId,this.state.model,this.state.speed)
-      }
-    })
+    const currentTemArray = currentModel==='制冷'?this.props.air.coolWays:this.props.air.warmWays
+    const centerIndex = currentTemArray.indexOf(25) > -1 ? currentTemArray.indexOf(25) : 0
+    if(this.props.deviceType === 'VIRTUAL_AIR_REMOTE'){
+       this.setState({
+         model:this.state.model==='cold'?'hot':'cold',
+         temIndex:0,
+         currentTemArray:currentTemArray
+      },function(){ 
+        this.props.actions.changeTem(this.state.currentTemArray[this.state.temIndex],deviceId)
+      })
+    }
+    if(this.props.deviceType === 'VIRTUAL_CENTRAL_AIR_REMOTE'){
+      this.setState({
+        model:this.state.model==='cold'?'hot':'cold',
+        temIndex: centerIndex,
+        currentTemArray:currentModel==='制冷'?this.props.air.coolWays:this.props.air.warmWays
+      },function(){
+      this.props.actions.centerchangeTem(this.state.currentTemArray[this.state.temIndex],deviceId,this.state.model,this.state.speed)
+      })
+    }
+    
   }
  
   render(){
     const { deviceId } = this.props.air
     const { switchKey,temIndex,model,currentTemArray} = this.state
-  
+    const { deviceType }  = this.props
+    console.log(currentTemArray)
+
     return(
         <div styleName='air_wrap' style={{width:this.props.width}}>
           <div styleName="air_display">
@@ -125,11 +135,11 @@ class AirOne extends React.PureComponent {
           <div styleName="air_box">
             <div styleName="air_display_box">
               <span styleName='air_display_title'>当前</span>
-              <div styleName="tem">20℃</div>
+              <div styleName="tem">20℃</div> 
             </div>
             <div styleName="air_display_box air_box_down">
               <span styleName='air_display_title'>设置</span>
-              <div styleName="tem">{switchKey==='OFF'?(currentTemArray?currentTemArray[temIndex].slice(-2)+'℃':'25℃'):''}</div>
+              <div styleName="tem">{switchKey==='OFF'?(currentTemArray?deviceType === 'VIRTUAL_CENTRAL_AIR_REMOTE' ? currentTemArray[temIndex]+'℃':currentTemArray[temIndex].slice(-2)+'℃':'25℃'):''}</div>
             </div>
           </div>
         </div>
@@ -155,7 +165,7 @@ class AirOne extends React.PureComponent {
             </div>
             <figcaption>温度-</figcaption>
           </figure>
-           <figure styleName='air_figure' onClick={this.speedChange.bind(this,'minus',deviceId)}>
+           <figure styleName='air_figure' onClick={this.speedChange.bind(this,deviceId,deviceId)}>
             <div styleName="air_figure_img">
               <img styleName='btn_speed' src={require('../../assets/imgs/air/speed.png')} alt=""/>
             </div>
