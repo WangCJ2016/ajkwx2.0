@@ -6,11 +6,13 @@ import TvButton from './TvButton'
 
 @CSSModules(styles, { allowMultiple: true })
 class TvOne extends React.PureComponent {
-  state = {
-    tv:'OFF',
-    tvBox:'OFF'
-  }
-  
+  constructor() {
+    super()
+    this.state = {
+      tv:'OFF',
+      tvBox:'OFF'
+    }
+  }  
   numClick(e){
     console.log(e.target.getAttribute('data-key'))
     this.tvBoxCtrl(e.target.getAttribute('data-key'))

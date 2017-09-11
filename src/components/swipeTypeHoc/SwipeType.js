@@ -2,19 +2,23 @@ import React from 'react'
 
 export default function SwipeTye(WrappedComponent) {
     return class HOC extends React.Component {
-        count = 0 //判断用户是否第一次进行touchmove操作
-        countSwipe=0
-        startX = 0
-        startY = 0
-        endX = 0
-        endY = 0
-        distanceX = 0
-        distanceY = 0
-        state = {
+        constructor() {
+          super()
+          this.count = 0 //判断用户是否第一次进行touchmove操作
+          this.countSwipe=0
+          this.startX = 0
+          this.startY = 0
+          this.endX = 0
+          this.endY = 0
+          this.distanceX = 0
+          this.distanceY = 0
+          this.state = {
             swipeType: '',
             count: 0,
             winWidth: 0
         }
+      }
+
         componentDidMount() {
             this.setState({
                 winWidth: window.innerWidth

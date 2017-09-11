@@ -18,8 +18,12 @@ import SwipeType from '../../components/swipeTypeHoc/SwipeType'
 @SwipeType
 @CSSModules(styles, { allowMultiple: true })
 class Air extends React.PureComponent {
-  count = 0 
-  countActive = 0
+  constructor() {
+    super()
+    this.count = 0 
+    this.countActive = 0
+  }
+  
   componentDidMount(){
     this.props.airActions.initialAirCondition()
     document.title = '空调' 

@@ -16,6 +16,7 @@ export function initialState(pos,keypos){
     .then(res => {
       if(res&&res.success){
         console.log(res)
+        if(res && res.success && res.dataObject.length > 0)
         dispatch(initail(res.dataObject[0].deviceId))
       }
     })

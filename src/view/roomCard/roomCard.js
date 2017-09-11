@@ -15,8 +15,11 @@ import * as roomCardActions from '../../actions/roomCard-actions'
 )
 @CSSModules(styles, { allowMultiple: true })
 class RoomCard extends React.PureComponent {
-  state = {
+  constructor() {
+    super()
+    this.state = {
     actvieIndex:-1
+    }
   }
   componentDidMount(){
     this.props.roomCardActions.initialState()

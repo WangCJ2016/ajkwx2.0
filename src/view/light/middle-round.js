@@ -8,11 +8,13 @@ import styles from './light.css'
 
 @CSSModules(styles, { allowMultiple: true })
 class MiddleRound extends React.PureComponent {
-  state={
+  constructor() {
+    super()
+    this. state={
     middle_round_rotate:0,
     middle_roundIndex:1
-  }
- 
+    }
+  } 
   lightclassRender(){
     const classarray = ['卫生间','卧室','走廊','其他']
     return classarray.map((classs,index) => {

@@ -7,10 +7,14 @@ import InputRange from '../../components/inputRange/inputRange'
 
 @CSSModules(styles, { allowMultiple: true })
 class CurtainOne extends React.PureComponent {
-  state = {
+  constructor() {
+    super()
+    this.state = {
     chuanglianActiveIndex:-1,
     chuangshaActiveIndex:-1
+    }
   }
+  
   curtainCtrl(wayId,key,index,type){
     this.setState({
       [type]:index

@@ -7,12 +7,15 @@ import { numToarray } from '../../utlis'
 
 @CSSModules(styles, { allowMultiple: true })
 class AirOne extends React.PureComponent {
-  state = {
-    speed:3,
-    switchKey:'ON',
-    temIndex:-1,
-    currentTemArray:[],
-    model:'cold'
+  constructor() {
+    super()
+    this.state = {
+      speed:3,
+      switchKey:'ON',
+      temIndex:-1,
+      currentTemArray:[],
+      model:'cold'
+    }
   }
   componentDidMount(){
     this.setState({

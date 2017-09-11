@@ -18,9 +18,12 @@ import { request,config } from '../../utlis'
 )
 @CSSModules(styles, { allowMultiple: true })
 class Light extends React.PureComponent {
-  state = {
+  constructor() {
+    super()
+    this.state = {
     modelActiveIndex:-1
-  } 
+    } 
+  }
   componentDidMount(){
     document.title = '灯'
     this.props.lightActions.initialLights()

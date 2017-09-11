@@ -15,9 +15,12 @@ import * as serviceActions from '../../actions/service-actions'
 )
 @CSSModules(styles, { allowMultiple: true })
 class Service extends React.PureComponent {
-  state={
+  constructor() {
+    super()
+    this.state = {
     clean:'CLOSE',
     disturb:'CLOSE'
+    }
   }
   componentDidMount(){
     document.title = '服务'
