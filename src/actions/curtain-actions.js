@@ -4,8 +4,8 @@ const houseId_session = sessionStorage.getItem('houseId')
 const token_session = sessionStorage.getItem('token')
 const deviceType = 'CURTAIN'
 
-export function initialCurtain(){
-  return (dispatch,getState)=>{
+export function initialCurtain() {
+  return (dispatch,getState)=> {
     const token  = getState().idStore.token||token_session
     const houseId  = getState().idStore.houseId||houseId_session
     request.get(config.api.base + config.api.queryHostDeviceByType,{houseId:houseId,token:token,deviceType:deviceType})
