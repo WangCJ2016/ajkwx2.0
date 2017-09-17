@@ -16,8 +16,8 @@ export function initialState(pos,keypos){
     .then(res => {
       if(res&&res.success){
         console.log(res)
-        if(res && res.success && res.dataObject.length > 0)
-        dispatch(initail(res.dataObject[0].deviceId))
+        if(res && res.success && res.dataObject.devices.length > 0)
+        dispatch(initail(res.dataObject.devices[0].deviceId))
       }
     })
   }
@@ -46,7 +46,9 @@ export function openTheDoor(deviceId){
       if(res&&res.success){
         Toast.info('开锁成功')
         setTimeout(() => {
-          hashHistory.push('/home')
+          hashHistory.goBack()
+          //window.history.go(-1)
+          //hashHistory.push('/home')
         },2000)
       }
     })

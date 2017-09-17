@@ -32,7 +32,7 @@ class CurtainOne extends React.PureComponent {
     e.stopPropagation() 
     e.preventDefault()
   }
-  btnRender(way){
+  btnRender(way, curtainType){
     let activeIndex,type
     if (way.name.indexOf('窗帘')>-1) {
       activeIndex = this.state.chuanglianActiveIndex
@@ -42,7 +42,9 @@ class CurtainOne extends React.PureComponent {
       activeIndex = this.state.chuangshaActiveIndex
       type = 'chuangshaActiveIndex'
     }
-    const curtainBtns = [{title:'打开',type:'OPEN'},{title:'停止',type:'STOP'},{title:'关闭',type:'CLOSE'}]
+    let curtainBtns = []
+    curtainType === 0 ? curtainBtns = [{title:'打开',type:'OPEN'},{title:'停止',type:'STOP'},{title:'关闭',type:'CLOSE'}] : 
+     curtainBtns = [{title:'打开',type:'OPEN'},{title:'关闭',type:'CLOSE'}]
     return curtainBtns.map((btn,index) => {
       const style = classNames({
         curtain_btn:true,
@@ -51,23 +53,38 @@ class CurtainOne extends React.PureComponent {
       return <p key={btn.title} styleName={style} onClick={this.curtainCtrl.bind(this,way.wayId,btn.type,index,type)}>{btn.title}</p>
     })
   }
-  render(){
-    //console.log(this.props)
-    const { ways } = this.props.curtain
-    return(
-      <div styleName="curtain_wrap" style={{width:this.props.width}}>
-          {
-            ways?ways.map(way => {
+  curtainTpe0Render(ways, type) {
+    return ways?ways.map(way => {
               return (
                 <div key={way.id}>
                    <p styleName="curtain_name">{way.name}</p>
                    <div styleName="curtain_group">
-                    {this.btnRender(way)}
+                    {this.btnRender(way, type)}
                   </div>
                   <InputRange touchStart={this.touchStart.bind(this)} touchMove={this.touchMove.bind(this)} touchEnd={this.rangeChange.bind(this,way.wayId)}/>       
                 </div>
               )
             }):null
+  }
+   curtainTpe1Render(ways, type) {
+     return ways?ways.map(way => {
+              return (
+                <div key={way.id}>
+                   <p styleName="curtain_name">{way.name}</p>
+                   <div styleName="curtain_group">
+                    {this.btnRender(way, type)}
+                  </div>
+                </div>
+              )
+            }):null
+  }
+  render(){
+    console.log(this.props)
+    const { ways, type } = this.props.curtain
+    return(
+      <div styleName="curtain_wrap" style={{width:this.props.width}}>
+          {
+            type === 0 ? this.curtainTpe0Render(ways, type) : this.curtainTpe1Render(ways, type)
           }
       </div>
     )

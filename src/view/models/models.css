@@ -39,12 +39,12 @@
 .getup.active{
   background-color: #ea7f4c;
 }
-.睡眠模式,.sleep{
+.睡眠,.sleep{
   border: 0.04rem solid #db4e79;
   margin-top: 0.5rem;
   margin-left: 1.26rem;
 }
-.睡眠模式.actie,.sleep.active{
+.睡眠.active,.sleep.active{
   background-color: #db4e79;
 }
 .sleep+figcaption{
@@ -57,46 +57,41 @@
 .reading.active{
   background-color: #25b394;
 }
-.外出模式,.checkout{
+.外出,.checkout{
   border: 0.04rem solid #e89544;
   margin-top: 1rem;
-  margin-left: 1.26rem;
 }
-.外出模式.active,.checkout.active{
+.外出.active,.checkout.active{
   background-color: #e89544;
 }
-.checkout+figcaption{
-   margin-left: 1.26rem;
-}
-.影视模式,.movie{
+
+.影视,.movie{
   border: 0.04rem solid #61bb7b;
   margin-top: 1rem;
 }
-.影视模式.active,.movie.active{
+.影视.active,.movie.active{
   background-color: #61bb7b;
 }
-.会客模式,.meeting{
+.会客,.meeting{
   border: 0.04rem solid #367da3;
   margin-top: 1rem;
 }
-.会客模式.active,.meeting.active{
+.会客.active,.meeting.active{
   background-color: #367da3;
 }
-.meeting+figcaption{
-   margin-left: 1.26rem;
-}
-.用餐模式{
+
+.用餐{
   border: 0.04rem solid #ea7f4c;
   margin-top: 0.5rem;
 }
-.用餐模式.active{
+.用餐.active{
   background-color: #ea7f4c;
 }
-.迎宾模式{
+.迎宾{
   border: 0.04rem solid #25b394;
    margin-top: 1rem;
 }
-.迎宾模式.active{
+.迎宾.active{
   background-color: #25b394;
 }
 .second {

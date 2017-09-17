@@ -10,9 +10,10 @@ export function initialCurtain() {
     const houseId  = getState().idStore.houseId||houseId_session
     request.get(config.api.base + config.api.queryHostDeviceByType,{houseId:houseId,token:token,deviceType:deviceType})
     .then(res => {
-      console.log(res)
+      //console.log(res)
       if(res&&res.success){
-        dispatch(initialState(res.dataObject))
+        dispatch(initialState(res.dataObject.devices))
+        dispatch(initialStateType(res.dataObject.type))
       }
     })
   }
@@ -33,6 +34,13 @@ export function changeCurtainStatus(wayId,key,brightness){
 function initialState(data){
   return {
     type:'INITIALSTATE',
+    data:data
+  };
+}
+
+function initialStateType(data){
+  return {
+    type:'INITIALSTATETYPE',
     data:data
   };
 }
