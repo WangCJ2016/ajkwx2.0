@@ -31,7 +31,7 @@ class Curtain extends React.PureComponent {
   
   render(){
     const { curtains, type } = this.props.curtainState
-    //console.log(this.props.curtainState)
+    console.log(this.props.curtainState)
     const wrapWidth = curtains.length*100 + '%'
     const curtainWidth = 1/curtains.length *100 + '%'
     let translateX = 0
@@ -64,7 +64,7 @@ class Curtain extends React.PureComponent {
          <div styleName="curtainwrap " style={{width:wrapWidth,transform:`translateX(${translateX}px)`}} 
              onTouchStart={this.props.touchstart} onTouchMove={this.props.touchmove} onTouchEnd={this.props.touchend} onTouchCancel={this.props.touchcancel}>
            {
-            curtains?curtains.map((curtain,index) => <CurtainOne width={curtainWidth} type={type} curtain={curtain} actions={this.props.curtainActions} key={index}/>):null
+            curtains.length>0 ? curtains.map((curtain,index) => <CurtainOne width={curtainWidth} type={type} curtain={curtain} actions={this.props.curtainActions} key={index}/>):null
           }
          </div>
       </div>

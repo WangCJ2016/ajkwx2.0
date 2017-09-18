@@ -86,21 +86,22 @@ class Light extends React.PureComponent {
     }
      let scene
      if(index === 0 && this.state.modelActiveIndex !== 0){
-        scene=this.props.lightStore.models.filter(model => model.name === 'ledon')
+        scene=this.props.lightStore.models.scenes.filter(model => model.name === 'ledon')
      }
      if(index === 0 && this.state.modelActiveIndex === 0){
-        scene=this.props.lightStore.models.filter(model => model.name === 'ledoff')
+        scene=this.props.lightStore.models.scenes.filter(model => model.name === 'ledoff')
       }
     if(index === 1 && this.state.modelActiveIndex !== 1){
-      scene=this.props.lightStore.models.filter(model => model.name === 'homeon')
+      scene=this.props.lightStore.models.scenes.filter(model => model.name === 'homeon')
     }
     if(index === 1 && this.state.modelActiveIndex === 1){
-        scene=this.props.lightStore.models.filter(model => model.name === 'homeoff')
+        scene=this.props.lightStore.models.scenes.filter(model => model.name === 'homeoff')
     }
     this.props.lightActions.modelsClick(scene[0].sceneId);
   }
 
   render() {
+    //console.log(this.props.lightStore)
     const {lights} = this.props.lightStore
     const serveId = this.props.idStore.serveId ||sessionStorage.getItem('serveId')
     const {lightsClick,getLightsWays} = this.props.lightActions

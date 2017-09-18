@@ -29,8 +29,8 @@ import * as modelActions from '../../actions/model-actions'
     this.setState({
       model_activeIndex:index
     })
-    //console.log(this.props.models)
-    const scenceId = this.props.modelState.models.filter(model => model.name === keyword)[0].sceneId
+    //console.log(this.props.modelState)
+    const scenceId = this.props.modelState.models.scenes.filter(model => model.name === keyword)[0].sceneId
     this.props.modelActions.changeModel(scenceId)
   }
   changeModel_type2(index, scenceId) {
@@ -104,6 +104,7 @@ import * as modelActions from '../../actions/model-actions'
       }
     }
   render(){
+    console.log(this.props.modelState)
     const { type } = this.props.modelState.models
     return(
       <div styleName='models_bg'>
