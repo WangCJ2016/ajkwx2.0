@@ -104,7 +104,7 @@ import * as modelActions from '../../actions/model-actions'
       }
     }
   render(){
-    console.log(this.props.modelState)
+    //console.log(this.props.modelState)
     const { type } = this.props.modelState.models
     return(
       <div styleName='models_bg'>

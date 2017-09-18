@@ -52,13 +52,15 @@ class RoomCard extends React.PureComponent {
   }
   render(){
     const roomName = this.props.location.query.name
+    const roomName_num = roomName.replace(/[^0-9]/ig,"")
+    const roomName_hotel = roomName.replace(/[0-9]/ig,"")
     return(
       <div styleName='roomCard_bg'> 
         <div styleName='round_bg'>
           {this.figureRender()}
           <div styleName='center'>
-            <p styleName='center_name'>{roomName?roomName.slice(0,-3):null}</p>
-            <p styleName='center_num'>{roomName?roomName.slice(-3):null}</p>
+            <p styleName='center_name'>{roomName_hotel}</p>
+            <p styleName='center_num'>{roomName_num}</p>
           </div>
           <img src={require('../../assets/imgs/roomCard/pots.png')} styleName='pots_top' alt=""/>
 

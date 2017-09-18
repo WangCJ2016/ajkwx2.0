@@ -22,6 +22,8 @@ class CurtainOne extends React.PureComponent {
     this.props.actions.changeCurtainStatus(wayId,key,100)
   }
   rangeChange(wayId,e){
+    e.stopPropagation() 
+    e.preventDefault()
     this.props.actions.changeCurtainStatus(wayId,'OPEN',e.target.value)
   }
   touchStart(e){
