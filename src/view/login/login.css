@@ -2,6 +2,7 @@
   height: 12.06rem;
   background: url(../../assets/imgs/login/login_bg.png);
   background-size: 100% 100%;
+  overflow: hidden;
 }
 @media screen and (min-width: 500px) {
 .logo_bg{

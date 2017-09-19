@@ -1,12 +1,10 @@
 .light_bg
 {
-    overflow: hidden;
-
     width: 100%;
     height: 12.06rem;
-
     background: url('../../assets/imgs/light/light_bg.png')no-repeat;
     background-size: 100% 100%;
+    overflow: hidden;
 }
 
 .round

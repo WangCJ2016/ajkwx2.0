@@ -2,7 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="theme-color" content="#000000">
     <!--
@@ -29,6 +30,9 @@
     <div id="root" ></div>
     <script>
      document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px'
+     // window.onresize = function() {
+     //  // document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px'
+     // }
     </script>
   </body>
 </html>
