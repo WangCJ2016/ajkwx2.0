@@ -1,0 +1,45 @@
+.selecthome_bg{
+   height: 12.06rem;
+   background: url(../../assets/imgs/selectHome/selectHome_bg.png);
+   background-size: 100% 100%;
+} 
+
+.rooms{
+  position: absolute;
+  bottom: 3.52rem;
+  width: 100%;
+  height: 2.4rem;
+  background-color: rgba(79, 87, 92, 0.7);
+  z-index: 1;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.room{
+  width: 1.6rem;
+  //height: 2.4rem;
+  padding: 0.2rem 0.2rem;
+  margin: 0 0.26rem 0 0.24rem;
+}
+
+.img_wrap{
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background: url('../../assets/imgs/selectHome/round.png') no-repeat;
+  background-size: 100% 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.img_wrap img {
+  width: 0.68rem;
+  height: 1.22rem;
+  margin-left: 0.2rem
+}
+.room_name{
+  color: #fff;
+  margin-top: 0.2rem;
+  text-align: center
+}

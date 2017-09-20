@@ -22,12 +22,11 @@ export function goHome(username, password, isRemenber) {
         request.get(config.api.base + config.api.login, { username: username, password: password })
             .then(res => {
                 if (res.success) {
-                    console.log(res)
-                    hashHistory.push(`/home?name=${res.dataObject.house.name}`)
-                    sessionStorage.setItem('houseId',encode64(res.dataObject.house.id.toString()))
-                    sessionStorage.setItem('customerId',encode64(res.dataObject.customer.id.toString()))
-                    sessionStorage.setItem('token',res.dataObject.customer.token)
-                    dispatch(saveTokenHouseId(res.dataObject.customer.token, encode64(res.dataObject.house.id.toString()),encode64(res.dataObject.customer.id.toString())))
+                    //sessionStorage.setItem('houseId',encode64(res.dataObject.house.id.toString()))
+                    sessionStorage.setItem('customerId',encode64(res.dataObject.id.toString()))
+                    sessionStorage.setItem('token',res.dataObject.token)
+                    dispatch(saveTokenHouseId(res.dataObject.token, encode64(res.dataObject.id.toString())))
+                    hashHistory.push('/selectHome')
                     if (isRemenber) {
                         localStorage.setItem('userName', username)
                         localStorage.setItem('password', password)
@@ -38,17 +37,6 @@ export function goHome(username, password, isRemenber) {
                         localStorage.removeItem('password')
                         localStorage.removeItem('isRemenber')
                     }
-                    request.get(config.api.base + config.api.querySmartDeviceWays, 
-                        { houseId: encode64(res.dataObject.house.id.toString()),
-                          token: res.dataObject.customer.token,
-                          deviceType: 'SWITCH' 
-                      })
-                      .then(res => {
-                        if(res&&res.success){
-                        sessionStorage.setItem('serveId',res.dataObject.serverId)
-                        dispatch(saveserverId(res.dataObject.serverId))
-                     }
-                    })
                 } else {
                     Toast.info('用户名和密码不匹配', 2)
                 }
@@ -74,17 +62,10 @@ export function changeRemember(value) {
 }
 
 //保存token houseid
-export function saveTokenHouseId(token, houseId,customerId) {
+export function saveTokenHouseId(token, customerId) {
     return {
         type: 'SAVE',
         token: token,
-        houseId: houseId,
         customerId:customerId
-    };
-}
-export function saveserverId(id) {
-    return {
-        type: 'SERVERID',
-        data:id
     };
 }

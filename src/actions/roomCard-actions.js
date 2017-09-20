@@ -1,18 +1,18 @@
 import { Toast } from 'antd-mobile'
 import { hashHistory } from 'react-router'
 
-import { request,config } from '../utlis'
+import { request,config, encode64 } from '../utlis'
 
 const deviceType = 'FINGERPRINT_LOCK';
 const houseId_session = sessionStorage.getItem('houseId')
 const token_session = sessionStorage.getItem('token')
 const customer_session = sessionStorage.getItem('customerId')
 
-export function initialState(pos,keypos){
+export function initialState(houseId){
+  //console.log(houseId)
   return (dispatch,getState)=>{
     const token  = getState().idStore.token||token_session
-    const houseId  = getState().idStore.houseId||houseId_session
-    request.get(config.api.base + config.api.queryHostDeviceByType,{houseId:houseId,token:token,deviceType:deviceType})
+    request.get(config.api.base + config.api.queryHostDeviceByType,{houseId:encode64(houseId),token:token,deviceType:deviceType})
     .then(res => {
       if(res&&res.success){
         console.log(res)

@@ -1,10 +1,19 @@
 import React from 'react'
 import CSSModules from 'react-css-modules'
 import classNames from 'classnames'
+import { connect } from 'react-redux'
 import { Link } from 'react-router'
+import { bindActionCreators } from 'redux'
 
 import styles from './home.css'
+import * as homeActions from '../../actions/home-actions'
 
+@connect(
+  state => ({idState:state.idStore}),
+  dispatch => ({
+    homeActions: bindActionCreators(homeActions, dispatch),
+  })
+)
 @CSSModules(styles, { allowMultiple: true })
 class Home extends React.PureComponent {
   constructor(){
@@ -14,13 +23,15 @@ class Home extends React.PureComponent {
     }
   }
   componentDidMount(){
-    document.title = ' '
+    document.title = '选择房间'
     this.timer = setInterval(() => {
       const activeIndex = this.state.activeIndex+1
       this.setState({
         activeIndex:activeIndex%7
       })
     },3900)
+    this.props.homeActions.initialState(this.props.location.query.houseId)
+    this.props.homeActions.saveHouseId(this.props.location.query.houseId)
   }
   componentWillUnmount(){
     clearInterval(this.timer)
@@ -29,13 +40,13 @@ class Home extends React.PureComponent {
   figuresRender(){
     const activeIndex = this.state.activeIndex
     const figures = [
-    {name:'curtain',title:'窗帘',path:'curtain'},
-    {name:'lock',title:'门锁',path:`lock?name=${this.props.location.query.name}`},
-    {name:'light',title:'灯',path:'light'},
-    {name:'tv',title:'电视',path:'tv'},
-    {name:'service',title:'服务',path:'service'},
-    {name:'air',title:'空调',path:'air'},
-    {name:'model',title:'情景',path:'model'},
+    {name:'curtain',title:'窗帘',path:`curtain?houseId=${this.props.location.query.houseId}`},
+    {name:'lock',title:'门锁',path:`lock?name=${this.props.location.query.name}&houseId=${this.props.location.query.houseId}`},
+    {name:'light',title:'灯',path:`light??houseId=${this.props.location.query.houseId}`},
+    {name:'tv',title:'电视',path:`tv?houseId=${this.props.location.query.houseId}`},
+    {name:'service',title:'服务',path:`service?houseId=${this.props.location.query.houseId}`},
+    {name:'air',title:'空调',path:`air?houseId=${this.props.location.query.houseId}`},
+    {name:'model',title:'情景',path:`model?houseId=${this.props.location.query.houseId}`},
    ]
    return figures.map((figure,index) => {
       const stylename = classNames({

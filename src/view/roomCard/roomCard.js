@@ -22,7 +22,8 @@ class RoomCard extends React.PureComponent {
     }
   }
   componentDidMount(){
-    this.props.roomCardActions.initialState()
+    const houseId = this.props.location.query.houseId
+    this.props.roomCardActions.initialState(houseId)
     document.title = '房卡'
   }
   figureRender(){
@@ -52,6 +53,7 @@ class RoomCard extends React.PureComponent {
   }
   render(){
     const roomName = this.props.location.query.name
+    console.log(roomName)
     const roomName_num = roomName.replace(/[^0-9]/ig,"")
     const roomName_hotel = roomName.replace(/[0-9]/ig,"")
     return(

@@ -41,6 +41,7 @@ export function encode64(input) {
     base: 'http://www.live-ctrl.com/aijukex/',
     getLoginCode: 'we/we_generatePassword',
     login: 'we/we_loginx',
+    queryHotelHouses: 'we/we_queryHotelHouses', //获取房间
     queryHostDeviceByType:"we/we_queryHostDeviceByType",//主机信息
     queryHostScenes:"we/we_queryHostScenes",
     smartHostControl:"we/we_smartHostControl",//控制

@@ -9,5 +9,6 @@ import serviceStore from './service-reducer'
 import modelStore from './model-reducer'
 import tvStore from './tv-reducer'
 import curtainStore from './curtain-reducer'
+import selectHomeStore from './selectHome-reducer'
 
-export default combineReducers({loginStore,lightStore,airStore,idStore,roomCardStore,serviceStore,modelStore,tvStore,curtainStore})
+export default combineReducers({loginStore, selectHomeStore, lightStore,airStore,idStore,roomCardStore,serviceStore,modelStore,tvStore,curtainStore})

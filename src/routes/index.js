@@ -11,6 +11,7 @@ import Home from '../view/home/home'
 import Curtain from '../view/curtain/curtain'
 import Tv from '../view/tv/tv'
 import Air from '../view/air/air'
+import SelectHome from '../view/selectHome/selectHome'
 
 const routes = history => (
     <Router history={history}>
@@ -24,6 +25,7 @@ const routes = history => (
         <Route path='/curtain' component={Curtain} />
         <Route path='/tv' component={Tv} />
         <Route path='/air' component={Air} />
+        <Route path='/selectHome' component={ SelectHome } />
       </Route>
     </Router>
   )

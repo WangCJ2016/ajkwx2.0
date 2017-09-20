@@ -23,7 +23,6 @@ class LargeRound extends React.PureComponent {
     const fontSize = window.innerWidth/7.5
     this.raduisY = fontSize * 8.98
     this.raduisX = fontSize * 5.8
-
     this.websocket = new WebSocket("ws://www.live-ctrl.com/aijukex/stServlet.st?serverId=" + this.props.serveId) 
     this.websocket.onmessage = (event) => {
       let lights = this.props.lights
