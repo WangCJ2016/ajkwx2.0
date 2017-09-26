@@ -31,7 +31,8 @@ class SelectHome extends React.Component {
                 <div styleName="img_wrap"> 
                   <img src={require('../../assets/imgs/selectHome/lock.png')} alt=""/>             
                 </div>
-                <p styleName='room_name'>{room.houseName}</p>
+                <p styleName='room_name'>{room.houseName.replace(/[0-9]/ig,"")}</p>
+                <p styleName='room_name'>{room.houseName.replace(/[^0-9]/ig,"")}</p>
               </Link>
             )) : null
           }

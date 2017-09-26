@@ -42,7 +42,7 @@ class Tv extends React.PureComponent {
       }
       translateX = -this.countActive*this.props.state.winWidth
       this.count = this.props.state.count
-      console.log(translateX,this.count,this.countActive)
+      //console.log(translateX,this.count,this.countActive)
     }
     if(this.props.state.count - this.count === -1){
       if(this.countActive>0){

@@ -95,7 +95,9 @@ class LargeRound extends React.PureComponent {
   }
   lightsRender(){
     const { lights } = this.props
-    return lights.map((light,index) => {
+    return lights
+    .filter((light) => light.name.indexOf(this.props.middleType) > -1)
+    .map((light,index) => {
       const rotate = -90 + (30*Math.round(index/2))*Math.pow(-1,index+1)
       const large_rotateZ = this.state.large_round_rotate
       const status = light.status
@@ -108,7 +110,7 @@ class LargeRound extends React.PureComponent {
          <div styleName='light_wrap' style={{transform:`rotateZ(${rotate}deg)`}} key={light.id}>
             <div className={stylename} style={{transform:`rotateZ(${large_rotateZ-rotate}deg)`}} onClick={()=>this.props.lightsClick(light.wayId,status,index)}>
               <div className="light_img"></div>
-              <p>{light.name}</p>
+              <p>{light.name.replace(this.props.middleType, '')}</p>
             </div>
          </div>
       )

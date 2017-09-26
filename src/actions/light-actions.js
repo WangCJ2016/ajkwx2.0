@@ -14,6 +14,7 @@ export function initialLights() {
         //灯
         request.get(config.api.base + config.api.querySmartDeviceWays, { houseId: houseId, token: token, deviceType: 'SWITCH' })
             .then(res => {
+                console.log(res)
                 if(res&&res.success){
                     dispatch(getServeId(res.dataObject.serverId))
                     let lights = []

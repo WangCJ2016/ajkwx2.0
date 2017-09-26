@@ -33,6 +33,7 @@ class Air extends React.PureComponent {
     this.props.componentWillUnmount()
  }
   render(){
+    //console.log(this.props.airState)
     const {airs,deviceType} = this.props.airState
     const wrapWidth = airs.length*100 + '%'
     const airWidth = 1/airs.length *100 + '%'

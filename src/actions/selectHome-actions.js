@@ -7,7 +7,7 @@ export function initialState() {
     const customerId = getState().idStore.customerId || customerId_session
     request.get(config.api.base + config.api.queryHotelHouses ,{customerId: customerId})
       .then(res => {
-        //console.log(res)
+        console.log(res)
         if (res && res.dataObject) {
           dispatch(initial(res.dataObject))
         }

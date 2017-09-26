@@ -11,7 +11,7 @@ export function initialModel(){
     request.get(config.api.base + config.api.queryHostScenes, { houseId: houseId, token: token })
          .then(res => {
           console.log(res)
-             dispatch(initialState(res.dataObject))
+          dispatch(initialState(res.dataObject))
          })
   };
 }

@@ -14,6 +14,10 @@ class MiddleRound extends React.PureComponent {
     middle_round_rotate:0,
     middle_roundIndex:1
     }
+  }
+  typeClick(middle_round_rotate, index, classs) {
+    this.setState({middle_round_rotate:middle_round_rotate,middle_roundIndex:index})
+    this.props.middleRoundClick(classs)
   } 
   lightclassRender(){
     const classarray = ['卫生间','卧室','走廊','其他']
@@ -25,7 +29,11 @@ class MiddleRound extends React.PureComponent {
         class_title_active:index === this.state.middle_roundIndex
       }) 
       return (
-      <p styleName={stylename} style={{transform:`rotateZ(${rotate}deg)`}} key={index} onClick={()=>this.setState({middle_round_rotate:middle_round_rotate,middle_roundIndex:index})}>
+      <p 
+        styleName={stylename}
+        style={{transform:`rotateZ(${rotate}deg)`}}
+        key={index}
+        onClick={this.typeClick.bind(this, middle_round_rotate, index, classs)}>
         {classs}
       </p>
       )

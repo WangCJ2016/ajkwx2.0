@@ -21,7 +21,8 @@ class Light extends React.PureComponent {
   constructor() {
     super()
     this.state = {
-    modelActiveIndex:-1
+    modelActiveIndex:-1,
+    middleState: '卧室'
     } 
   }
   componentDidMount(){
@@ -37,6 +38,7 @@ class Light extends React.PureComponent {
       this.submitLights()
     })
   }
+
   submitLights(){
      let  onWayIds = ''
     this.props.lightStore.lights
@@ -74,6 +76,11 @@ class Light extends React.PureComponent {
         )
     })
   }
+  middelRoundClick(type) {
+    this.setState({
+      middleState: type
+    })
+  }
   modelClick(index){
     if(this.state.modelActiveIndex === index){
       this.setState({
@@ -101,7 +108,6 @@ class Light extends React.PureComponent {
   }
 
   render() {
-    //console.log(this.props.lightStore)
     const {lights} = this.props.lightStore
     const serveId = this.props.idStore.serveId ||sessionStorage.getItem('serveId')
     const {lightsClick,getLightsWays} = this.props.lightActions
@@ -111,8 +117,8 @@ class Light extends React.PureComponent {
           {this.modellightRender()}
         </div>
         <div styleName="round">
-          <LargeRound lights={lights} serveId={serveId} getLightsWays={getLightsWays}  lightsClick={lightsClick} />
-          <MiddleRound />
+          <LargeRound lights={lights} serveId={serveId} getLightsWays={getLightsWays} middleType={this.state.middleState}  lightsClick={lightsClick} />
+          <MiddleRound middleRoundClick={this.middelRoundClick.bind(this)} />
           <img styleName="small_round"  src={require('../../assets/imgs/light/small_round.png')} alt=''/>
         </div>
       </div>
