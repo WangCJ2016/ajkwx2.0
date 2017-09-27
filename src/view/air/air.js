@@ -25,13 +25,24 @@ class Air extends React.PureComponent {
   }
   
   componentDidMount(){
-    this.props.airActions.initialAirCondition()
-    document.title = '空调' 
+    this.props.airActions.initialAirCondition() 
     this.props.componentDidMount()
+    const { airs } = this.props.airState
+    console.log(airs)
+    if (airs.length > 0) {
+      document.title = Object.keys(airs[this.countActive])[0].replace(/[0-9$]/g, '')
+    }
   }
   componentWillUnmount() {
     this.props.componentWillUnmount()
- }
+  }
+  componentDidUpdate() {
+    const { airs } = this.props.airState
+    //console.log(airs) 
+    if (airs.length > 0) {
+      document.title = airs[this.countActive].name.replace(/[0-9$]/g, '')
+    }   
+  }
   render(){
     //console.log(this.props.airState)
     const {airs,deviceType} = this.props.airState

@@ -8,11 +8,16 @@ export function initialCurtain() {
   return (dispatch,getState)=> {
     const token  = getState().idStore.token||token_session
     const houseId  = getState().idStore.houseId||houseId_session
-    request.get(config.api.base + config.api.queryHostDeviceByType,{houseId:houseId,token:token,deviceType:deviceType})
+    request.get(config.api.base + config.api.queryCurtains,{houseId:houseId,token:token,deviceType:deviceType})
     .then(res => {
-      //console.log(res)
+     // console.log(res)
       if(res&&res.success){
-        dispatch(initialState(res.dataObject.devices))
+        let curtainsArray = []
+        for(let i in res.dataObject.curtains) {
+          curtainsArray.push(res.dataObject.curtains[i])
+        }
+       //console.log(curtainsArray)
+        dispatch(initialState(curtainsArray))
         dispatch(initialStateType(res.dataObject.type))
       }
     })

@@ -48,7 +48,8 @@ export function encode64(input) {
     querySmartDeviceWays:"we/we_querySmartDeviceWays",//获取路数信息
     queryDeviceType:"we/we_queryDeviceType",//获取设备类型
     queryTvDevices:"we/we_queryTvDevices", //获取电视信息
-    modifyWaysStatus:"we/we_modifyWaysStatus" //上传灯的状态
+    modifyWaysStatus:"we/we_modifyWaysStatus", //上传灯的状态
+    queryCurtains: "we/we_queryCurtains" // 获取窗帘数据
   }
 }
 //get/post请求

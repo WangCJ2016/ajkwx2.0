@@ -22,7 +22,8 @@ class Light extends React.PureComponent {
     super()
     this.state = {
     modelActiveIndex:-1,
-    middleState: '卧室'
+    middleState: '卧室',
+    //largeRoundShouldReset: false
     } 
   }
   componentDidMount(){
@@ -78,7 +79,8 @@ class Light extends React.PureComponent {
   }
   middelRoundClick(type) {
     this.setState({
-      middleState: type
+      middleState: type,
+      //largeRoundShouldReset: true
     })
   }
   modelClick(index){

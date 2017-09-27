@@ -9,8 +9,8 @@ import {quadrant} from '../../utlis'
 
 @CSSModules(styles, { allowMultiple: true })
 class LargeRound extends React.PureComponent {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
     large_round_rotate:0
     }
@@ -38,6 +38,7 @@ class LargeRound extends React.PureComponent {
       this.props.getLightsWays(changelihts)
      }
   }
+  
   componentWillUnmount(){
     this.websocket.close()
   }
@@ -60,6 +61,12 @@ class LargeRound extends React.PureComponent {
     if(whichquadrant === 1){
       this.currentAngle = Math.atan(to)/( 2 * Math.PI ) * 360 +180
     }
+  }
+  componentDidUpdate() {
+    console.log(this.props.largeRoundShouldReset)
+    this.setState({
+      large_round_rotate: 0
+    })
   }
   touchemove(e){
     //e.stopPropagation() 
@@ -122,7 +129,9 @@ class LargeRound extends React.PureComponent {
     const large_rotateZ = -large_round_rotate
     return(
       <div styleName="large_round" style={{transform:`rotateZ(${large_rotateZ}deg)`}} 
-      onTouchStart={this.touchstart.bind(this)} onTouchMove={this.touchemove.bind(this)} onTouchEnd={this.touchEnd.bind(this)}> 
+      onTouchStart={this.touchstart.bind(this)}
+      onTouchMove={this.touchemove.bind(this)}
+      onTouchEnd={this.touchEnd.bind(this)}> 
             {this.lightsRender()}
       </div>
     )

@@ -11,7 +11,7 @@ export function initialTv() {
     const houseId = getState().idStore.houseId || houseId_session
     request.get(config.api.base + config.api.queryTvDevices,{houseId:houseId,token:token})
     .then(res => {
-      console.log(res)
+      //console.log(res)
       if (res&&res.success) {
         let arry = []
         for(let i in res.dataObject){

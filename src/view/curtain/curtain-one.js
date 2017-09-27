@@ -40,7 +40,7 @@ class CurtainOne extends React.PureComponent {
       activeIndex = this.state.chuanglianActiveIndex
       type = 'chuanglianActiveIndex'
     }
-    if (way.name.indexOf('纱帘')>-1) {
+    if (way.name.indexOf('纱帘')>-1 || way.name.indexOf('窗纱')>-1) {
       activeIndex = this.state.chuangshaActiveIndex
       type = 'chuangshaActiveIndex'
     }
@@ -81,9 +81,9 @@ class CurtainOne extends React.PureComponent {
             }):null
   }
   render(){
-    const { ways } = this.props.curtain
+    const ways  = this.props.curtain
     const type = this.props.type
-    //console.log(this.props.curtain)
+   // console.log(this.props.curtain)
     return(
       <div styleName="curtain_wrap" style={{width:this.props.width}}>
           {

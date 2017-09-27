@@ -15,7 +15,7 @@ export function initialAirCondition() {
                     dispatch(initialData(deviceType, 'deviceType'))
                     request.get(config.api.base + config.api.queryHostDeviceByType, { token: token, houseId: houseId, deviceType: res.dataObject })
                         .then(res => {
-                            //console.log(res)
+                            console.log(res)
                             let airs = []
                             if (res && res.success) {
                                 if (deviceType === 'VIRTUAL_AIR_REMOTE') {
@@ -45,6 +45,8 @@ export function initialAirCondition() {
                                         airInfo.deviceId = air.deviceId
                                         airInfo.coolWays = coolWays
                                         airInfo.warmWays = warmWays
+                                        airInfo.name = air.name
+                                        //console.log(airInfo)
                                         airs.push(airInfo)
                                     })
                                 } else {
@@ -57,6 +59,8 @@ export function initialAirCondition() {
                                         airInfo.deviceId = air.deviceId
                                         airInfo.coolWays = coolWays
                                         airInfo.warmWays = warmWays
+                                        airInfo.name = air.name
+                                        //console.log(airInfo)
                                         airs.push(airInfo)
                                     })
                                 }

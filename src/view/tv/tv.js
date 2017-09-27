@@ -27,7 +27,19 @@ class Tv extends React.PureComponent {
     const houseId = this.props.location.query.houseId
     this.props.tvActions.initialTv(houseId)
     this.props.componentDidMount()
-    document.title = '电视'
+    const { tvs } = this.props.tvState
+    if (tvs.length > 0) {
+      document.title = Object.keys(tvs[this.countActive])[0].replace(/[0-9$]/g, '')
+      //console.log(tvs)
+    }
+  }
+  componentDidUpdate() {
+    const { tvs } = this.props.tvState
+    if (tvs.length > 0) {
+      document.title = Object.keys(tvs[this.countActive])[0].replace(/[0-9$]/g, '')
+      //console.log(tvs)
+    }
+    //document.title = 
   }
   render(){
     const { tvs } = this.props.tvState
@@ -56,6 +68,7 @@ class Tv extends React.PureComponent {
     if(this.props.state.count - this.count === 0){
       translateX = -this.countActive*this.props.state.winWidth
     }
+    console.log(this.countActive)
     return (
       <div styleName='tv_bg'>
         <SlidePot num={tvs.length} activeIndex={this.countActive} />
