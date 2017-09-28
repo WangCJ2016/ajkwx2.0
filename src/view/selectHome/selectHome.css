@@ -7,16 +7,21 @@
 .rooms{
   position: absolute;
   bottom: 3.52rem;
+  left: 0;
   width: 100%;
+  //width: auto;
   height: 2.8rem;
   background-color: rgba(79, 87, 92, 0.7);
   z-index: 1;
   display: flex;
   flex-wrap: nowrap;
+  -webkit-box-lines:single;
+  white-space: nowrap;
   overflow-x: auto;
 }
 
 .room{
+  display: inline-block;
   width: 1.6rem;
   //height: 2.4rem;
   padding: 0.2rem 0.2rem;

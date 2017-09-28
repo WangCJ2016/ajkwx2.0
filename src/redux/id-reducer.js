@@ -13,7 +13,7 @@ export default (state = Immutable(initialState),action)=>{
         token:action.token,
         customerId:action.customerId
       } 
-      console.log(idState)
+      //console.log(idState)
       return Immutable.merge(state, idState)
     case 'SERVERID':
       return Immutable.set(state,'serveId',action.data)

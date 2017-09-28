@@ -455,7 +455,7 @@ template {
 
  html,body{
    height: 100%;
-   overflow: hidden;
+   //overflow: hidden;
 }
 figure,p{
   margin: 0

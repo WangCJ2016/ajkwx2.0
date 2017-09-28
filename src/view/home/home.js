@@ -23,7 +23,7 @@ class Home extends React.PureComponent {
     }
   }
   componentDidMount(){
-    document.title = '选择房间'
+    document.title = this.props.location.query.name
     this.timer = setInterval(() => {
       const activeIndex = this.state.activeIndex+1
       this.setState({

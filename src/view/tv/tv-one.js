@@ -68,8 +68,8 @@ class TvOne extends React.PureComponent {
         <div styleName="dir_control">
           <div styleName="channel_voice">
             <span styleName="arr_up round" onClick={this.tvBoxCtrl.bind(this,'UP')}></span>
-            <span styleName="arr_title" onClick={this.tvBoxCtrl.bind(this,'DOWN')}>频道</span>
-            <span styleName="arr_down round"></span>
+            <span styleName="arr_title">频道</span>
+            <span styleName="arr_down round" onClick={this.tvBoxCtrl.bind(this,'DOWN')}></span>
           </div>
           <div styleName="arr_round" >
             <span styleName="round_up round" data-key='up' onClick={this.tvBoxCtrl.bind(this,'UP')}>
@@ -90,8 +90,8 @@ class TvOne extends React.PureComponent {
           </div>
         </div>
         <div styleName="review_tv">
-          <p styleName="review_btn">点播</p>
-          <p styleName="review_btn">回看</p>
+          <p styleName="review_btn" onClick={this.tvBoxCtrl.bind(this, 'STOP')}>点播</p>
+          <p styleName="review_btn" onClick={this.tvBoxCtrl.bind(this, 'PLAY')}>回看</p>
         </div>
         <div styleName="tv_num" onClick={this.numClick.bind(this)}>
           <div styleName="num_item">

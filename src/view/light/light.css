@@ -78,6 +78,7 @@
 {
     padding-top: .5rem;
     padding-left: .8rem;
+    visibility: hidden;
 }
 .light_figure
 {

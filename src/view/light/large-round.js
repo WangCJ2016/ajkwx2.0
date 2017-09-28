@@ -29,6 +29,7 @@ class LargeRound extends React.PureComponent {
       //console.log(event.data)
       const lightNow = event.data.split('.WAY.')
       const changelihts = lights.map(light => {
+        //console.log()
         if(light.wayId === lightNow[0]) {
          return Immutable.set(light,"status",lightNow[1])
         }else {
@@ -62,12 +63,7 @@ class LargeRound extends React.PureComponent {
       this.currentAngle = Math.atan(to)/( 2 * Math.PI ) * 360 +180
     }
   }
-  componentDidUpdate() {
-    console.log(this.props.largeRoundShouldReset)
-    this.setState({
-      large_round_rotate: 0
-    })
-  }
+  
   touchemove(e){
     //e.stopPropagation() 
     e.preventDefault()
@@ -115,7 +111,8 @@ class LargeRound extends React.PureComponent {
       })
       return (
          <div styleName='light_wrap' style={{transform:`rotateZ(${rotate}deg)`}} key={light.id}>
-            <div className={stylename} style={{transform:`rotateZ(${large_rotateZ-rotate}deg)`}} onClick={()=>this.props.lightsClick(light.wayId,status,index)}>
+            <div className={stylename} style={{transform:`rotateZ(${large_rotateZ-rotate}deg)`}}
+            onClick={this.lightsClick.bind(this, light.wayId, status)}>
               <div className="light_img"></div>
               <p>{light.name.replace(this.props.middleType, '')}</p>
             </div>
@@ -123,7 +120,14 @@ class LargeRound extends React.PureComponent {
       )
     })
   }
-  
+  lightsClick(wayId, status) {
+    const { lights } = this.props
+    lights.forEach((light, index) => {
+      if (light.wayId === wayId) {
+        this.props.lightsClick(wayId, status, index)
+      }
+    })
+  }
   render(){
     const {large_round_rotate} = this.state
     const large_rotateZ = -large_round_rotate

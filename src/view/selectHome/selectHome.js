@@ -19,23 +19,44 @@ class SelectHome extends React.Component {
   componentDidMount() {
     this.props.selectHomeActions.initialState()
   }
+  whetherCanOperate(houseName, houseId, id) {
+    this.props.actions.whetherCanOperate(houseName, houseId, id)
+  }
+  roomRender() {
+    const { rooms } = this.props.selectHomeState
+   return rooms.map((room) => {
+      if (room.subOrderCode) {
+        return  <Link styleName="room" key={room.id}
+                  onClick={this.props.selectHomeActions.whetherCanOperate.bind(this, room.houseName, room.houseId, room.subOrderCode, 'subOrderCode')}
+                   >
+                     <div styleName="img_wrap"> 
+                    <img src={require('../../assets/imgs/selectHome/lock.png')} alt=""/>             
+                  </div>
+                  <p styleName='room_name'>{room.houseName.replace(/[0-9]/ig,"")}</p>
+                  <p styleName='room_name'>{room.houseName.replace(/[^0-9]/ig,"")}</p>
+                </Link>
+      } else {
+         return  <Link styleName="room" key={room.id}
+                  onClick={this.props.selectHomeActions.whetherCanOperate.bind(this, room.houseName, room.houseId, room.id, 'recordId')}
+                   >
+                     <div styleName="img_wrap"> 
+                    <img src={require('../../assets/imgs/selectHome/lock.png')} alt=""/>             
+                  </div>
+                  <p styleName='room_name'>{room.houseName.replace(/[0-9]/ig,"")}</p>
+                  <p styleName='room_name'>{room.houseName.replace(/[^0-9]/ig,"")}</p>
+                </Link>
+      }
+    })
+    
+    
+  }
   render() {
     const { rooms } = this.props.selectHomeState
     //console.log(rooms)
     return (
       <div styleName='selecthome_bg'>
         <div styleName="rooms">
-          {
-            rooms.length > 0 ? rooms.map(room => (
-              <Link styleName="room" key={room.id} to={`/home?name=${room.houseName}&houseId=${room.houseId}`}>
-                <div styleName="img_wrap"> 
-                  <img src={require('../../assets/imgs/selectHome/lock.png')} alt=""/>             
-                </div>
-                <p styleName='room_name'>{room.houseName.replace(/[0-9]/ig,"")}</p>
-                <p styleName='room_name'>{room.houseName.replace(/[^0-9]/ig,"")}</p>
-              </Link>
-            )) : null
-          }
+          {this.roomRender()}
          
         </div>
       </div>

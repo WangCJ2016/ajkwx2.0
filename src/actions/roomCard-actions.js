@@ -15,7 +15,7 @@ export function initialState(houseId){
     request.get(config.api.base + config.api.queryHostDeviceByType,{houseId:encode64(houseId),token:token,deviceType:deviceType})
     .then(res => {
       if(res&&res.success){
-        console.log(res)
+       // console.log(res)
         if(res && res.success && res.dataObject.devices.length > 0)
         dispatch(initail(res.dataObject.devices[0].deviceId))
       }

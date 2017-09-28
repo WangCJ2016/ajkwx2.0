@@ -111,6 +111,7 @@ class Light extends React.PureComponent {
 
   render() {
     const {lights} = this.props.lightStore
+    //console.log(lights)
     const serveId = this.props.idStore.serveId ||sessionStorage.getItem('serveId')
     const {lightsClick,getLightsWays} = this.props.lightActions
     return (

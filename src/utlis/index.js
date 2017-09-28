@@ -49,7 +49,8 @@ export function encode64(input) {
     queryDeviceType:"we/we_queryDeviceType",//获取设备类型
     queryTvDevices:"we/we_queryTvDevices", //获取电视信息
     modifyWaysStatus:"we/we_modifyWaysStatus", //上传灯的状态
-    queryCurtains: "we/we_queryCurtains" // 获取窗帘数据
+    queryCurtains: "we/we_queryCurtains", // 获取窗帘数据
+    whetherCanOperate: 'we/we_whetherCanOperate'  // 验证房间是否可以入住
   }
 }
 //get/post请求
