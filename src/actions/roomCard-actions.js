@@ -29,7 +29,7 @@ export function initail(deviceId){
     deviceId:deviceId
   }
 }
-
+// 开门
 export function openTheDoor(deviceId){
   return (dispatch,getState) => {
     const token  = getState().idStore.token||token_session
@@ -45,6 +45,31 @@ export function openTheDoor(deviceId){
       console.log(res)
       if(res&&res.success){
         Toast.info('开锁成功')
+        setTimeout(() => {
+          hashHistory.goBack()
+          //window.history.go(-1)
+          //hashHistory.push('/home')
+        },2000)
+      }
+    })
+  }
+}
+// 梯控
+export function elevator(floor){
+  return (dispatch,getState) => {
+    const token  = getState().idStore.token||token_session
+    const houseId  = getState().idStore.houseId||houseId_session
+    const customerId = getState().idStore.customerId||customer_session
+    request.get(config.api.base + config.api.smartHostControl,{
+      token:token,
+      houseId:houseId,
+      deviceType:'ELEVATOR',
+      key:floor,
+      customerId:customerId})
+    .then(res => {
+      console.log(res)
+      if(res&&res.success){
+        Toast.info('梯控成功')
         setTimeout(() => {
           hashHistory.goBack()
           //window.history.go(-1)

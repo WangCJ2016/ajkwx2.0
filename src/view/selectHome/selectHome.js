@@ -27,7 +27,7 @@ class SelectHome extends React.Component {
    return rooms.map((room) => {
       if (room.subOrderCode) {
         return  <Link styleName="room" key={room.id}
-                  onClick={this.props.selectHomeActions.whetherCanOperate.bind(this, room.houseName, room.houseId, room.subOrderCode, 'subOrderCode')}
+                  onClick={this.props.selectHomeActions.whetherCanOperate.bind(this, room.houseName, room.houseId, room.subOrderCode, 'subOrderCode', room.floor)}
                    >
                      <div styleName="img_wrap"> 
                     <img src={require('../../assets/imgs/selectHome/lock.png')} alt=""/>             
@@ -37,7 +37,7 @@ class SelectHome extends React.Component {
                 </Link>
       } else {
          return  <Link styleName="room" key={room.id}
-                  onClick={this.props.selectHomeActions.whetherCanOperate.bind(this, room.houseName, room.houseId, room.id, 'recordId')}
+                  onClick={this.props.selectHomeActions.whetherCanOperate.bind(this, room.houseName, room.houseId, room.id, 'recordId', room.floor)}
                    >
                      <div styleName="img_wrap"> 
                     <img src={require('../../assets/imgs/selectHome/lock.png')} alt=""/>             

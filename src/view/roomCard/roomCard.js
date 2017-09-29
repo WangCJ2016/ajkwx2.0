@@ -50,6 +50,9 @@ class RoomCard extends React.PureComponent {
     if(type === 'door') {
       this.props.roomCardActions.openTheDoor(this.props.roomCardState.deviceId)
     }
+    if (type === 'elevator') {
+      this.props.roomCardActions.elevator(this.props.location.query.floor)
+    }
   }
   render(){
     const roomName = this.props.location.query.name
