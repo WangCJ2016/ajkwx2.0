@@ -27,23 +27,23 @@ class SelectHome extends React.Component {
    return rooms.map((room) => {
       if (room.subOrderCode) {
         return  <Link styleName="room" key={room.id}
-                  onClick={this.props.selectHomeActions.whetherCanOperate.bind(this, room.houseName, room.houseId, room.subOrderCode, 'subOrderCode', room.floor)}
+                  onClick={this.props.selectHomeActions.whetherCanOperate.bind(this, room.hotelHouse.name, room.houseId, room.subOrderCode, 'subOrderCode', room.hotelHouse.floor)}
                    >
                      <div styleName="img_wrap"> 
                     <img src={require('../../assets/imgs/selectHome/lock.png')} alt=""/>             
                   </div>
-                  <p styleName='room_name'>{room.houseName.replace(/[0-9]/ig,"")}</p>
-                  <p styleName='room_name'>{room.houseName.replace(/[^0-9]/ig,"")}</p>
+                  <p styleName='room_name'>{room.hotelHouse.name.replace(/[0-9]/ig,"")}</p>
+                  <p styleName='room_name'>{room.hotelHouse.name.replace(/[^0-9]/ig,"")}</p>
                 </Link>
       } else {
          return  <Link styleName="room" key={room.id}
-                  onClick={this.props.selectHomeActions.whetherCanOperate.bind(this, room.houseName, room.houseId, room.id, 'recordId', room.floor)}
+                  onClick={this.props.selectHomeActions.whetherCanOperate.bind(this, room.hotelHouse.name, room.houseId, room.id, 'recordId', room.hotelHouse.floor)}
                    >
                      <div styleName="img_wrap"> 
                     <img src={require('../../assets/imgs/selectHome/lock.png')} alt=""/>             
                   </div>
-                  <p styleName='room_name'>{room.houseName.replace(/[0-9]/ig,"")}</p>
-                  <p styleName='room_name'>{room.houseName.replace(/[^0-9]/ig,"")}</p>
+                  <p styleName='room_name'>{room.hotelHouse.name.replace(/[0-9]/ig,"")}</p>
+                  <p styleName='room_name'>{room.hotelHouse.name.replace(/[^0-9]/ig,"")}</p>
                 </Link>
       }
     })

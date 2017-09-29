@@ -64,7 +64,7 @@ export function elevator(floor){
       token:token,
       houseId:houseId,
       deviceType:'ELEVATOR',
-      key:floor,
+      floor:floor,
       customerId:customerId})
     .then(res => {
       console.log(res)

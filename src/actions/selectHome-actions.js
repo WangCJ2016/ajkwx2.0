@@ -41,16 +41,15 @@ export function whetherCanOperate(houseName, houseId, id, type, floor) {
     roomsType = 'online'  
   }
   return () => {
-    hashHistory.push(`/home?name=${houseName}&houseId=${houseId}&floor=${floor}`)
-    // request.get(config.api.base + config.api.whetherCanOperate ,{type: roomsType, [type]: id})
-    // .then((res) => {
-    //   console.log(res)
-    //   if (res.success) {
-    //     hashHistory.push(`/home?name=${houseName}&houseId=${houseId}`)
-    //   } else {
-    //     Toast.info(res.msg, 2);
-    //   }
-    // })
+    request.get(config.api.base + config.api.whetherCanOperate ,{type: roomsType, [type]: id})
+    .then((res) => {
+      console.log(res)
+      if (res.success) {
+        hashHistory.push(`/home?name=${houseName}&houseId=${houseId}&floor=${floor}`)
+      } else {
+        Toast.info(res.msg, 2);
+      }
+    })
   }
 
 }

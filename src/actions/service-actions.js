@@ -33,7 +33,7 @@ export function submitService(wayId,action){
     console.log(wayId,action)
     const token  = getState().idStore.token||token_session
     const houseId  = getState().idStore.houseId||houseId_session
-    request.get(config.api.base + config.api.smartHostControl, 
+    request.get(config.api.base + config.api.smartHostControl,
       {
         token:token,
         houseId:houseId,

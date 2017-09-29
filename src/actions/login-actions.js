@@ -9,7 +9,7 @@ export function getLoginCode(userName) {
         request.get(config.api.base + config.api.getLoginCode, { telephone: userName })
             .then(res => {
                 if (res && res.success) {
-                    Toast.info('获取验证码成功', 2)
+                    Toast.info('获取密码成功', 2)
                 } else {
                     Toast.info(res.msg, 2)
                 }
