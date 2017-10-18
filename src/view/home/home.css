@@ -35,10 +35,7 @@
   opacity: 0;
 
 }
-.home_figure.active{
-  
-  
-}
+
 .home_figure.active:after{
   animation: sonarEffect 1.3s ease-out 75ms infinite;
 }
@@ -57,7 +54,6 @@
   }
 }
 .active{
-  
   transform: scale(1,1);
 }
 .light{
