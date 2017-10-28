@@ -73,3 +73,10 @@
   background-color: #6095f0;
   color: #fff
 }
+
+.clearfix:after {
+    content: '';
+    display: block;
+    line-height: 0;
+    clear: both;
+}

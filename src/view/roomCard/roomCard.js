@@ -52,7 +52,7 @@ class RoomCard extends React.PureComponent {
     }
     if (type === 'elevator') {
       console.log(this.props.location.query.floor)
-      this.props.roomCardActions.elevator(this.props.location.query.floor)
+      this.props.roomCardActions.elevator(this.props.location.query.floor, this.props.location.query.hotelId)
     }
   }
   render(){

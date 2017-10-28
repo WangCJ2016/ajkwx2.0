@@ -74,7 +74,7 @@ class Air extends React.PureComponent {
       <div>
       <div styleName='air_bg'>
         <SlidePot num={airs.length} activeIndex={this.countActive} />
-        <div styleName="airwrap" style={{width:wrapWidth,transform:`translateX(${translateX}px)`}} 
+        <div styleName="airwrap clearfix" style={{width:wrapWidth,transform:`translateX(${translateX}px)`}} 
         onTouchStart={this.props.touchstart} onTouchMove={this.props.touchmove} onTouchEnd={this.props.touchend} onTouchCancel={this.props.touchcancel}>
         {
           airs.length?airs.map((air,index) => <AirOne width={airWidth} key={index} deviceType={deviceType} air={air} actions={this.props.airActions}/>):null

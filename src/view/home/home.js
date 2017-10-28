@@ -41,8 +41,8 @@ class Home extends React.PureComponent {
     const activeIndex = this.state.activeIndex
     const figures = [
     {name:'curtain',title:'窗帘',path:`curtain?houseId=${this.props.location.query.houseId}`},
-    {name:'lock',title:'门锁',path:`lock?name=${this.props.location.query.name}&houseId=${this.props.location.query.houseId}&floor=${this.props.location.query.floor}`},
-    {name:'light',title:'灯',path:`light??houseId=${this.props.location.query.houseId}`},
+    {name:'lock',title:'门锁',path:`lock?name=${this.props.location.query.name}&houseId=${this.props.location.query.houseId}&floor=${this.props.location.query.floor}&hotelId=${this.props.location.query.hotelId}`},
+    {name:'light',title:'灯',path:`light?houseId=${this.props.location.query.houseId}`},
     {name:'tv',title:'电视',path:`tv?houseId=${this.props.location.query.houseId}`},
     {name:'service',title:'服务',path:`service?houseId=${this.props.location.query.houseId}`},
     {name:'air',title:'空调',path:`air?houseId=${this.props.location.query.houseId}`},

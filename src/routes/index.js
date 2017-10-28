@@ -4,6 +4,8 @@ import {Router, Route, IndexRoute } from 'react-router'
 import Frame from '../layout/frame'
 import Login from '../view/login/login'
 import Light from '../view/light/light'
+import ReadLight from '../view/readLight/readLight'
+import DengDai from '../view/light/subpage/dengdai'
 import Service from '../view/service/service'
 import RoomCard from '../view/roomCard/roomCard'
 import Models from '../view/models/models'
@@ -17,7 +19,11 @@ const routes = history => (
     <Router history={history}>
       <Route path='/' component={Frame}>
         <IndexRoute component={Login}/>
-        <Route path='/light' component={Light} />
+        <Route path='light'>
+            <IndexRoute component={Light}/>
+            <Route path='dengdai' component={DengDai} />
+            <Route path='readLight' component={ReadLight} />
+        </Route>
         <Route path='/service' component={Service} />
         <Route path='/lock' component={RoomCard} />
         <Route path='/model' component={Models} />

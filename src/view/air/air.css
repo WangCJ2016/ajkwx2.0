@@ -120,7 +120,7 @@
     height: 4.0rem;
     margin: 1.9rem auto;
 
-    border: 1px solid #6095f0;
+    border: 0.02rem solid #6095f0;
     border-radius: 50%;
 }
 .middle_round
@@ -134,7 +134,7 @@
     text-align: center;
 
     color: #6095f0;
-    border: 1px solid #6095f0;
+    border: 0.02rem solid #6095f0;
     border-radius: 50%;
     text-shadow: 2px 2px 10px rgba(255,255,255,.5),-2px -2px 10px rgba(255,255,255,.5);
 }
@@ -274,4 +274,10 @@
 .btn_speed
 {
     width: .58rem;
+}
+.clearfix:after {
+    content: '';
+    display: block;
+    line-height: 0;
+    clear: both;
 }

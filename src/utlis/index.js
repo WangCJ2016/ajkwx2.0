@@ -1,6 +1,7 @@
 import {_} from 'lodash'
 import queryString from 'query-string'
-
+import 'whatwg-fetch'
+import 'es6-promise'
 
 export function encode64(input) {
   var keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789/=";
@@ -50,7 +51,8 @@ export function encode64(input) {
     queryTvDevices:"we/we_queryTvDevices", //获取电视信息
     modifyWaysStatus:"we/we_modifyWaysStatus", //上传灯的状态
     queryCurtains: "we/we_queryCurtains", // 获取窗帘数据
-    whetherCanOperate: 'we/we_whetherCanOperate'  // 验证房间是否可以入住
+    whetherCanOperate: 'we/we_whetherCanOperate',  // 验证房间是否可以入住
+    queryElevatorHost: 'we/we_queryElevatorHost'
   }
 }
 //get/post请求

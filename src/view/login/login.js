@@ -8,6 +8,8 @@ import styles  from './login.css'
 import Checkbox from '../../components/checkbox/checkbox'
 import * as actions from '../../actions/login-actions'
 
+import LoginLogo from './components/login-logo/LoginLogo'
+import LoginForm from './components/login-form/LoginForm'
 
 @connect(
   state => ({loginState:state.loginStore,idStore:state.idStore}),
@@ -15,7 +17,7 @@ import * as actions from '../../actions/login-actions'
     loginActions: bindActionCreators(actions, dispatch),
   })
 )
-@CSSModules(styles, { allowMultiple: true })
+@CSSModules(styles, { allowMultiple: true})
 class Login extends React.PureComponent {
   constructor(){
     super();
@@ -67,34 +69,16 @@ class Login extends React.PureComponent {
     this.props.loginActions.changeRemember(!isRemenber);
   }
   render() {
-    const {userName,password,isRemenber} = this.props.loginState
+    
     return (
       <div styleName='logo_bg'>
-        <div styleName="ajk_logo">
-          <div styleName="logo_wrap">
-            <img src={require('../../assets/imgs/login/logo.png')} alt=""/>
-          </div>
-          <img src={require('../../assets/imgs/login/ajk_logo_title.png')} alt='' styleName="logo_title"/>
-        </div>
+        <LoginLogo />
         <div styleName="login_form">
-          <form action="">
-            <p styleName="form_group">
-              <label><img src={require('../../assets/imgs/login/username.png')} alt=""/></label>
-              <input type="tel" maxLength='11'  value={userName} placeholder='请输入手机号' onChange={this.handleChange.bind(this,'userName')}/>
-            </p>
-            <p styleName="form_group">
-              <label><img src={require('../../assets/imgs/login/lock.png')} alt=""/></label>
-              <input type="password"  maxLength='6' value={password} placeholder='请输入密码' onChange={this.handleChange.bind(this,'password')}/>
-            </p>
-            <div styleName="password_control">
-              <div styleName='checkbox'> 
-                <Checkbox checked={isRemenber} onchange={this.checkboxChange.bind(this)}/>
-                <span>记住密码</span>
-              </div>
-              <p styleName='getPassword' onClick={this.getLoginCode.bind(this)}>获取密码</p>
-            </div>
-            <a styleName='submit_button'  onClick={this.login}>登录</a>
-          </form>
+          <LoginForm formData={this.props.loginState}
+          handleChange={this.handleChange.bind(this)}
+          checkboxChange={this.checkboxChange.bind(this)}
+          getLoginCode={this.getLoginCode.bind(this)}
+          login={this.login.bind(this)} />
         </div>
       </div>
    )

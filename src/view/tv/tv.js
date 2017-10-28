@@ -71,7 +71,7 @@ class Tv extends React.PureComponent {
     return (
       <div styleName='tv_bg'>
         <SlidePot num={tvs.length} activeIndex={this.countActive} />
-        <div styleName="tvwrap" style={{width:wrapWidth,transform:`translateX(${translateX}px)`}} 
+        <div styleName="tvwrap clearfix" style={{width:wrapWidth,transform:`translateX(${translateX}px)`}} 
         onTouchStart={this.props.touchstart} onTouchMove={this.props.touchmove} onTouchEnd={this.props.touchend} onTouchCancel={this.props.touchcancel}>
           {
             tvs.length?tvs.map((tv,index) => <TvOne width={tvWidth} tv={tv} actions={this.props.tvActions} key={index}/>):null

@@ -29,6 +29,7 @@ class Light extends React.PureComponent {
   componentDidMount(){
     document.title = '灯'
     this.props.lightActions.initialLights()
+    this.props.lightActions.yuedudeng()
     window.addEventListener("beforeunload", () => {
       this.submitLights()
     })
@@ -62,65 +63,66 @@ class Light extends React.PureComponent {
       console.log(res)
     })
   }
-  modellightRender(){
-    const modellight = ['卧室','房间']
-    return modellight.map((model,index) => {
-      const key = index === this.state.modelActiveIndex ? 'on':'off'
-      const keyname = index === this.state.modelActiveIndex ? '全关':'全开'
-      return (
-          <figure styleName="light_figure" key={model} onClick={this.modelClick.bind(this,index)}>
-            <img src={require(`../../assets/imgs/light/light_${key}.png`)} alt=""/>
-            <figcaption>
-              {model + keyname}
-            </figcaption>
-          </figure>
-        )
-    })
-  }
+  // modellightRender(){
+  //   const modellight = ['卧室','房间']
+  //   return modellight.map((model,index) => {
+  //     const key = index === this.state.modelActiveIndex ? 'on':'off'
+  //     const keyname = index === this.state.modelActiveIndex ? '全关':'全开'
+  //     return (
+  //         <figure styleName="light_figure" key={model} onClick={this.modelClick.bind(this,index)}>
+  //           <img src={require(`../../assets/imgs/light/light_${key}.png`)} alt=""/>
+  //           <figcaption>
+  //             {model + keyname}
+  //           </figcaption>
+  //         </figure>
+  //       )
+  //   })
+  // }
   middelRoundClick(type) {
     this.setState({
       middleState: type,
       //largeRoundShouldReset: true
     })
   }
-  modelClick(index){
-    if(this.state.modelActiveIndex === index){
-      this.setState({
-      modelActiveIndex:-1
-    })
-    }else{
-      this.setState({
-      modelActiveIndex:index
-    })
-    }
-     let scene
-     if(index === 0 && this.state.modelActiveIndex !== 0){
-        scene=this.props.lightStore.models.scenes.filter(model => model.name === 'ledon')
-     }
-     if(index === 0 && this.state.modelActiveIndex === 0){
-        scene=this.props.lightStore.models.scenes.filter(model => model.name === 'ledoff')
-      }
-    if(index === 1 && this.state.modelActiveIndex !== 1){
-      scene=this.props.lightStore.models.scenes.filter(model => model.name === 'homeon')
-    }
-    if(index === 1 && this.state.modelActiveIndex === 1){
-        scene=this.props.lightStore.models.scenes.filter(model => model.name === 'homeoff')
-    }
-    this.props.lightActions.modelsClick(scene[0].sceneId);
-  }
+  // modelClick(index){
+  //   if(this.state.modelActiveIndex === index){
+  //     this.setState({
+  //     modelActiveIndex:-1
+  //   })
+  //   }else{
+  //     this.setState({
+  //     modelActiveIndex:index
+  //   })
+  //   }
+  //    let scene
+  //    if(index === 0 && this.state.modelActiveIndex !== 0){
+  //       scene=this.props.lightStore.models.scenes.filter(model => model.name === 'ledon')
+  //    }
+  //    if(index === 0 && this.state.modelActiveIndex === 0){
+  //       scene=this.props.lightStore.models.scenes.filter(model => model.name === 'ledoff')
+  //     }
+  //   if(index === 1 && this.state.modelActiveIndex !== 1){
+  //     scene=this.props.lightStore.models.scenes.filter(model => model.name === 'homeon')
+  //   }
+  //   if(index === 1 && this.state.modelActiveIndex === 1){
+  //       scene=this.props.lightStore.models.scenes.filter(model => model.name === 'homeoff')
+  //   }
+  //   this.props.lightActions.modelsClick(scene[0].sceneId);
+  // }
 
   render() {
     const {lights} = this.props.lightStore
-    //console.log(lights)
+    console.log(this.props.location.query.houseId)
     const serveId = this.props.idStore.serveId ||sessionStorage.getItem('serveId')
+    const houseId =  this.props.location.query.houseId
     const {lightsClick,getLightsWays} = this.props.lightActions
     return (
       <div styleName='light_bg' >
         <div styleName="light_model">
-          {this.modellightRender()}
+          
         </div>
         <div styleName="round">
-          <LargeRound lights={lights} serveId={serveId} getLightsWays={getLightsWays} middleType={this.state.middleState}  lightsClick={lightsClick} />
+          <LargeRound lights={lights} houseId={houseId} serveId={serveId} getLightsWays={getLightsWays} middleType={this.state.middleState}  lightsClick={lightsClick} />
           <MiddleRound middleRoundClick={this.middelRoundClick.bind(this)} />
           <img styleName="small_round"  src={require('../../assets/imgs/light/small_round.png')} alt=''/>
         </div>

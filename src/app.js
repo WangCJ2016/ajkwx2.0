@@ -11,6 +11,7 @@ import './assets/normalize.css'
 
 const store = configureStore()
 const history = hashHistory
+
 initReactFastclick()
 ReactDOM.render(
   <Provider store={store}>

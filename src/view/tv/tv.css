@@ -133,7 +133,7 @@
     width: 0.9rem;
     height: 3.5rem;
     border-radius: 0.45rem;
-    border: 1px solid #6095f0;
+    border: 0.02rem solid #6095f0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -208,7 +208,7 @@
 .arr_round {
     width: 3.8rem;
     height: 3.8rem;
-    border: 1px solid #6095f0;
+    border: 0.02rem solid #6095f0;
     border-radius: 50%;
     position: relative;
 }
@@ -216,7 +216,7 @@
 .arr_center {
     width: 1.8rem;
     line-height: 1.8rem;
-    border: 1px solid #6095f0;
+    border: 0.02rem solid #6095f0;
     border-radius: 50%;
     position: absolute;
     left: 50%;
@@ -246,7 +246,7 @@
 .review_btn {
     width: 1.2rem;
     line-height: 0.6rem;
-    border: 1px solid #6095f0;
+    border: 0.02rem solid #6095f0;
     color: #fff;
     font-size: 0.38rem;
     text-align: center;
@@ -288,4 +288,11 @@
 .num_item_last {
     width: 100%;
     text-align: center;
+}
+
+.clearfix:after {
+    content: '';
+    display: block;
+    line-height: 0;
+    clear: both;
 }

@@ -147,7 +147,7 @@ module.exports = {
                 ],
                 loader: require.resolve('file-loader'),
                 options: {
-                    name: 'static/media/[name].[hash:8].[ext]',
+                    name: 'static/media/[name].[hash:base64:5].[ext]',
                 },
             },
             // "url" loader works just like "file" loader but it also embeds
@@ -157,7 +157,7 @@ module.exports = {
                 loader: require.resolve('url-loader'),
                 options: {
                     limit: 10000,
-                    name: 'static/media/[name].[hash:8].[ext]',
+                    name: 'static/media/[name].[hash:base64:5].[ext]',
                 },
             },
             // Process JS with Babel.

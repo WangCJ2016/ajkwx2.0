@@ -25,9 +25,11 @@ class SelectHome extends React.Component {
   roomRender() {
     const { rooms } = this.props.selectHomeState
    return rooms.map((room) => {
+      const basement = room.basement ? room.basement : 0
+      const floor = room.hotelHouse.floor + basement
       if (room.subOrderCode) {
         return  <Link styleName="room" key={room.id}
-                  onClick={this.props.selectHomeActions.whetherCanOperate.bind(this, room.hotelHouse.name, room.houseId, room.subOrderCode, 'subOrderCode', room.hotelHouse.floor)}
+                  onClick={this.props.selectHomeActions.whetherCanOperate.bind(this, room.hotelHouse.name, room.houseId, room.subOrderCode, 'subOrderCode', floor, room.hotelHouse.hotelId)}
                    >
                      <div styleName="img_wrap"> 
                     <img src={require('../../assets/imgs/selectHome/lock.png')} alt=""/>             
@@ -37,7 +39,7 @@ class SelectHome extends React.Component {
                 </Link>
       } else {
          return  <Link styleName="room" key={room.id}
-                  onClick={this.props.selectHomeActions.whetherCanOperate.bind(this, room.hotelHouse.name, room.houseId, room.id, 'recordId', room.hotelHouse.floor)}
+                  onClick={this.props.selectHomeActions.whetherCanOperate.bind(this, room.hotelHouse.name, room.houseId, room.id, 'recordId', floor, room.hotelHouse.hotelId)}
                    >
                      <div styleName="img_wrap"> 
                     <img src={require('../../assets/imgs/selectHome/lock.png')} alt=""/>             

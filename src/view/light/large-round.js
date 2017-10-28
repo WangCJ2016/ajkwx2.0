@@ -2,6 +2,7 @@ import React from 'react'
 import CSSModules from 'react-css-modules'
 import classNames from 'classnames'
 import Immutable from 'seamless-immutable'
+import { hashHistory } from 'react-router' 
 
 import styles from './light.css'
 import {quadrant} from '../../utlis'
@@ -20,6 +21,7 @@ class LargeRound extends React.PureComponent {
   }
   
   componentDidMount(){
+    console.log(this.props)
     const fontSize = window.innerWidth/7.5
     this.raduisY = fontSize * 8.98
     this.raduisX = fontSize * 5.8
@@ -112,7 +114,7 @@ class LargeRound extends React.PureComponent {
       return (
          <div styleName='light_wrap' style={{transform:`rotateZ(${rotate}deg)`}} key={light.id}>
             <div className={stylename} style={{transform:`rotateZ(${large_rotateZ-rotate}deg)`}}
-            onClick={this.lightsClick.bind(this, light.wayId, status)}>
+            onClick={this.lightsClick.bind(this, light.wayId, status, light.name, light.deviceId)}>
               <div className="light_img"></div>
               <p>{light.name.replace(this.props.middleType, '')}</p>
             </div>
@@ -120,7 +122,15 @@ class LargeRound extends React.PureComponent {
       )
     })
   }
-  lightsClick(wayId, status) {
+  lightsClick(wayId, status, name, deviceId) {
+    if (name.indexOf('灯带') > -1) {
+      hashHistory.push(`light/dengdai?deviceId=${deviceId}`)
+      return
+    }
+    if (name.indexOf('阅读灯') > -1) {
+      hashHistory.push(`light/readLight?deviceId=${deviceId}`)
+      return
+    }
     const { lights } = this.props
     lights.forEach((light, index) => {
       if (light.wayId === wayId) {

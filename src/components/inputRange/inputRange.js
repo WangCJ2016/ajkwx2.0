@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 import styles from  './inputRange.css'
 
 class InputRange extends React.PureComponent {
@@ -23,5 +24,6 @@ class InputRange extends React.PureComponent {
           )
    }
 }
+
 
 export default InputRange

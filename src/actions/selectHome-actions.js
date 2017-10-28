@@ -30,7 +30,7 @@ function initial(rooms) {
   }
 }
 
-export function whetherCanOperate(houseName, houseId, id, type, floor) {
+export function whetherCanOperate(houseName, houseId, id, type, floor, hotelId) {
 
   //console.log(houseName, houseId, id, type)
   let roomsType = ''
@@ -45,7 +45,8 @@ export function whetherCanOperate(houseName, houseId, id, type, floor) {
     .then((res) => {
       console.log(res)
       if (res.success) {
-        hashHistory.push(`/home?name=${houseName}&houseId=${houseId}&floor=${floor}`)
+        localStorage.setItem('hotelId', hotelId)
+        hashHistory.push(`/home?name=${houseName}&houseId=${houseId}&floor=${floor}&hotelId=${hotelId}`)
       } else {
         Toast.info(res.msg, 2);
       }
