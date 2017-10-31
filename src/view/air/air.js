@@ -10,7 +10,7 @@ import SlidePot from '../../components/slidePot/slide-pot'
 import SwipeType from '../../components/swipeTypeHoc/SwipeType'
 
 @connect(
-  state => ({airState:state.airStore}),
+  state => ({airState:state.toObject().airStore}),
   dispatch => ({
     airActions: bindActionCreators(airActions, dispatch),
   })

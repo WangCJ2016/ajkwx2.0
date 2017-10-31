@@ -10,7 +10,7 @@ import TvOne from './tv-one'
 import SwipeType from '../../components/swipeTypeHoc/SwipeType'
 
 @connect(
-  state => ({tvState:state.tvStore}),
+  state => ({tvState:state.toObject().tvStore}),
   dispatch => ({
     tvActions: bindActionCreators(tvActions, dispatch),
   })

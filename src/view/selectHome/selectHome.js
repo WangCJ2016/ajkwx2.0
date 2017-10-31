@@ -9,7 +9,7 @@ import * as selectHomeActions from '../../actions/selectHome-actions'
 import styles from './selectHome.css'
 
 @connect(
-  state => ({selectHomeState:state.selectHomeStore}),
+  state => ({selectHomeState:state.toObject().selectHomeStore,idStore:state.toObject().idStore}),
   dispatch => ({
     selectHomeActions: bindActionCreators(selectHomeActions, dispatch),
   })
@@ -17,7 +17,7 @@ import styles from './selectHome.css'
 @CSSModules(styles, { allowMultiple: true })
 class SelectHome extends React.Component {
   componentDidMount() {
-    this.props.selectHomeActions.initialState()
+    this.props.selectHomeActions.initialState(this.props.idStore.customerId)
   }
   whetherCanOperate(houseName, houseId, id) {
     this.props.actions.whetherCanOperate(houseName, houseId, id)

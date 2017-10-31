@@ -3,7 +3,8 @@ const token_session = sessionStorage.getItem('token')
 
 export function initialState(houseId) {
   return (dispatch, getState) => {
-    const token = getState().idStore.token || token_session
+    console.log(token_session)
+    const token =  token_session
     request.get(config.api.base + config.api.querySmartDeviceWays, 
          { houseId: encode64(houseId),
           token: token,

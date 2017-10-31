@@ -8,7 +8,7 @@ import styles from './models.css'
 import * as modelActions from '../../actions/model-actions'
 
 @connect(
-  state => ({modelState:state.modelStore}),
+  state => ({modelState:state.toObject().modelStore}),
   dispatch => ({
     modelActions: bindActionCreators(modelActions, dispatch),
   })

@@ -1,14 +1,11 @@
 import { config, request } from '../utlis'
 
-const houseId_session = sessionStorage.getItem('houseId')
-const token_session = sessionStorage.getItem('token')
+const houseId = sessionStorage.getItem('houseId')
+const token = sessionStorage.getItem('token')
 const deviceType = 'VIRTUAL_TV_DVD_REMOTE';
 
 export function initialTv() {
   return function(dispatch,getState){
-    //console.log(getState())
-    const token = getState().idStore.token || token_session
-    const houseId = getState().idStore.houseId || houseId_session
     request.get(config.api.base + config.api.queryTvDevices,{houseId:houseId,token:token})
     .then(res => {
       //console.log(res)
@@ -24,8 +21,6 @@ export function initialTv() {
 }
 export function tvCtrl(key,deviceId){
   return (dispatch,getState)=>{
-    const token = getState().idStore.token || token_session
-    const houseId = getState().idStore.houseId || houseId_session
     request.get(config.api.base + config.api.smartHostControl,{houseId:houseId,token:token,deviceType:deviceType,deviceId:deviceId,key:key})
     .then(res => {
       console.log(res)

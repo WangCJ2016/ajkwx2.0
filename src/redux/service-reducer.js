@@ -1,12 +1,11 @@
-import Immutable from 'seamless-immutable'
 
 const initailState = {
   lights:[]
 }
-export default function(state=Immutable(initailState),action){
+export default function(state= initailState, action){
   switch (action.type) {
     case 'SETWAY':
-      return Immutable.set(Immutable(state),'lights',action.lights)
+      return {...state,'lights': action.lights}
     default:
       return state
   }

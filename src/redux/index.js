@@ -1,4 +1,6 @@
-import {combineReducers} from 'redux'
+import {
+  combineReducers
+} from 'redux-immutable';
 
 import idStore from './id-reducer'
 import loginStore from './login-reducer'
@@ -10,5 +12,6 @@ import modelStore from './model-reducer'
 import tvStore from './tv-reducer'
 import curtainStore from './curtain-reducer'
 import selectHomeStore from './selectHome-reducer'
+import readLightStore from './readLight-reducer'
 
-export default combineReducers({loginStore, selectHomeStore, lightStore,airStore,idStore,roomCardStore,serviceStore,modelStore,tvStore,curtainStore})
+export default combineReducers({loginStore, selectHomeStore, lightStore,airStore,idStore,roomCardStore,serviceStore,modelStore,tvStore,curtainStore,readLightStore})

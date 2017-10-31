@@ -8,7 +8,7 @@ import styles from './service.css'
 import * as serviceActions from '../../actions/service-actions'
 
 @connect(
-  state => ({serviceState:state.serviceStore}),
+  state => ({serviceState:state.toObject().serviceStore}),
   dispatch => ({
     serviceActions: bindActionCreators(serviceActions, dispatch),
   })

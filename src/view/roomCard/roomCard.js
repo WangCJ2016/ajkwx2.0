@@ -8,7 +8,7 @@ import styles from './roomCard.css'
 import * as roomCardActions from '../../actions/roomCard-actions'
 
 @connect(
-  state => ({roomCardState:state.roomCardStore}),
+  state => ({roomCardState:state.toObject().roomCardStore}),
   dispatch => ({
     roomCardActions: bindActionCreators(roomCardActions, dispatch),
   })
@@ -56,6 +56,7 @@ class RoomCard extends React.PureComponent {
     }
   }
   render(){
+    console.log(this.props)
     const roomName = this.props.location.query.name
     //console.log(roomName)
     const roomName_num = roomName.replace(/[^0-9]/ig,"")

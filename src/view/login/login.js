@@ -12,7 +12,7 @@ import LoginLogo from './components/login-logo/LoginLogo'
 import LoginForm from './components/login-form/LoginForm'
 
 @connect(
-  state => ({loginState:state.loginStore,idStore:state.idStore}),
+  state => ({loginState:state.toObject().loginStore,idStore:state.toObject().idStore}),
   dispatch => ({
     loginActions: bindActionCreators(actions, dispatch),
   })

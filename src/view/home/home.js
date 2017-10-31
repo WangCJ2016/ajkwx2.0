@@ -9,7 +9,7 @@ import styles from './home.css'
 import * as homeActions from '../../actions/home-actions'
 
 @connect(
-  state => ({idState:state.idStore}),
+  state => ({idState:state.toObject().idStore}),
   dispatch => ({
     homeActions: bindActionCreators(homeActions, dispatch),
   })

@@ -4,10 +4,10 @@ import { Toast } from 'antd-mobile'
 
 const customerId_session = sessionStorage.getItem('customerId')
 
-export function initialState() {
+export function initialState(customerId) {
+  const _customerId = customerId || customerId_session
   return (dispatch, getState) => {
-    const customerId = getState().idStore.customerId || customerId_session
-    request.get(config.api.base + config.api.queryHotelHouses ,{customerId: customerId})
+    request.get(config.api.base + config.api.queryHotelHouses ,{customerId: _customerId})
       .then(res => {
         console.log(res)
         if (res && res.dataObject) {
@@ -43,9 +43,9 @@ export function whetherCanOperate(houseName, houseId, id, type, floor, hotelId) 
   return () => {
     request.get(config.api.base + config.api.whetherCanOperate ,{type: roomsType, [type]: id})
     .then((res) => {
-      console.log(res)
       if (res.success) {
-        localStorage.setItem('hotelId', hotelId)
+        sessionStorage.setItem('hotelId', hotelId)
+        sessionStorage.setItem('houseId', houseId)
         hashHistory.push(`/home?name=${houseName}&houseId=${houseId}&floor=${floor}&hotelId=${hotelId}`)
       } else {
         Toast.info(res.msg, 2);

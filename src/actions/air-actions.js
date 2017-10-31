@@ -5,11 +5,10 @@ const token_session = sessionStorage.getItem('token')
 
 export function initialAirCondition() {
     return function(dispatch, getState) {
-        const token  = getState().idStore.token||token_session
-        const houseId  = getState().idStore.houseId||houseId_session
+         const token  = getState().idStore.token||token_session
+         const houseId  = getState().idStore.houseId||houseId_session
         request.get(config.api.base + config.api.queryDeviceType, { token: token, deviceName: encodeURI('空调'), houseId: houseId })
             .then(res => {
-
                 if (res && res.success) {
                     deviceType = res.dataObject
                     dispatch(initialData(deviceType, 'deviceType'))
@@ -82,6 +81,7 @@ function initialData(airs, style) {
 }
 //普通空调温度变化
 export function changeTem(key, deviceId) {
+
     return function(dispatch, getState) {
         const token  = getState().idStore.token||token_session
         const houseId  = getState().idStore.houseId||houseId_session

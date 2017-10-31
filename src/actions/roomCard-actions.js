@@ -1,19 +1,19 @@
 import { Toast } from 'antd-mobile'
 import { hashHistory } from 'react-router'
 
-import { request, config, encode64 } from '../utlis'
+import { request, config } from '../utlis'
 
 const deviceType = 'FINGERPRINT_LOCK';
-const houseId_session = sessionStorage.getItem('houseId')
-const token_session = sessionStorage.getItem('token')
-const customer_session = sessionStorage.getItem('customerId')
+const houseId = sessionStorage.getItem('houseId')
+const token = sessionStorage.getItem('token')
+const customerId= sessionStorage.getItem('customerId')
 
-export function initialState(houseId) {
+export function initialState() {
   //console.log(houseId)
   return (dispatch, getState) => {
-    const token = getState().idStore.token || token_session
-    request.get(config.api.base + config.api.queryHostDeviceByType, { houseId: encode64(houseId), token: token, deviceType: deviceType })
+    request.get(config.api.base + config.api.queryHostDeviceByType, { houseId: houseId, token: token, deviceType: deviceType })
       .then(res => {
+        // console.log(res)
         if (res && res.success) {
           // console.log(res)
           if (res && res.success && res.dataObject.devices.length > 0)
@@ -32,9 +32,6 @@ export function initail(deviceId) {
 // 开门
 export function openTheDoor(deviceId) {
   return (dispatch, getState) => {
-    const token = getState().idStore.token || token_session
-    const houseId = getState().idStore.houseId || houseId_session
-    const customerId = getState().idStore.customerId || customer_session
     request.get(config.api.base + config.api.smartHostControl, {
         token: token,
         houseId: houseId,
@@ -58,10 +55,6 @@ export function openTheDoor(deviceId) {
 // 梯控
 export function elevator(floor, hotelId) {
   return (dispatch, getState) => {
-    const token = getState().idStore.token || token_session
-    const houseId = getState().idStore.houseId || houseId_session
-    const customerId = getState().idStore.customerId || customer_session
-    console.log(floor)
     request.get(config.api.base + config.api.queryElevatorHost, {
         token: token,
         hotelId: hotelId,

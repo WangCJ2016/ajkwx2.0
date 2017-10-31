@@ -1,5 +1,3 @@
-import Immutable from 'seamless-immutable'
-
 let initialState 
 if(localStorage.getItem('deleteTime')>= new Date().getTime()){
    initialState = {
@@ -18,12 +16,13 @@ if(localStorage.getItem('deleteTime')>= new Date().getTime()){
 }
 
 
-export default (state = Immutable(initialState),action)=>{
+export default (state = initialState, action)=>{
   switch (action.type) {
     case 'CHANGEUSERANDPASSWORD':
-      return Immutable.set(Immutable(state),action.name,action.value)
+      const name = action.name
+      return {...state, [name]: action.value}
     case 'CHANGEREMEMBER':
-      return Immutable.set(Immutable(state),'isRemenber',action.value)
+      return {...state, isRemenber: action.value}
     default:
       return state;
   }

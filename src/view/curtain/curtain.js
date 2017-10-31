@@ -10,7 +10,7 @@ import SlidePot from '../../components/slidePot/slide-pot'
 import SwipeType from '../../components/swipeTypeHoc/SwipeType'
 
 @connect(
-  state => ({curtainState:state.curtainStore}),
+  state => ({curtainState:state.toObject().curtainStore}),
   dispatch => ({
     curtainActions: bindActionCreators(curtainActions, dispatch),
   })

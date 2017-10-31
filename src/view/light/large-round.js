@@ -1,7 +1,7 @@
 import React from 'react'
 import CSSModules from 'react-css-modules'
 import classNames from 'classnames'
-import Immutable from 'seamless-immutable'
+
 import { hashHistory } from 'react-router' 
 
 import styles from './light.css'
@@ -21,7 +21,6 @@ class LargeRound extends React.PureComponent {
   }
   
   componentDidMount(){
-    console.log(this.props)
     const fontSize = window.innerWidth/7.5
     this.raduisY = fontSize * 8.98
     this.raduisX = fontSize * 5.8
@@ -30,10 +29,13 @@ class LargeRound extends React.PureComponent {
       let lights = this.props.lights
       //console.log(event.data)
       const lightNow = event.data.split('.WAY.')
-      const changelihts = lights.map(light => {
+      const changelihts = lights.map((light, index) => {
         //console.log()
         if(light.wayId === lightNow[0]) {
-         return Immutable.set(light,"status",lightNow[1])
+          let newLight = light
+          newLight.status = lightNow[1]
+         return newLight
+
         }else {
           return light
         }
@@ -101,7 +103,7 @@ class LargeRound extends React.PureComponent {
   lightsRender(){
     const { lights } = this.props
     return lights
-    .filter((light) => light.name.indexOf(this.props.middleType) > -1)
+    .filter((light) => light.name&&light.name.indexOf(this.props.middleType) > -1)
     .map((light,index) => {
       const rotate = -90 + (30*Math.round(index/2))*Math.pow(-1,index+1)
       const large_rotateZ = this.state.large_round_rotate
@@ -146,7 +148,7 @@ class LargeRound extends React.PureComponent {
       onTouchStart={this.touchstart.bind(this)}
       onTouchMove={this.touchemove.bind(this)}
       onTouchEnd={this.touchEnd.bind(this)}> 
-            {this.lightsRender()}
+            {this.props.lights ? this.lightsRender():null}
       </div>
     )
   }

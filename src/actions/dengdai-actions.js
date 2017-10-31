@@ -13,7 +13,7 @@ export function rgbClick(deviceId, key) {
         deviceType : 'VIRTUAL_RGB_REMOTE', 
         houseId: houseId, 
         deviceId : deviceId,
-        key: key,
+        key: key.toUpperCase(),
         rgb : "*"
        })
        .then(res => {

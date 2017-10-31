@@ -11,7 +11,7 @@ import LargeRound from './large-round'
 import { request,config } from '../../utlis'
 
 @connect(
-  state => ({lightStore:state.lightStore,idStore:state.idStore}),
+  state => ({lightStore:state.toObject().lightStore,idStore:state.toObject().idStore}),
   dispatch => ({
     lightActions: bindActionCreators(actions, dispatch),
   })
@@ -63,56 +63,17 @@ class Light extends React.PureComponent {
       console.log(res)
     })
   }
-  // modellightRender(){
-  //   const modellight = ['卧室','房间']
-  //   return modellight.map((model,index) => {
-  //     const key = index === this.state.modelActiveIndex ? 'on':'off'
-  //     const keyname = index === this.state.modelActiveIndex ? '全关':'全开'
-  //     return (
-  //         <figure styleName="light_figure" key={model} onClick={this.modelClick.bind(this,index)}>
-  //           <img src={require(`../../assets/imgs/light/light_${key}.png`)} alt=""/>
-  //           <figcaption>
-  //             {model + keyname}
-  //           </figcaption>
-  //         </figure>
-  //       )
-  //   })
-  // }
+  
   middelRoundClick(type) {
     this.setState({
       middleState: type,
       //largeRoundShouldReset: true
     })
   }
-  // modelClick(index){
-  //   if(this.state.modelActiveIndex === index){
-  //     this.setState({
-  //     modelActiveIndex:-1
-  //   })
-  //   }else{
-  //     this.setState({
-  //     modelActiveIndex:index
-  //   })
-  //   }
-  //    let scene
-  //    if(index === 0 && this.state.modelActiveIndex !== 0){
-  //       scene=this.props.lightStore.models.scenes.filter(model => model.name === 'ledon')
-  //    }
-  //    if(index === 0 && this.state.modelActiveIndex === 0){
-  //       scene=this.props.lightStore.models.scenes.filter(model => model.name === 'ledoff')
-  //     }
-  //   if(index === 1 && this.state.modelActiveIndex !== 1){
-  //     scene=this.props.lightStore.models.scenes.filter(model => model.name === 'homeon')
-  //   }
-  //   if(index === 1 && this.state.modelActiveIndex === 1){
-  //       scene=this.props.lightStore.models.scenes.filter(model => model.name === 'homeoff')
-  //   }
-  //   this.props.lightActions.modelsClick(scene[0].sceneId);
-  // }
+  
 
   render() {
     const {lights} = this.props.lightStore
-    console.log(this.props.location.query.houseId)
     const serveId = this.props.idStore.serveId ||sessionStorage.getItem('serveId')
     const houseId =  this.props.location.query.houseId
     const {lightsClick,getLightsWays} = this.props.lightActions

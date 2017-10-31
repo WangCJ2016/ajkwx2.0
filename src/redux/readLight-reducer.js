@@ -1,13 +1,15 @@
-import Immutable from 'seamless-immutable'
 
 const initialState = {
-  deviceId: '',
-  housId:''
+  status: 'CLOSE',
+  wayIds: {}
 };
-export default function(state=Immutable(initialState),action){
+export default function(state=initialState, action){
   switch (action.type) {
-    case 'INTIALDATA':
-      return Immutable.set(Immutable(state),action.style,action.data)
+    case 'INITALSTATE':
+      return {...state,'wayIds': action.wayIds}
+    case 'CHANGESTATE':
+    const key = action.key
+      return {...state, [key]:action.value}
      default:
         return state;
   }

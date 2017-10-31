@@ -55,7 +55,6 @@ class DengDai extends React.PureComponent {
         <div styleName="row">
           {this.btnsRender(['yellow','pink','cornflowerblue','orange'], 'activeIndex_2')}
         </div>
-        <div styleName="test"></div>
       </div>
     )
   }
