@@ -4,13 +4,15 @@ import { hashHistory } from 'react-router'
 import { request, config } from '../utlis'
 
 const deviceType = 'FINGERPRINT_LOCK';
-const houseId = sessionStorage.getItem('houseId')
-const token = sessionStorage.getItem('token')
-const customerId= sessionStorage.getItem('customerId')
+const houseId_session = sessionStorage.getItem('houseId')
+const token_session = sessionStorage.getItem('token')
+const customerId_session= sessionStorage.getItem('customerId')
 
 export function initialState() {
   //console.log(houseId)
-  return (dispatch, getState) => {
+  return (dispatch, getStore) => {
+     const token =  token_session || getStore().toObject().idStore.token
+    const houseId =  houseId_session || getStore().toObject().idStore.houseId
     request.get(config.api.base + config.api.queryHostDeviceByType, { houseId: houseId, token: token, deviceType: deviceType })
       .then(res => {
         // console.log(res)
@@ -31,7 +33,10 @@ export function initail(deviceId) {
 }
 // 开门
 export function openTheDoor(deviceId) {
-  return (dispatch, getState) => {
+  return (dispatch, getStore) => {
+    const token =  token_session || getStore().toObject().idStore.token
+    const houseId =  houseId_session || getStore().toObject().idStore.houseId
+    const customerId =  customerId_session || getStore().toObject().idStore.customerId
     request.get(config.api.base + config.api.smartHostControl, {
         token: token,
         houseId: houseId,
@@ -55,6 +60,8 @@ export function openTheDoor(deviceId) {
 // 梯控
 export function elevator(floor, hotelId) {
   return (dispatch, getState) => {
+     const token =  token_session || getState().toObject().idStore.token
+    const houseId =  houseId_session || getState().toObject().idStore.houseId
     request.get(config.api.base + config.api.queryElevatorHost, {
         token: token,
         hotelId: hotelId,

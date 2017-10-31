@@ -38,7 +38,8 @@ class DengDai extends React.PureComponent {
       return colors.map((color, index) => {
         const classSytle = classNames({
           btn: true,
-          active: this.state[type] === index
+          active: this.state[type] === index,
+          [color]: true
         })
         const key = color.slice(0,1)
         return <div key={ index } styleName={classSytle} style={{background: color}} onClick={this.btnClick.bind(this, index, type, key)}>
@@ -47,11 +48,13 @@ class DengDai extends React.PureComponent {
       })
     }
   render() {
+    const deviceId = this.props.location.query.deviceId
     return (
       <div styleName='yududeng_wrap'>
         <div styleName="row">
           {this.btnsRender(['red','green','blue','white'], 'activeIndex_1')}
         </div>
+        <div styleName="close_btn" onClick={()=>this.props.readLightActions.rgbClick(deviceId, 'OFF')}>OFF</div>
         <div styleName="row">
           {this.btnsRender(['yellow','pink','cornflowerblue','orange'], 'activeIndex_2')}
         </div>

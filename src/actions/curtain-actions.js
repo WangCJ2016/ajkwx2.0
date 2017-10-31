@@ -6,8 +6,8 @@ const deviceType = 'CURTAIN'
 
 export function initialCurtain() {
   return (dispatch,getState)=> {
-    const token  = getState().idStore.token||token_session
-    const houseId  = getState().idStore.houseId||houseId_session
+    const token =  token_session || getState().toObject().idStore.token
+    const houseId =  houseId_session || getState().toObject().idStore.houseId
     request.get(config.api.base + config.api.queryCurtains,{houseId:houseId,token:token,deviceType:deviceType})
     .then(res => {
      // console.log(res)
@@ -25,8 +25,8 @@ export function initialCurtain() {
 }
 export function changeCurtainStatus(wayId,key,brightness){
   return (dispatch,getState)=>{
-    const token  = getState().idStore.token||token_session
-    const houseId  = getState().idStore.houseId||houseId_session
+    const token =  token_session || getState().toObject().idStore.token
+    const houseId =  houseId_session || getState().toObject().idStore.houseId
     request.get(config.api.base + config.api.smartHostControl,{token:token,houseId:houseId,deviceType:deviceType,wayId:wayId,actionType:key,brightness:brightness})
     .then(res => {
       console.log(res)

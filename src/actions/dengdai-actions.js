@@ -5,8 +5,8 @@ const token_session = sessionStorage.getItem('token')
 
 export function rgbClick(deviceId, key) {
   return (dispatch, getState) => {
-    const token  = getState().idStore.token||token_session
-    const houseId  = getState().idStore.houseId||houseId_session
+    const token =  token_session || getState().toObject().idStore.token
+    const houseId =  houseId_session || getState().toObject().idStore.houseId
     request.get(config.api.base + config.api.smartHostControl, 
       { 
         token: token, 

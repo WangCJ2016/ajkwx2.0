@@ -1,11 +1,13 @@
 import { config, request } from '../utlis'
 
-const token = localStorage.getItem('token')
-const houseId = localStorage.getItem('houseId')
+const houseId_session = sessionStorage.getItem('houseId')
+const token_session = sessionStorage.getItem('token')
 
 export function initialLights() {
-  console.log(token, houseId)
+
   return function(dispatch, getState) {
+    const token = token_session || getState().toObject().idStore.token
+    const houseId = houseId_session || getState().toObject().idStore.houseId
     request.get(config.api.base + config.api.queryHostScenes, { houseId: 445722962903776640, token: token })
       .then(res => {
         dispatch(getModelScens(res.dataObject))
@@ -13,7 +15,7 @@ export function initialLights() {
     //灯
     request.get(config.api.base + config.api.querySmartDeviceWays, { houseId: houseId, token: token, deviceType: 'SWITCH' })
       .then(res => {
-        console.log(res)
+       // console.log(res)
         if (res && res.success) {
           dispatch(getServeId(res.dataObject.serverId))
           let lights = []
@@ -29,7 +31,7 @@ export function initialLights() {
             console.log(res)
             let allLight = []
             if (res && res.success && res.dataObject.devices.length > 0) {
-                res.dataObject.devices[0].name = '其他灯带'
+              res.dataObject.devices[0].name = '其他灯带'
               allLight = [...lights, ...res.dataObject.devices]
             } else {
               allLight = lights
@@ -42,7 +44,7 @@ export function initialLights() {
                 console.log(res)
                 let allLight = []
                 if (res && res.success && res.dataObject.devices.length > 0) {
-                    res.dataObject.devices[0].name = '其他阅读灯'
+                  res.dataObject.devices[0].name = '其他阅读灯'
                   allLight = [...lights, ...res.dataObject.devices]
                 } else {
                   allLight = lights
@@ -58,6 +60,8 @@ export function initialLights() {
 // 判断是否有阅读灯
 export function yuedudeng() {
   return (dispatch, getState) => {
+    const token = token_session || getState().toObject().idStore.token
+    const houseId = houseId_session || getState().toObject().idStore.houseId
     request.get(config.api.base + config.api.queryHostDeviceByType, { houseId: houseId, token: token, deviceType: 'VIRTUAL_RGB_REMOTE' })
       .then(res => {
         console.log(res)
@@ -85,6 +89,8 @@ export function getServeId(data) {
 }
 export function modelsClick(sceneId) {
   return function(dispatch, getState) {
+    const token = token_session || getState().toObject().idStore.token
+    const houseId = houseId_session || getState().toObject().idStore.houseId
     request.get(config.api.base + config.api.smartHostControl, {
         houseId: houseId,
         deviceType: 'SCENE',
@@ -101,6 +107,8 @@ export function lightsClick(wayId, status, index) {
   const actionType = status === 'ON' ? 'CLOSE' : 'OPEN'
   const status_on = status === 'ON' ? 'OFF' : 'ON'
   return function(dispatch, getState) {
+    const token = token_session || getState().toObject().idStore.token
+    const houseId = houseId_session || getState().toObject().idStore.houseId
     request.get(config.api.base + config.api.smartHostControl, {
         houseId: houseId,
         deviceType: 'SWITCH',

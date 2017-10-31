@@ -1,13 +1,14 @@
 import { request, config } from '../utlis'
 
-const houseId = sessionStorage.getItem('houseId')
-const token = sessionStorage.getItem('token')
+const houseId_session = sessionStorage.getItem('houseId')
+const token_session = sessionStorage.getItem('token')
 
 const deviceType = 'SWITCH';
 
 export function initailState(){
   return function(dispatch,getState){
-    
+       const token =  token_session || getState().toObject().idStore.token
+    const houseId =  houseId_session || getState().toObject().idStore.houseId
      request.get(config.api.base + config.api.querySmartDeviceWays, { houseId: houseId, token: token, deviceType: 'SWITCH' })
             .then(res => {
                 //console.log(res)
@@ -29,7 +30,8 @@ function setWayId(lights){
 
 export function submitService(wayId,action){
   return function(dispatch,getState){
-   
+    const token =  token_session || getState().toObject().idStore.token
+    const houseId =  houseId_session || getState().toObject().idStore.houseId
     request.get(config.api.base + config.api.smartHostControl,
       {
         token:token,

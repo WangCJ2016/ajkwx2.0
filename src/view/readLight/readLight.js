@@ -49,22 +49,33 @@ export default class ReadLight extends React.Component {
     }
     this.props.readLightActions.rangeChange(e.target.value, wayId)
   }
+  rangeChange1(type, e) {
+    if (type === 'baiguang') {
+      this.setState({
+        baiguangValue: e.target.value
+      })
+    }
+    if (type === 'nuanguang') {
+       this.setState({
+        nuanguangValue: e.target.value
+      })
+    }
+  }
   render() {
-    console.log(this.props.readLightStore)
     const { status } = this.props.readLightStore
     return (
       <div styleName='readLight_wrap'>
         <div styleName='blank1'></div>
         <ReadLightSwitch status={status} clickfn={this.switchClick.bind(this)}/>
-        <div styleName='blank2'></div>
+        <div styleName='blank3'></div>
         <div styleName="switch">
           <span styleName="switch_label">白光</span>
-          <ReadLightRange onChangefn={this.rangeChange.bind(this, 'baiguang')} value={this.state.baiguangValue}/>
+          <ReadLightRange onChangefn={this.rangeChange.bind(this, 'baiguang')} rangeChange1={this.rangeChange1.bind(this, 'baiguang')} value={this.state.baiguangValue}/>
         </div>
         <div styleName='blank2'></div>
          <div styleName="switch">
           <span styleName="switch_label">暖光</span>
-          <ReadLightRange onChangefn={this.rangeChange.bind(this, 'nuanguang')} value={this.state.nuanguangValue} />
+          <ReadLightRange onChangefn={this.rangeChange.bind(this, 'nuanguang')} rangeChange1={this.rangeChange1.bind(this, 'nuanguang')} value={this.state.nuanguangValue} />
         </div>
       </div>
     );

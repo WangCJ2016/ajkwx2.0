@@ -4,15 +4,18 @@
   background-size: 100% 100%;
 }
 .blank1 {
-  height: .7rem;
+  height: .9rem;
 }
 .blank2 {
-  height: 0.2rem
+  height: 0.5rem
+}
+.blank3 {
+  height: .9rem
 }
 .switch {
   box-sizing: border-box;
-  height: 1rem;
-  background-color: rgba(255, 255, 255, 0.9);
+  height: 1.4rem;
+  background-color: rgba(255, 255, 255, 0.3);
   padding: 0.3rem;
   display: flex;
   justify-content: space-between;

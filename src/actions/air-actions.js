@@ -5,8 +5,8 @@ const token_session = sessionStorage.getItem('token')
 
 export function initialAirCondition() {
     return function(dispatch, getState) {
-         const token  = getState().idStore.token||token_session
-         const houseId  = getState().idStore.houseId||houseId_session
+         const token =  token_session || getState().toObject().idStore.token
+    const houseId =  houseId_session || getState().toObject().idStore.houseId
         request.get(config.api.base + config.api.queryDeviceType, { token: token, deviceName: encodeURI('空调'), houseId: houseId })
             .then(res => {
                 if (res && res.success) {
@@ -83,8 +83,8 @@ function initialData(airs, style) {
 export function changeTem(key, deviceId) {
 
     return function(dispatch, getState) {
-        const token  = getState().idStore.token||token_session
-        const houseId  = getState().idStore.houseId||houseId_session
+        const token =  token_session || getState().toObject().idStore.token
+    const houseId =  houseId_session || getState().toObject().idStore.houseId
         request.get(config.api.base + config.api.smartHostControl, {
                 houseId: houseId,
                 deviceType: deviceType,
@@ -101,8 +101,8 @@ export function changeTem(key, deviceId) {
 export function centerchangeTem(key, deviceId, model, speed) {
     const mode = model === 'cold' ? 'COOL' : 'WARM'
     return function(dispatch,getState) {
-        const token  = getState().idStore.token||token_session
-        const houseId  = getState().idStore.houseId||houseId_session
+        const token =  token_session || getState().toObject().idStore.token
+    const houseId =  houseId_session || getState().toObject().idStore.houseId
         request.get(config.api.base + config.api.smartHostControl, {
                 houseId: houseId,
                 deviceType: deviceType,
@@ -121,8 +121,8 @@ export function centerchangeTem(key, deviceId, model, speed) {
 export function airswitch(key, deviceId) {
     let data
     return function(dispatch,getState) {
-        const token  = getState().idStore.token||token_session
-        const houseId  = getState().idStore.houseId||houseId_session
+       const token =  token_session || getState().toObject().idStore.token
+    const houseId =  houseId_session || getState().toObject().idStore.houseId
         if (deviceType === 'VIRTUAL_AIR_REMOTE') {
             data = {
                 houseId: houseId,

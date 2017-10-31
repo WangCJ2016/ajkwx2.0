@@ -21,7 +21,7 @@ export function goHome(username, password, isRemenber) {
     return function(dispatch) {
         request.get(config.api.base + config.api.login, { username: username, password: password })
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 if (res.success) {
                     //sessionStorage.setItem('houseId',encode64(res.dataObject.house.id.toString()))
                     sessionStorage.setItem('customerId',encode64(res.dataObject.id.toString()))

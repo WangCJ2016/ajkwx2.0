@@ -1,11 +1,13 @@
 import { request, config } from '../utlis'
 
 
-const houseId = sessionStorage.getItem('houseId')
-const token = sessionStorage.getItem('token')
+const houseId_session = sessionStorage.getItem('houseId')
+const token_session = sessionStorage.getItem('token')
 
 export function getInitialState() {
-  return (dispatch, getStore) => {
+  return (dispatch, getState) => {
+    const token =  token_session || getState().toObject().idStore.token
+    const houseId =  houseId_session || getState().toObject().idStore.houseId
     request.get(config.api.base + config.api.queryHostDeviceByType, { houseId: houseId, token: token, deviceType: 'DIMMER' })
       .then(res => {
         console.log(res)
@@ -34,7 +36,8 @@ export function initialState(wayIds) {
 
 export function rangeChange(value, wayId) {
   return (dispatch, getStore) => {
-   
+   const token =  token_session || getStore().toObject().idStore.token
+    const houseId =  houseId_session || getStore().toObject().idStore.houseId
     request.get(config.api.base + config.api.smartHostControl, {
         houseId: houseId,
         deviceType: 'SWITCH',
@@ -58,6 +61,8 @@ export function changeState(key, value) {
 }
 export function switchClick(actionType) {
   return (dispatch, getStore) => {
+    const token =  token_session || getStore().toObject().idStore.token
+    const houseId =  houseId_session || getStore().toObject().idStore.houseId
     const wayIds = getStore().toObject().readLightStore.wayIds
     Promise.all([runAsync(wayIds.baiguangWayid), runAsync(wayIds.nuanguangWayid)])
     .then(res => {
