@@ -8,12 +8,22 @@ import styles from './light.css'
 
 @CSSModules(styles, { allowMultiple: true })
 class MiddleRound extends React.PureComponent {
-  constructor() {
+  constructor(props) {
     super()
-    this. state={
-    middle_round_rotate:0,
-    middle_roundIndex:1
-    }
+    const classarray = ['卫生间','卧室','走廊','其他']
+    let middle_round_rotate= 0
+    let _index = 1
+    classarray.forEach((value, index) => {
+      if (value === props.middleRoundStatus) {
+        middle_round_rotate=index*25-25
+        _index = index
+      }
+    })
+     
+    this.state={
+      middle_round_rotate:middle_round_rotate,
+      middle_roundIndex:_index
+      }
   }
   typeClick(middle_round_rotate, index, classs) {
     this.setState({middle_round_rotate:middle_round_rotate,middle_roundIndex:index})
@@ -39,6 +49,7 @@ class MiddleRound extends React.PureComponent {
       )
     })
   }
+  
   render(){
     return(
       <div styleName="middle_round" style={{transform:`rotateZ(${this.state.middle_round_rotate}deg)`}}>

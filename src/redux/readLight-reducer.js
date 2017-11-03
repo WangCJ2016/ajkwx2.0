@@ -1,7 +1,7 @@
 
 const initialState = {
   status: 'CLOSE',
-  wayIds: {}
+  wayIds: null
 };
 export default function(state=initialState, action){
   switch (action.type) {

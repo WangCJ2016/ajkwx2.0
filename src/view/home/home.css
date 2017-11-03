@@ -170,5 +170,15 @@
 }
 .slogan > img{
   width: 100%;
+}
 
+.home_envir_play {
+  font-size: 0.28rem;
+  color: rgb(227, 228, 228);
+  position: absolute;
+  top: .8rem;
+  right: 0.3rem;
+}
+.home_envir_play p{
+  margin-top: 0.2rem
 }

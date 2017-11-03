@@ -52,7 +52,9 @@ export function encode64(input) {
     modifyWaysStatus:"we/we_modifyWaysStatus", //上传灯的状态
     queryCurtains: "we/we_queryCurtains", // 获取窗帘数据
     whetherCanOperate: 'we/we_whetherCanOperate',  // 验证房间是否可以入住
-    queryElevatorHost: 'we/we_queryElevatorHost'
+    queryElevatorHost: 'we/we_queryElevatorHost',
+    queryEnvDatas: 'we/we_queryEnvDatas', // 获取房间环境
+    powerControl: 'we/we_powerControl'
   }
 }
 //get/post请求

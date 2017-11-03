@@ -19,8 +19,8 @@ export default class ReadLight extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      baiguangValue: 50,
-      nuanguangValue: 50,
+      '冷光': 50,
+      '暖光': 50,
     }
   }
   componentDidMount() {
@@ -32,34 +32,32 @@ export default class ReadLight extends React.Component {
     } else {
       this.props.readLightActions.switchClick('CLOSE')
     }
+    this.setState({
+        '冷光': 50,
+      '暖光': 50,
+      })
   }
-  rangeChange(type, e) {
-    let wayId 
-    if (type === 'baiguang') {
-      wayId = this.props.readLightStore.wayIds.baiguangWayid
-      this.setState({
-        baiguangValue: e.target.value
-      })
-    }
-    if (type === 'nuanguang') {
-      wayId = this.props.readLightStore.wayIds.nuanguangWayid
-       this.setState({
-        nuanguangValue: e.target.value
-      })
-    }
+  rangeChange(wayId, e) {
     this.props.readLightActions.rangeChange(e.target.value, wayId)
   }
   rangeChange1(type, e) {
-    if (type === 'baiguang') {
-      this.setState({
-        baiguangValue: e.target.value
+    this.setState({
+        [type]: e.target.value
       })
-    }
-    if (type === 'nuanguang') {
-       this.setState({
-        nuanguangValue: e.target.value
-      })
-    }
+  }
+  lightRender() {
+   return this.props.readLightStore.wayIds ? 
+    this.props.readLightStore.wayIds.map(light => {
+      return (
+        <div styleName="switch" key={light.name}>
+          <span styleName="switch_label">{light.name}</span>
+          <ReadLightRange onChangefn={this.rangeChange.bind(this, light.wayId)}
+          rangeChange1={this.rangeChange1.bind(this, light.name)}
+          value={this.state[light.name]}/>
+        </div>
+      )
+    })
+   : null
   }
   render() {
     const { status } = this.props.readLightStore
@@ -68,15 +66,7 @@ export default class ReadLight extends React.Component {
         <div styleName='blank1'></div>
         <ReadLightSwitch status={status} clickfn={this.switchClick.bind(this)}/>
         <div styleName='blank3'></div>
-        <div styleName="switch">
-          <span styleName="switch_label">白光</span>
-          <ReadLightRange onChangefn={this.rangeChange.bind(this, 'baiguang')} rangeChange1={this.rangeChange1.bind(this, 'baiguang')} value={this.state.baiguangValue}/>
-        </div>
-        <div styleName='blank2'></div>
-         <div styleName="switch">
-          <span styleName="switch_label">暖光</span>
-          <ReadLightRange onChangefn={this.rangeChange.bind(this, 'nuanguang')} rangeChange1={this.rangeChange1.bind(this, 'nuanguang')} value={this.state.nuanguangValue} />
-        </div>
+         {this.lightRender()}
       </div>
     );
   }

@@ -12,16 +12,16 @@ export function getInitialState() {
       .then(res => {
         console.log(res)
         if (res && res.success && res.dataObject.devices.length > 0) {
-          const wayIds = res.dataObject.devices[0].ways.reduce((previousValue, currentValue) => {
-            if (currentValue.name.indexOf('白光') > -1) {
-              return { ...previousValue, baiguangWayid: currentValue.wayId }
-            }
-            if (currentValue.name.indexOf('暖') > -1) {
-              return { ...previousValue, nuanguangWayid: currentValue.wayId }
-            }
-            return { ...previousValue, otherWayid: currentValue.wayId }
-          }, {})
-          dispatch(initialState(wayIds))
+          // const wayIds = res.dataObject.devices[0].ways.reduce((previousValue, currentValue) => {
+          //   if (currentValue.name.indexOf('白光') > -1) {
+          //     return { ...previousValue, baiguangWayid: currentValue.wayId }
+          //   }
+          //   if (currentValue.name.indexOf('暖') > -1) {
+          //     return { ...previousValue, nuanguangWayid: currentValue.wayId }
+          //   }
+          //   return { ...previousValue, otherWayid: currentValue.wayId }
+          // }, {})
+          dispatch(initialState(res.dataObject.devices[0].ways))
         }
       })
   }
@@ -64,7 +64,8 @@ export function switchClick(actionType) {
     const token =  token_session || getStore().toObject().idStore.token
     const houseId =  houseId_session || getStore().toObject().idStore.houseId
     const wayIds = getStore().toObject().readLightStore.wayIds
-    Promise.all([runAsync(wayIds.baiguangWayid), runAsync(wayIds.nuanguangWayid)])
+
+    Promise.all(wayIds.map(light => runAsync(light.wayId)))
     .then(res => {
       dispatch(changeState('status', actionType))
     })

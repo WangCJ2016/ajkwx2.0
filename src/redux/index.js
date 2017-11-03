@@ -13,5 +13,6 @@ import tvStore from './tv-reducer'
 import curtainStore from './curtain-reducer'
 import selectHomeStore from './selectHome-reducer'
 import readLightStore from './readLight-reducer'
+import homeStore from './home-reducer'
 
-export default combineReducers({loginStore, selectHomeStore, lightStore,airStore,idStore,roomCardStore,serviceStore,modelStore,tvStore,curtainStore,readLightStore})
+export default combineReducers({loginStore, selectHomeStore, lightStore,airStore,idStore,roomCardStore,serviceStore,modelStore,tvStore,curtainStore,readLightStore, homeStore})

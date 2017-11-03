@@ -132,3 +132,10 @@ export function changelightstatus(index, type) {
     status: type
   };
 }
+
+export function changeMiddleStatus(cls) {
+  return {
+    type: 'CHANGEMIDDLESTATUS',
+    class: cls
+  }
+}

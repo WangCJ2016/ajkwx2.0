@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux'
 
 import styles from './home.css'
 import * as homeActions from '../../actions/home-actions'
+import HomeEnvir from './components/home-envir/home-envir'
 
 @connect(
   state => ({idState:state.toObject().idStore}),
@@ -14,7 +15,7 @@ import * as homeActions from '../../actions/home-actions'
     homeActions: bindActionCreators(homeActions, dispatch),
   })
 )
-@CSSModules(styles, { allowMultiple: true })
+@CSSModules(styles, { allowMultiple: true, handleNotFoundStyleName: 'ignore' })
 class Home extends React.PureComponent {
   constructor(){
     super()
@@ -70,8 +71,10 @@ class Home extends React.PureComponent {
     })
   }
   render(){
+    const {temp, pm, hum} = this.props.idState.envir 
     return(
       <div styleName='home_bg'>
+        <HomeEnvir temp={temp} pm={pm} hum={hum} />
        {this.figuresRender()}
        <p styleName='slogan'><img src={require('../../assets/imgs/home/slogan.png')} alt=""/></p>
       </div>

@@ -18,11 +18,12 @@ import { request,config } from '../../utlis'
 )
 @CSSModules(styles, { allowMultiple: true })
 class Light extends React.PureComponent {
-  constructor() {
-    super()
+  constructor(props) {
+    
+    super(props)
     this.state = {
     modelActiveIndex:-1,
-    middleState: '卧室',
+    
     //largeRoundShouldReset: false
     } 
   }
@@ -34,6 +35,7 @@ class Light extends React.PureComponent {
       this.submitLights()
     })
   }
+  componentWillReceiveProps() {}
   componentWillUnmount(){
     this.submitLights()
     window.removeEventListener("beforeunload", () => {
@@ -65,14 +67,12 @@ class Light extends React.PureComponent {
   }
   
   middelRoundClick(type) {
-    this.setState({
-      middleState: type,
-      //largeRoundShouldReset: true
-    })
+    this.props.lightActions.changeMiddleStatus(type)
   }
   
 
   render() {
+    
     const {lights} = this.props.lightStore
     const serveId = this.props.idStore.serveId ||sessionStorage.getItem('serveId')
     const houseId =  this.props.location.query.houseId
@@ -83,8 +83,8 @@ class Light extends React.PureComponent {
           
         </div>
         <div styleName="round">
-          <LargeRound lights={lights} houseId={houseId} serveId={serveId} getLightsWays={getLightsWays} middleType={this.state.middleState}  lightsClick={lightsClick} />
-          <MiddleRound middleRoundClick={this.middelRoundClick.bind(this)} />
+          <LargeRound lights={lights} houseId={houseId} serveId={serveId} getLightsWays={getLightsWays} middleType={this.props.lightStore.middleRoundStatus}  lightsClick={lightsClick} />
+          <MiddleRound  middleRoundStatus={this.props.lightStore.middleRoundStatus} middleRoundClick={this.middelRoundClick.bind(this)} />
           <img styleName="small_round"  src={require('../../assets/imgs/light/small_round.png')} alt=''/>
         </div>
       </div>

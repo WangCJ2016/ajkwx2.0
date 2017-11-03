@@ -13,7 +13,7 @@ import * as modelActions from '../../actions/model-actions'
     modelActions: bindActionCreators(modelActions, dispatch),
   })
 )
-@CSSModules(styles, { allowMultiple: true })
+@CSSModules(styles, { allowMultiple: true, handleNotFoundStyleName: 'ignore' })
  class Models extends React.PureComponent {
   constructor(){
     super()
@@ -35,7 +35,7 @@ import * as modelActions from '../../actions/model-actions'
 
   modelRender_type1(){
     const modelArray = this.props.modelState.models.scenes
-    const scenes = modelArray.filter((scence) => scence.name.indexOf('情景') > -1)
+    const scenes = modelArray.filter((scence) => scence.name.indexOf('情景') === 0)
 
     return scenes.map((model,index) => {
           let stylename 

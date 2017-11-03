@@ -28,7 +28,7 @@ class RoomCard extends React.PureComponent {
   }
   figureRender(){
     const { actvieIndex } = this.state
-    const arrys = [{title: '电源' ,name: 'source'},{title: '门' ,name: 'door'},{title: '电梯' ,name: 'elevator'}]
+    const arrys = [{title: '断电' ,name: 'source'},{title: '门' ,name: 'door'},{title: '电梯' ,name: 'elevator'}]
     return arrys.map((arry,index) => {
       const style = classNames({
         figure:true,
@@ -51,8 +51,10 @@ class RoomCard extends React.PureComponent {
       this.props.roomCardActions.openTheDoor(this.props.roomCardState.deviceId)
     }
     if (type === 'elevator') {
-      console.log(this.props.location.query.floor)
       this.props.roomCardActions.elevator(this.props.location.query.floor, this.props.location.query.hotelId)
+    }
+    if (type === 'source') {
+      this.props.roomCardActions.source()
     }
   }
   render(){
