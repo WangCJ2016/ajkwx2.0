@@ -1,7 +1,14 @@
 .roomCard_bg{
-  height: 12.06rem;
+  height: 100%;
   background: url(../../assets/imgs/roomCard/roomCard_bg.png);
   background-size: 100% 100%;
+}
+@media screen and (min-width: 500px)
+{
+    .roomCard_bg
+    {   
+        height: 12.05rem;
+    }
 }
 .location{
   display: flex;

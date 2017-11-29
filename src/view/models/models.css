@@ -1,8 +1,15 @@
 .models_bg{
-  height: 12.06rem;
+  min-height: 100%;
   background: url(../../assets/imgs/models/models_bg.png);
   background-size: 100% 100%;
 
+}
+@media screen and (min-width: 500px)
+{
+    .models_bg
+    {
+        height: auto;
+    }
 }
 .model_item{
   width: 5.7rem;

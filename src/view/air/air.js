@@ -71,7 +71,7 @@ class Air extends React.PureComponent {
       translateX = -this.countActive*this.props.state.winWidth
     }
     return(
-      <div>
+     
       <div styleName='air_bg'>
         <SlidePot num={airs.length} activeIndex={this.countActive} />
         <div styleName="airwrap clearfix" style={{width:wrapWidth,transform:`translateX(${translateX}px)`}} 
@@ -81,7 +81,7 @@ class Air extends React.PureComponent {
         }
         </div>
       </div>
-      </div>
+      
     )
   }
 }

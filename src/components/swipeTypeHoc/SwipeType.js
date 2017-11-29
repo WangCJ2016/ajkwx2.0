@@ -80,11 +80,11 @@ export default function SwipeTye(WrappedComponent) {
                 componentDidMount:this.componentDidMount.bind(this),
                 componentWillUnmount:this.componentWillUnmount.bind(this),
             }
-            return <div >
-                <
-                WrappedComponent { ...this.props } { ...newProps }
-            /> < /
-            div >
+            return (
+                <div style={{height:'100%'}}>
+                  <WrappedComponent { ...this.props } { ...newProps }/>
+                </div>
+            )
         }
     }
 }

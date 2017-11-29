@@ -1,12 +1,18 @@
 .light_bg
 {
     width: 100%;
-    height: 12.06rem;
+    height: 100%;
     background: url('../../assets/imgs/light/light_bg.png')no-repeat;
     background-size: 100% 100%;
     overflow: hidden;
 }
-
+@media screen and (min-width: 500px)
+{
+    .light_bg
+    {
+        height: auto;
+    }
+}
 .round
 {
     position: relative;

@@ -15,7 +15,7 @@ export function initialLights() {
     //灯
     request.get(config.api.base + config.api.querySmartDeviceWays, { houseId: houseId, token: token, deviceType: 'SWITCH' })
       .then(res => {
-       // console.log(res)
+        console.log(res)
         if (res && res.success) {
           dispatch(getServeId(res.dataObject.serverId))
           let lights = []
@@ -31,7 +31,8 @@ export function initialLights() {
             console.log(res)
             let allLight = []
             if (res && res.success && res.dataObject.devices.length > 0) {
-              res.dataObject.devices[0].name = '其他灯带'
+              res.dataObject.devices[0].name = '其他可调灯带'
+              res.dataObject.devices[0].status = 'OFF'
               allLight = [...lights, ...res.dataObject.devices]
             } else {
               allLight = lights
@@ -44,7 +45,7 @@ export function initialLights() {
                 console.log(res)
                 let allLight = []
                 if (res && res.success && res.dataObject.devices.length > 0) {
-                  res.dataObject.devices[0].name = '其他阅读灯'
+                  res.dataObject.devices[0].name = '其他可调阅读灯'
                   allLight = [...lights, ...res.dataObject.devices]
                 } else {
                   allLight = lights
@@ -102,7 +103,7 @@ export function modelsClick(sceneId) {
       });
   };
 }
-
+// 灯点击
 export function lightsClick(wayId, status, index) {
   const actionType = status === 'ON' ? 'CLOSE' : 'OPEN'
   const status_on = status === 'ON' ? 'OFF' : 'ON'
@@ -123,6 +124,27 @@ export function lightsClick(wayId, status, index) {
           dispatch(changelightstatus(index, status_on))
         }
       })
+  }
+}
+// 等待点击
+export function dengdaiClick(deviceId, status, index) {
+  const status_on = status === 'ON' ? 'OFF' : 'ON'
+  return (dispatch, getState) => {
+    const token = token_session || getState().toObject().idStore.token
+    const houseId = houseId_session || getState().toObject().idStore.houseId
+    request.get(config.api.base + config.api.smartHostControl, 
+      { 
+        token: token, 
+        deviceType : 'VIRTUAL_RGB_REMOTE', 
+        houseId: houseId, 
+        deviceId : deviceId,
+        key: status_on,
+        rgb : "*"
+       })
+       .then(res => {
+         console.log(res)
+         dispatch(changelightstatus(index, status_on))
+       })
   }
 }
 export function changelightstatus(index, type) {

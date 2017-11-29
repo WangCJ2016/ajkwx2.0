@@ -125,15 +125,17 @@ class LargeRound extends React.PureComponent {
     })
   }
   lightsClick(wayId, status, name, deviceId) {
-    if (name.indexOf('灯带') > -1) {
+    const { lights } = this.props
+    if (name.indexOf('可调灯带') > -1) {
+      console.log(wayId, status, name, deviceId)
       hashHistory.push(`light/dengdai?deviceId=${deviceId}`)
       return
     }
-    if (name.indexOf('阅读灯') > -1) {
+    if (name.indexOf('可调阅读灯') > -1) {
       hashHistory.push(`light/readLight?deviceId=${deviceId}`)
       return
     }
-    const { lights } = this.props
+    
     lights.forEach((light, index) => {
       if (light.wayId === wayId) {
         this.props.lightsClick(wayId, status, index)

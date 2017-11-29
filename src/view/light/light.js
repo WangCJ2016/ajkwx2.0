@@ -76,14 +76,21 @@ class Light extends React.PureComponent {
     const {lights} = this.props.lightStore
     const serveId = this.props.idStore.serveId ||sessionStorage.getItem('serveId')
     const houseId =  this.props.location.query.houseId
-    const {lightsClick,getLightsWays} = this.props.lightActions
+    const {lightsClick,getLightsWays, dengdaiClick} = this.props.lightActions
     return (
       <div styleName='light_bg' >
         <div styleName="light_model">
           
         </div>
         <div styleName="round">
-          <LargeRound lights={lights} houseId={houseId} serveId={serveId} getLightsWays={getLightsWays} middleType={this.props.lightStore.middleRoundStatus}  lightsClick={lightsClick} />
+          <LargeRound 
+          lights={lights} 
+          houseId={houseId}
+          serveId={serveId} 
+          getLightsWays={getLightsWays} 
+          middleType={this.props.lightStore.middleRoundStatus}  
+          lightsClick={lightsClick}
+          dengdaiClick={dengdaiClick} />
           <MiddleRound  middleRoundStatus={this.props.lightStore.middleRoundStatus} middleRoundClick={this.middelRoundClick.bind(this)} />
           <img styleName="small_round"  src={require('../../assets/imgs/light/small_round.png')} alt=''/>
         </div>
