@@ -2,7 +2,8 @@
 let initialState = {
   lights:[],
   serveId:'',
-  middleRoundStatus:'卧室'
+  middleRoundStatus:'卧室',
+  large_round_rotate:0
 }
 
 export default function(state= initialState,action){
@@ -13,6 +14,9 @@ export default function(state= initialState,action){
       return {...state,"lights": action.lights}
     case 'CHANGEMIDDLESTATUS':
       return {...state,"middleRoundStatus": action.class}
+    case 'LARGEROTATE': {
+      return {...state,large_round_rotate:action.payload}
+    }
     case 'CHANGELIGHTSTATUS':
         const lights = state.lights.map((light, index) => {
           if (index === action.id) {

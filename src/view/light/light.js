@@ -67,6 +67,7 @@ class Light extends React.PureComponent {
   }
   
   middelRoundClick(type) {
+    console.log(type)
     this.props.lightActions.changeMiddleStatus(type)
   }
   

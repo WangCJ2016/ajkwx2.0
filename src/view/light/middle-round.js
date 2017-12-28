@@ -1,11 +1,18 @@
 import React from 'react'
 import CSSModules from 'react-css-modules'
 import classNames from 'classnames'
-
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as actions from '../../actions/light-actions'
 
 import styles from './light.css'
 
-
+@connect(
+  state => ({lightStore:state.toObject().lightStore,idStore:state.toObject().idStore}),
+  dispatch => ({
+    lightActions: bindActionCreators(actions, dispatch),
+  })
+)
 @CSSModules(styles, { allowMultiple: true })
 class MiddleRound extends React.PureComponent {
   constructor(props) {
@@ -28,6 +35,7 @@ class MiddleRound extends React.PureComponent {
   typeClick(middle_round_rotate, index, classs) {
     this.setState({middle_round_rotate:middle_round_rotate,middle_roundIndex:index})
     this.props.middleRoundClick(classs)
+    this.props.lightActions.largeRoundRotate(0)
   } 
   lightclassRender(){
     const classarray = ['卫生间','卧室','走廊','其他']

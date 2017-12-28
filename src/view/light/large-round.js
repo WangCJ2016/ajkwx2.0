@@ -7,14 +7,21 @@ import { hashHistory } from 'react-router'
 import styles from './light.css'
 import {quadrant} from '../../utlis'
 
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as actions from '../../actions/light-actions'
 
+
+@connect(
+  state => ({lightStore:state.toObject().lightStore,idStore:state.toObject().idStore}),
+  dispatch => ({
+    lightActions: bindActionCreators(actions, dispatch),
+  })
+)
 @CSSModules(styles, { allowMultiple: true })
 class LargeRound extends React.PureComponent {
   constructor(props) {
     super(props)
-    this.state = {
-    large_round_rotate:0
-    }
     this.currentAngle = 0
     this.raduisX = 0
     this.raduisY = 0
@@ -90,11 +97,10 @@ class LargeRound extends React.PureComponent {
     if(whichquadrant === 1){
       moveAngle = Math.atan(to)/( 2 * Math.PI ) * 360 +180
     }
-    this.setState({
-      large_round_rotate:this.state.large_round_rotate + moveAngle - this.currentAngle
-    },function(){
+    this.props.lightActions.largeRoundRotate(this.props.lightStore.large_round_rotate + moveAngle - this.currentAngle)
+   
       this.currentAngle = moveAngle
-    })
+    
   }
   touchEnd(e){
     // e.stopPropagation() 
@@ -106,7 +112,7 @@ class LargeRound extends React.PureComponent {
     .filter((light) => light.name&&light.name.indexOf(this.props.middleType) > -1)
     .map((light,index) => {
       const rotate = -90 + (30*Math.round(index/2))*Math.pow(-1,index+1)
-      const large_rotateZ = this.state.large_round_rotate
+      const large_rotateZ = this.props.lightStore.large_round_rotate
       const status = light.status
       const stylename = classNames({
         lights:true,
@@ -143,7 +149,7 @@ class LargeRound extends React.PureComponent {
     })
   }
   render(){
-    const {large_round_rotate} = this.state
+    const {large_round_rotate} = this.props.lightStore
     const large_rotateZ = -large_round_rotate
     return(
       <div styleName="large_round" style={{transform:`rotateZ(${large_rotateZ}deg)`}} 

@@ -161,3 +161,11 @@ export function changeMiddleStatus(cls) {
     class: cls
   }
 }
+
+// 大圈旋转
+export function largeRoundRotate(rotate) {
+  return {
+    type: 'LARGEROTATE',
+    payload: rotate
+  }
+}
