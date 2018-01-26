@@ -29,18 +29,27 @@ class Tv extends React.PureComponent {
     this.props.componentDidMount()
     const { tvs } = this.props.tvState
     if (tvs.length > 0) {
-      document.title = Object.keys(tvs[this.countActive])[0].replace(/[0-9$]/g, '')
+      if(this.props.tvState.tvSwitch) {
+        document.title = '电视机'
+      }else {
+        document.title = '机顶盒'
+      }
     }
   }
   componentDidUpdate() {
     const { tvs } = this.props.tvState
     if (tvs.length > 0) {
-      document.title = Object.keys(tvs[this.countActive])[0].replace(/[0-9$]/g, '')
+      if(this.props.tvState.tvSwitch) {
+        document.title = '电视机'
+      }else {
+        document.title = '机顶盒'
+      }
       //console.log(tvs)
     }
     //document.title = 
   }
   render(){
+
     const { tvs } = this.props.tvState
     const wrapWidth = tvs.length*100 + '%'
     const tvWidth = 1/tvs.length *100 + '%'
@@ -71,10 +80,10 @@ class Tv extends React.PureComponent {
     return (
       <div styleName='tv_bg'>
         <SlidePot num={tvs.length} activeIndex={this.countActive} />
-        <div styleName="tvwrap clearfix" style={{width:wrapWidth,transform:`translateX(${translateX}px)`}} 
+        <div styleName="tvwrap clearfix" style={{width:wrapWidth,transform:`translateX(${translateX}px)`,WebkitTransform:`translateX(${translateX}px)`}} 
         onTouchStart={this.props.touchstart} onTouchMove={this.props.touchmove} onTouchEnd={this.props.touchend} onTouchCancel={this.props.touchcancel}>
           {
-            tvs.length?tvs.map((tv,index) => <TvOne width={tvWidth} tv={tv} actions={this.props.tvActions} key={index}/>):null
+            tvs.length?tvs.map((tv,index) => <TvOne width={tvWidth} tvSwitch={this.props.tvState.tvSwitch}  tv={tv} actions={this.props.tvActions} key={index}/>):null
           }
         </div>
       </div>

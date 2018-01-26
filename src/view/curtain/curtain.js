@@ -61,7 +61,7 @@ class Curtain extends React.PureComponent {
     return(
       <div styleName='curtain_bg'>
          <SlidePot num={curtains.length} activeIndex={this.countActive} />
-         <div styleName="curtainwrap clearfix" style={{width:wrapWidth,transform:`translateX(${translateX}px)`}} 
+         <div styleName="curtainwrap clearfix" style={{width:wrapWidth,transform:`translateX(${translateX}px)`,WebkitTransform:`translateX(${translateX}px)`}} 
              onTouchStart={this.props.touchstart} onTouchMove={this.props.touchmove} onTouchEnd={this.props.touchend} onTouchCancel={this.props.touchcancel}>
            {
             curtains.length>0 ? curtains.map((curtain,index) => <CurtainOne width={curtainWidth} type={type} curtain={curtain} actions={this.props.curtainActions} key={index}/>):null

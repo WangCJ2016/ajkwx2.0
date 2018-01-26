@@ -31,7 +31,11 @@ export function tvCtrl(key,deviceId){
     })
   };
 }
-
+export function tvSwitch() {
+  return {
+    type: 'TVSwitch'
+  }
+}
 
 function initialState(tv){
   return {

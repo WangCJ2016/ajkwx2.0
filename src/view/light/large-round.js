@@ -120,8 +120,8 @@ class LargeRound extends React.PureComponent {
         [light.name+'_'+status]:true
       })
       return (
-         <div styleName='light_wrap' style={{transform:`rotateZ(${rotate}deg)`}} key={light.id}>
-            <div className={stylename} style={{transform:`rotateZ(${large_rotateZ-rotate}deg)`}}
+         <div styleName='light_wrap' style={{transform:`rotateZ(${rotate}deg)`,'WebkitTransform':`rotateZ(${rotate}deg)`}} key={light.id}>
+            <div className={stylename} style={{transform:`rotateZ(${large_rotateZ-rotate}deg)`,'WebkitTransform':`rotateZ(${large_rotateZ-rotate}deg)`}}
             onClick={this.lightsClick.bind(this, light.wayId, status, light.name, light.deviceId)}>
               <div className="light_img"></div>
               <p>{light.name.replace(this.props.middleType, '')}</p>
@@ -133,7 +133,6 @@ class LargeRound extends React.PureComponent {
   lightsClick(wayId, status, name, deviceId) {
     const { lights } = this.props
     if (name.indexOf('可调灯带') > -1) {
-      console.log(wayId, status, name, deviceId)
       hashHistory.push(`light/dengdai?deviceId=${deviceId}`)
       return
     }
@@ -152,7 +151,7 @@ class LargeRound extends React.PureComponent {
     const {large_round_rotate} = this.props.lightStore
     const large_rotateZ = -large_round_rotate
     return(
-      <div styleName="large_round" style={{transform:`rotateZ(${large_rotateZ}deg)`}} 
+      <div styleName="large_round" style={{transform:`rotateZ(${large_rotateZ}deg)`,'WebkitTransform':`rotateZ(${large_rotateZ}deg)`}} 
       onTouchStart={this.touchstart.bind(this)}
       onTouchMove={this.touchemove.bind(this)}
       onTouchEnd={this.touchEnd.bind(this)}> 

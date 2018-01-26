@@ -49,7 +49,7 @@ class MiddleRound extends React.PureComponent {
       return (
       <p 
         styleName={stylename}
-        style={{transform:`rotateZ(${rotate}deg)`}}
+        style={{transform:`rotateZ(${rotate}deg)`,WebkitTransform:`rotateZ(${rotate}deg)`}}
         key={index}
         onClick={this.typeClick.bind(this, middle_round_rotate, index, classs)}>
         {classs}
@@ -60,7 +60,7 @@ class MiddleRound extends React.PureComponent {
   
   render(){
     return(
-      <div styleName="middle_round" style={{transform:`rotateZ(${this.state.middle_round_rotate}deg)`}}>
+      <div styleName="middle_round" style={{transform:`rotateZ(${this.state.middle_round_rotate}deg)`,WebkitTransform:`rotateZ(${this.state.middle_round_rotate}deg)`}}>
             {this.lightclassRender()}
       </div>
     )
