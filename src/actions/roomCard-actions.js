@@ -9,15 +9,15 @@ const token_session = sessionStorage.getItem('token')
 const customerId_session = sessionStorage.getItem('customerId')
 
 export function initialState() {
-  //console.log(houseId)
+  
   return (dispatch, getStore) => {
     const token = token_session || getStore().toObject().idStore.token
     const houseId = houseId_session || getStore().toObject().idStore.houseId
     request.get(config.api.base + config.api.queryHostDeviceByType, { houseId: houseId, token: token, deviceType: deviceType })
       .then(res => {
-        // console.log(res)
+       
         if (res && res.success) {
-          // console.log(res)
+         
           if (res && res.success && res.dataObject.devices.length > 0)
             dispatch(initail(res.dataObject.devices[0].deviceId))
         }
@@ -45,7 +45,7 @@ export function openTheDoor(deviceId) {
         customerId: customerId
       })
       .then(res => {
-        console.log(res)
+        
         if (res && res.success) {
           Toast.info('开锁成功')
           request.get(config.api.base + config.api.powerControl, {
@@ -53,7 +53,7 @@ export function openTheDoor(deviceId) {
               action: 'jdqoff'
             })
             .then(res => {
-              console.log(res)
+              
             })
           setTimeout(() => {
             hashHistory.goBack()
@@ -66,13 +66,12 @@ export function openTheDoor(deviceId) {
 export function elevator(floor, hotelId) {
   return (dispatch, getState) => {
     const token = token_session || getState().toObject().idStore.token
-    const houseId = houseId_session || getState().toObject().idStore.houseId
     request.get(config.api.base + config.api.queryElevatorHost, {
         token: token,
         hotelId: hotelId,
       })
       .then(res => {
-        console.log(res)
+        
         if (res.success) {
           request.get(config.api.base + config.api.smartHostControl, {
               token: token,
@@ -81,7 +80,7 @@ export function elevator(floor, hotelId) {
               serverId: res.dataObject[0].serverId
             })
             .then(res => {
-              console.log(res)
+              
               if (res && res.success) {
                 Toast.info('梯控成功')
                 setTimeout(() => {
@@ -104,7 +103,7 @@ export function source() {
         action: 'jdqon'
       })
       .then(res => {
-        console.log(res)
+        
         if (res&&res.success) {
           Toast.info('断电成功')
           setTimeout(() => {

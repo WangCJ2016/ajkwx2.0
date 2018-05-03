@@ -1,6 +1,5 @@
 import React from 'react';
 import CSSModules from 'react-css-modules'
-import classNames from 'classnames'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 

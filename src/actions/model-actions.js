@@ -10,7 +10,7 @@ export function initialModel(){
     const houseId =  houseId_session || getState().toObject().idStore.houseId
     request.get(config.api.base + config.api.queryHostScenes, { houseId: houseId, token: token })
          .then(res => {
-          console.log(res)
+          
           dispatch(initialState(res.dataObject))
          })
   };
@@ -33,7 +33,7 @@ export function changeModel(scenceId){
       deviceType:deviceType
     })
     .then(res => {
-      console.log(res)
+      
     })
   }
 }

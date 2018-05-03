@@ -10,7 +10,7 @@ export function initialTv() {
     const houseId =  houseId_session || getState().toObject().idStore.houseId
     request.get(config.api.base + config.api.queryTvDevices,{houseId:houseId,token:token})
     .then(res => {
-      //console.log(res)
+      
       if (res&&res.success) {
         let arry = []
         for(let i in res.dataObject){
@@ -27,7 +27,7 @@ export function tvCtrl(key,deviceId){
     const houseId =  houseId_session || getState().toObject().idStore.houseId
     request.get(config.api.base + config.api.smartHostControl,{houseId:houseId,token:token,deviceType:deviceType,deviceId:deviceId,key:key})
     .then(res => {
-      console.log(res)
+  
     })
   };
 }

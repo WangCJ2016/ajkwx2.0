@@ -10,13 +10,13 @@ export function initialCurtain() {
     const houseId =  houseId_session || getState().toObject().idStore.houseId
     request.get(config.api.base + config.api.queryCurtains,{houseId:houseId,token:token,deviceType:deviceType})
     .then(res => {
-     // console.log(res)
+    
       if(res&&res.success){
         let curtainsArray = []
         for(let i in res.dataObject.curtains) {
           curtainsArray.push(res.dataObject.curtains[i])
         }
-       //console.log(curtainsArray)
+      
         dispatch(initialState(curtainsArray))
         dispatch(initialStateType(res.dataObject.type))
       }
@@ -29,7 +29,7 @@ export function changeCurtainStatus(wayId,key,brightness){
     const houseId =  houseId_session || getState().toObject().idStore.houseId
     request.get(config.api.base + config.api.smartHostControl,{token:token,houseId:houseId,deviceType:deviceType,wayId:wayId,actionType:key,brightness:brightness})
     .then(res => {
-      console.log(res)
+      
     })
   };
 }

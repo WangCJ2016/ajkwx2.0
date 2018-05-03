@@ -39,7 +39,7 @@ export function encode64(input) {
     }
   },
   api: {
-    base: 'http://www.live-ctrl.com/aijukex/',
+    base: 'http://www.live-ctrl.com/aijukex/', // http://47.100.123.83/aijukex http://www.live-ctrl.com/aijukex
     getLoginCode: 'we/we_generatePassword',
     login: 'we/we_loginx',
     queryHotelHouses: 'we/we_queryHotelHouses', //获取房间
@@ -54,7 +54,8 @@ export function encode64(input) {
     whetherCanOperate: 'we/we_whetherCanOperate',  // 验证房间是否可以入住
     queryElevatorHost: 'we/we_queryElevatorHost',
     queryEnvDatas: 'we/we_queryEnvDatas', // 获取房间环境
-    powerControl: 'we/we_powerControl'
+    powerControl: 'we/we_powerControl',
+    checkout: 'we/we_customerLeave'
   }
 }
 //get/post请求

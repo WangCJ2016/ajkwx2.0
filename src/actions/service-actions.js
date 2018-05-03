@@ -11,7 +11,7 @@ export function initailState(){
     const houseId =  houseId_session || getState().toObject().idStore.houseId
      request.get(config.api.base + config.api.querySmartDeviceWays, { houseId: houseId, token: token, deviceType: 'SWITCH' })
             .then(res => {
-                //console.log(res)
+               
                 let lights = []
                 lights = res.dataObject.ways.filter(function(light) {
                     return light.name.indexOf('请勿打扰') > -1 ||light.name.indexOf("请即清理") > -1
@@ -42,7 +42,17 @@ export function submitService(wayId,action){
         brightness:80
       })
     .then(res => {
-      console.log(res)
+     
     })
   };
+}
+
+export function checkout(info) {
+  return (dispatch,getState) => {
+    const token =  sessionStorage.getItem('token')
+    request.get(config.api.base + config.api.checkout,{...info,token: token})
+      .then(res => {
+       
+      })
+  }
 }

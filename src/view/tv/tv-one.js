@@ -55,7 +55,6 @@ class TvOne extends React.PureComponent {
     }
   }
   render(){
-    console.log(this.props.tv)
     const {width} = this.props
     return (
       <div styleName="tv_wrap" style={{width:width}}>
@@ -64,7 +63,9 @@ class TvOne extends React.PureComponent {
          <div style={{position:'absolute',left:0,right:0,top:'20px',bottom:0}}>
             <div styleName="tvBox">
               <div styleName='tv_switch' onClick={()=>this.props.actions.tvSwitch()}>
-                <img src={require('../../assets/imgs/tv/switch.png')} alt=""/>
+                 <span styleName="switch_btn">
+                   {this.props.tvSwitch?'TV':'AV'}
+                 </span>
               </div>
               <TvButton classType={`tv_${this.state.tv}`} click={this.tvCtrl.bind(this,this.state.tv)}/>
               <TvButton classType='plus_off' click={this.tvCtrl.bind(this,'VOL_PLUS')}/>
@@ -96,6 +97,9 @@ class TvOne extends React.PureComponent {
           </div>
           <div styleName="review_tv">
             <p styleName="review_btn" onClick={this.tvCtrl.bind(this, 'STOP')}>点播</p>
+            <p styleName='home_btn' onClick={this.tvCtrl.bind(this, 'HOME')}>
+              <img src={require('../../assets/imgs/tv/home.png')} alt=""/>
+            </p>
             <p styleName="review_btn" onClick={this.tvCtrl.bind(this, 'PLAY')}>回看</p>
           </div>
           <div styleName="tv_num" onClick={this.numClick.bind(this,'tv')}>
@@ -121,9 +125,11 @@ class TvOne extends React.PureComponent {
         </div>:
         <div style={{position:'absolute',left:0,right:0,top:'20px',bottom:0}}>
           <div styleName="tvBox tvBox2">
-              <div styleName='tv_switch' onClick={()=>this.props.actions.tvSwitch()}>
-                <img src={require('../../assets/imgs/tv/switch.png')} alt=""/>
-              </div>
+          <div styleName='tv_switch' onClick={()=>this.props.actions.tvSwitch()}>
+              <span styleName="switch_btn">
+                {this.props.tvSwitch?'TV':'AV'}
+              </span>
+          </div>
             <TvButton classType={`tv_${this.state.tvBox}`} click={this.tvBoxCtrl.bind(this,this.state.tvBox)} />
             <TvButton classType='mute_off' click={this.tvBoxCtrl.bind(this,'MUTE')}/>
             <TvButton classType='return_off' click={this.tvBoxCtrl.bind(this,'RETURN')}/>
@@ -154,6 +160,9 @@ class TvOne extends React.PureComponent {
           </div>
           <div styleName="review_tv">
             <p styleName="review_btn" onClick={this.tvBoxCtrl.bind(this, 'STOP')}>点播</p>
+            <p styleName='home_btn' onClick={this.tvCtrl.bind(this, 'HOME')}>
+              <img src={require('../../assets/imgs/tv/home.png')} alt=""/>
+            </p>
             <p styleName="review_btn" onClick={this.tvBoxCtrl.bind(this, 'PLAY')}>回看</p>
           </div>
           <div styleName="tv_num" onClick={this.numClick.bind(this,'tvBox')}>

@@ -17,7 +17,7 @@ export function rgbClick(deviceId, key) {
         rgb : "*"
        })
        .then(res => {
-         console.log(res)
+       
        })
   }
 }

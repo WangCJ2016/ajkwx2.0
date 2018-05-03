@@ -31,7 +31,6 @@ class Curtain extends React.PureComponent {
   
   render(){
     const { curtains, type } = this.props.curtainState
-    //console.log(curtains)
     const wrapWidth = curtains.length*100 + '%'
     const curtainWidth = 1/curtains.length *100 + '%'
     let translateX = 0
@@ -43,7 +42,6 @@ class Curtain extends React.PureComponent {
       }
       translateX = -this.countActive*this.props.state.winWidth
       this.count = this.props.state.count
-      //console.log(translateX,this.count,this.countActive)
     }
     if(this.props.state.count - this.count === -1){
       if(this.countActive>0){
@@ -53,7 +51,6 @@ class Curtain extends React.PureComponent {
       }
       translateX = -this.countActive*this.props.state.winWidth
       this.count = this.props.state.count
-     //console.log(translateX,this.count,this.countActive)
     }
     if(this.props.state.count - this.count === 0){
       translateX = -this.countActive*this.props.state.winWidth

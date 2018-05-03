@@ -2,7 +2,6 @@ import React from 'react'
 import CSSModules from 'react-css-modules'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import classNames from 'classnames'
 import { Link } from 'react-router'
 
 import * as selectHomeActions from '../../actions/selectHome-actions'
@@ -29,7 +28,7 @@ class SelectHome extends React.Component {
       const floor = room.hotelHouse.floor + basement
       if (room.subOrderCode) {
         return  <Link styleName="room" key={room.id}
-                  onClick={this.props.selectHomeActions.whetherCanOperate.bind(this, room.hotelHouse.name, room.houseId, room.subOrderCode, 'subOrderCode', floor, room.hotelHouse.hotelId, room.hotelHouse.powerHostId)}
+                  onClick={this.props.selectHomeActions.whetherCanOperate.bind(this, room.hotelHouse.name, room.houseId, room.subOrderCode, 'subOrderCode', floor, room.hotelHouse.hotelId, room.hotelHouse.powerHostId,)}
                    >
                      <div styleName="img_wrap"> 
                     <img src={require('../../assets/imgs/selectHome/lock.png')} alt=""/>             
@@ -53,13 +52,10 @@ class SelectHome extends React.Component {
     
   }
   render() {
-    const { rooms } = this.props.selectHomeState
-    //console.log(rooms)
     return (
       <div styleName='selecthome_bg'>
         <div styleName="rooms">
           {this.roomRender()}
-         
         </div>
       </div>
     )

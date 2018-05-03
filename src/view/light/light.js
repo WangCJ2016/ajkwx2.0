@@ -56,18 +56,16 @@ class Light extends React.PureComponent {
     .forEach(light => {
       offWayIds = offWayIds + ',' +light.wayId
     })
-    //console.log(onWayIds)
     request.get(config.api.base + config.api.modifyWaysStatus,{
       onWayIds:onWayIds.slice(1),
       offWayIds:offWayIds.slice(1)
     })
     .then(res => {
-      console.log(res)
+      
     })
   }
   
   middelRoundClick(type) {
-    console.log(type)
     this.props.lightActions.changeMiddleStatus(type)
   }
   

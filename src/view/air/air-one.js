@@ -58,7 +58,6 @@ class AirOne extends React.PureComponent {
     if(this.props.deviceType === 'VIRTUAL_CENTRAL_AIR_REMOTE'){
         const index = type === 'plus'?(this.state.temIndex+1 >=this.state.currentTemArray.length?this.state.temIndex:this.state.temIndex+1):
                                    (this.state.temIndex-1 > 0?this.state.temIndex-1: 0)
-        //console.log(this.state.temIndex)   
         this.setState({
           temIndex:index,
           switchKey:'OFF'
@@ -113,8 +112,7 @@ class AirOne extends React.PureComponent {
     const { deviceId } = this.props.air
     const { switchKey,temIndex,model,currentTemArray} = this.state
     const { deviceType }  = this.props
-    //console.log(currentTemArray)
-
+   
     return(
         <div styleName='air_wrap' style={{width:this.props.width}}>
           <div styleName="air_display">

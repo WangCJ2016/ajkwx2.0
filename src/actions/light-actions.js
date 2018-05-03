@@ -15,7 +15,7 @@ export function initialLights() {
     //灯
     request.get(config.api.base + config.api.querySmartDeviceWays, { houseId: houseId, token: token, deviceType: 'SWITCH' })
       .then(res => {
-        console.log(res)
+       
         if (res && res.success) {
           dispatch(getServeId(res.dataObject.serverId))
           let lights = []
@@ -28,7 +28,7 @@ export function initialLights() {
       .then(lights => {
         request.get(config.api.base + config.api.queryHostDeviceByType, { houseId: houseId, token: token, deviceType: 'VIRTUAL_RGB_REMOTE' })
           .then(res => {
-            console.log(res)
+           
             let allLight = []
             if (res && res.success && res.dataObject.devices.length > 0) {
               res.dataObject.devices[0].name = '其他可调灯带'
@@ -42,7 +42,7 @@ export function initialLights() {
           .then(lights => {
             request.get(config.api.base + config.api.queryHostDeviceByType, { houseId: houseId, token: token, deviceType: 'DIMMER' })
               .then(res => {
-                console.log(res)
+               
                 let allLight = []
                 if (res && res.success && res.dataObject.devices.length > 0) {
                   res.dataObject.devices[0].name = '其他可调阅读灯'
@@ -65,7 +65,7 @@ export function yuedudeng() {
     const houseId = houseId_session || getState().toObject().idStore.houseId
     request.get(config.api.base + config.api.queryHostDeviceByType, { houseId: houseId, token: token, deviceType: 'VIRTUAL_RGB_REMOTE' })
       .then(res => {
-        console.log(res)
+       
       })
   }
 }
@@ -99,7 +99,7 @@ export function modelsClick(sceneId) {
         token: token
       })
       .then((res) => {
-        console.log(res)
+       
       });
   };
 }
@@ -119,7 +119,7 @@ export function lightsClick(wayId, status, index) {
         brightness: 80
       })
       .then((res) => {
-        console.log(res)
+       
         if (res && res.success) {
           dispatch(changelightstatus(index, status_on))
         }
@@ -142,7 +142,7 @@ export function dengdaiClick(deviceId, status, index) {
         rgb : "*"
        })
        .then(res => {
-         console.log(res)
+        
          dispatch(changelightstatus(index, status_on))
        })
   }

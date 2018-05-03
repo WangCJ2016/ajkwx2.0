@@ -29,7 +29,6 @@ import * as modelActions from '../../actions/model-actions'
     this.setState({
       model_activeIndex:index
     })
-    //console.log(this.props.modelState)
     this.props.modelActions.changeModel(scenceId)
   }
 
@@ -100,7 +99,6 @@ import * as modelActions from '../../actions/model-actions'
       }
     }
   render(){
-    console.log(this.props.modelState)
     const { type } = this.props.modelState.models
     return(
       <div styleName='models_bg'>

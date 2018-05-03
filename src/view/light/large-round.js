@@ -34,10 +34,8 @@ class LargeRound extends React.PureComponent {
     this.websocket = new WebSocket("ws://www.live-ctrl.com/aijukex/stServlet.st?serverId=" + this.props.serveId) 
     this.websocket.onmessage = (event) => {
       let lights = this.props.lights
-      //console.log(event.data)
       const lightNow = event.data.split('.WAY.')
       const changelihts = lights.map((light, index) => {
-        //console.log()
         if(light.wayId === lightNow[0]) {
           let newLight = light
           newLight.status = lightNow[1]
@@ -61,6 +59,7 @@ class LargeRound extends React.PureComponent {
     const pageY = e.changedTouches[0].pageY
     const to =((pageX-this.raduisX)/(pageY-this.raduisY))
     const whichquadrant = quadrant(pageX,this.raduisX,pageY,this.raduisY)
+    
     if (whichquadrant === 3) {
        this.currentAngle = Math.atan(to)/( 2 * Math.PI ) * 360 
     } 
@@ -73,6 +72,7 @@ class LargeRound extends React.PureComponent {
     if(whichquadrant === 1){
       this.currentAngle = Math.atan(to)/( 2 * Math.PI ) * 360 +180
     }
+    
   }
   
   touchemove(e){

@@ -58,9 +58,7 @@ class RoomCard extends React.PureComponent {
     }
   }
   render(){
-    console.log(this.props)
     const roomName = this.props.location.query.name
-    //console.log(roomName)
     const roomName_num = roomName.replace(/[^0-9]/ig,"")
     const roomName_hotel = roomName.replace(/[0-9]/ig,"")
     return(

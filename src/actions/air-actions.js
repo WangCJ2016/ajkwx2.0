@@ -14,7 +14,7 @@ export function initialAirCondition() {
                     dispatch(initialData(deviceType, 'deviceType'))
                     request.get(config.api.base + config.api.queryHostDeviceByType, { token: token, houseId: houseId, deviceType: res.dataObject })
                         .then(res => {
-                            console.log(res)
+                            
                             let airs = []
                             if (res && res.success) {
                                 if (deviceType === 'VIRTUAL_AIR_REMOTE') {
@@ -45,11 +45,11 @@ export function initialAirCondition() {
                                         airInfo.coolWays = coolWays
                                         airInfo.warmWays = warmWays
                                         airInfo.name = air.name
-                                        //console.log(airInfo)
+                                        
                                         airs.push(airInfo)
                                     })
                                 } else {
-                                   // console.log(res.dataObject.devices)
+                                  
                                     res.dataObject.devices.forEach((air) => {
                                         let airInfo = {},
                                             coolWays, warmWays
@@ -59,7 +59,7 @@ export function initialAirCondition() {
                                         airInfo.coolWays = coolWays
                                         airInfo.warmWays = warmWays
                                         airInfo.name = air.name
-                                        //console.log(airInfo)
+                                       
                                         airs.push(airInfo)
                                     })
                                 }
@@ -93,7 +93,7 @@ export function changeTem(key, deviceId) {
                 key: key
             })
             .then(res => {
-                console.log(res)
+                
             })
     }
 }
@@ -113,7 +113,7 @@ export function centerchangeTem(key, deviceId, model, speed) {
                 wind: speed
             })
             .then(res => {
-                console.log(res)
+                
             })
     }
 }
@@ -158,7 +158,7 @@ export function airswitch(key, deviceId) {
         }
        request.get(config.api.base + config.api.smartHostControl, data)
             .then(res => {
-                console.log(res)
+                
             })
     }
 }

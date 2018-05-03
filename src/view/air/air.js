@@ -28,7 +28,6 @@ class Air extends React.PureComponent {
     this.props.airActions.initialAirCondition() 
     this.props.componentDidMount()
     const { airs } = this.props.airState
-    console.log(airs)
     if (airs.length > 0) {
       document.title = Object.keys(airs[this.countActive])[0].replace(/[0-9$]/g, '')
     }
@@ -38,13 +37,11 @@ class Air extends React.PureComponent {
   }
   componentDidUpdate() {
     const { airs } = this.props.airState
-    //console.log(airs) 
     if (airs.length > 0) {
       document.title = airs[this.countActive].name.replace(/[0-9$]/g, '')
     }   
   }
   render(){
-    //console.log(this.props.airState)
     const {airs,deviceType} = this.props.airState
     const wrapWidth = airs.length*100 + '%'
     const airWidth = 1/airs.length *100 + '%'

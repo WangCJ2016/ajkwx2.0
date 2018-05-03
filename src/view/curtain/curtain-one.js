@@ -83,7 +83,6 @@ class CurtainOne extends React.PureComponent {
   render(){
     const ways  = this.props.curtain
     const type = this.props.type
-   // console.log(this.props.curtain)
     return(
       <div styleName="curtain_wrap" style={{width:this.props.width}}>
           {

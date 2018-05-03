@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import { Toast } from 'antd-mobile'
 
 import styles  from './login.css'
-import Checkbox from '../../components/checkbox/checkbox'
 import * as actions from '../../actions/login-actions'
 
 import LoginLogo from './components/login-logo/LoginLogo'

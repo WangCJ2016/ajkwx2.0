@@ -2,6 +2,9 @@
   height: 100%;
   background: url(../../assets/imgs/service/service_bg.png);
   background-size: 100% 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center
 }
 @media screen and (min-width: 500px)
 {
@@ -11,13 +14,10 @@
         height: auto;
     }
 }
-.marignTop{
-  width: 1px;
-  height: 0.6rem;
-}
+
 .rect{
   width: 6.5rem;
-  height: 4.2rem;
+  height: 3.5rem;
   background: url('../../assets/imgs/service/rect.png');
   background-size: 100% 100%;
   margin: 0 auto;
@@ -29,7 +29,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 2.8rem;
+  height: 2rem;
   align-items: center;
 }
 .swape{
@@ -48,4 +48,6 @@
 .unselectedlight{
   width: 0.72rem;
 }
-.active{}
+.active .content{
+  color: inherit
+}

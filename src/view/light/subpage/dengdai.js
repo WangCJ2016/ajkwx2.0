@@ -22,9 +22,6 @@ class DengDai extends React.PureComponent {
         activeIndex_2: -1
        }
    }
-   componentDidMount() {
-     console.log(this.props)
-   }
    btnClick(index, type, key) {
       const otherType = type.slice(-1) === '1' ? 'activeIndex_2' : 'activeIndex_1'
      this.setState({

@@ -10,7 +10,7 @@ export function getInitialState() {
     const houseId =  houseId_session || getState().toObject().idStore.houseId
     request.get(config.api.base + config.api.queryHostDeviceByType, { houseId: houseId, token: token, deviceType: 'DIMMER' })
       .then(res => {
-        console.log(res)
+       
         if (res && res.success && res.dataObject.devices.length > 0) {
           // const wayIds = res.dataObject.devices[0].ways.reduce((previousValue, currentValue) => {
           //   if (currentValue.name.indexOf('白光') > -1) {
@@ -47,7 +47,7 @@ export function rangeChange(value, wayId) {
         brightness : value
       })
       .then(res => {
-        console.log(res)
+       
       })
   }
 }

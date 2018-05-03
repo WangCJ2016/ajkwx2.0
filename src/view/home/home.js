@@ -45,7 +45,7 @@ class Home extends React.PureComponent {
     {name:'lock',title:'门锁',path:`lock?name=${this.props.location.query.name}&houseId=${this.props.location.query.houseId}&floor=${this.props.location.query.floor}&hotelId=${this.props.location.query.hotelId}`},
     {name:'light',title:'灯',path:`light?houseId=${this.props.location.query.houseId}`},
     {name:'tv',title:'电视',path:`tv?houseId=${this.props.location.query.houseId}`},
-    {name:'service',title:'服务',path:`service?houseId=${this.props.location.query.houseId}`},
+    {name:'service',title:'服务',path:`service?${this.props.location.search.slice(1)}`},
     {name:'air',title:'空调',path:`air?houseId=${this.props.location.query.houseId}`},
     {name:'model',title:'情景',path:`model?houseId=${this.props.location.query.houseId}`},
    ]

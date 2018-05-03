@@ -3,9 +3,10 @@ import CSSModules from 'react-css-modules'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import classNames from 'classnames'
-
+import { Modal } from 'antd-mobile'
 import styles from './service.css'
 import * as serviceActions from '../../actions/service-actions'
+const alert = Modal.alert
 
 @connect(
   state => ({serviceState:state.toObject().serviceStore}),
@@ -19,7 +20,8 @@ class Service extends React.PureComponent {
     super()
     this.state = {
     clean:'CLOSE',
-    disturb:'CLOSE'
+    disturb:'CLOSE',
+    checkoutStatus: 'CLOSE'
     }
   }
   componentDidMount(){
@@ -27,7 +29,6 @@ class Service extends React.PureComponent {
     this.props.serviceActions.initailState()
   }
   submitService(type){
-
     const { lights } = this.props.serviceState 
     const status = this.state[type]==='CLOSE'?'OPEN':'CLOSE'
     let antherTpye = ''
@@ -52,8 +53,25 @@ class Service extends React.PureComponent {
       }
     })
   }
-
+  checkout = () => {
+    this.props.history.replace('selectHome')
+    const query = this.props.location.query
+    this.props.serviceActions.checkout({
+      houseName: encodeURI(query.name),
+      [query.subOrderCode?'subOrderCode':'recordId']: query.subOrderCode?query.subOrderCode:query.recordId
+    })
+    this.setState({
+      checkoutStatus: this.state.checkoutStatus === 'CLOSE'?'OPEN':'CLOSE'
+    })
+  }
+  propmtVisit = ()=> {
+    alert('退房', '确定退房么?', [
+      { text: '取消', onPress: () => console.log('cancel') },
+      { text: '确定', onPress: () => this.checkout() },
+    ])
+  }
   render() {
+    
     const cleanStyle = classNames({
       service_item:true,
       active:this.state.clean==='CLOSE'?false:true
@@ -62,19 +80,28 @@ class Service extends React.PureComponent {
       service_item:true,
       active:this.state.disturb==='CLOSE'?false:true
     })
+    const checkoutStyle = classNames({
+      service_item:true,
+      active:this.state.checkoutStatus==='CLOSE'?false:true
+    })
     return (
       <div styleName='service_bg'>
-        <div styleName='marignTop'></div>
-        <div styleName='rect'>
-          <div styleName={cleanStyle} onClick={this.submitService.bind(this,'clean')}>
+        <div styleName='rect' >
+          <div styleName={cleanStyle} style={{color:'#63a0cb'}} onClick={this.submitService.bind(this,'clean')}>
             <img src={require('../../assets/imgs/service/swape.png')} alt="" styleName='swape'/>
             <p styleName='content'>请即清理</p>
-            <img src={require(`../../assets/imgs/service/click_${this.state.clean}.png`)} alt="" styleName='selectedlight'/>
+           
           </div>
-          <div styleName={disturbStyle} onClick={this.submitService.bind(this,'disturb')}>
+          <div styleName={disturbStyle} style={{color:'#ffb097'}} onClick={this.submitService.bind(this,'disturb')}>
             <img src={require('../../assets/imgs/service/ring.png')} alt="" styleName='ring'/>
             <p styleName='content'>请勿打扰</p>
-            <img src={require(`../../assets/imgs/service/click_${this.state.disturb}.png`)} alt="" styleName='selectedlight' />
+           
+          </div>
+        </div>
+        <div styleName='rect'>
+          <div styleName={checkoutStyle} style={{color:'#21aa89'}} onClick={this.propmtVisit}>
+            <img src={require('../../assets/imgs/service/checkout_icon.png')} alt="" styleName='swape'/>
+            <p styleName='content'>退房</p>
           </div>
         </div>
       </div>
