@@ -10,7 +10,7 @@ import {quadrant} from '../../utlis'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as actions from '../../actions/light-actions'
-
+import { config  } from '../../utlis'
 
 @connect(
   state => ({lightStore:state.toObject().lightStore,idStore:state.toObject().idStore}),
@@ -31,7 +31,8 @@ class LargeRound extends React.PureComponent {
     const fontSize = window.innerWidth/7.5
     this.raduisY = fontSize * 8.98
     this.raduisX = fontSize * 5.8
-    this.websocket = new WebSocket("ws://www.live-ctrl.com/aijukex/stServlet.st?serverId=" + this.props.serveId) 
+    this.websocket = new WebSocket(`ws://${config.api.websocket}/stServlet.st?serverId=` + this.props.serveId) 
+    
     this.websocket.onmessage = (event) => {
       let lights = this.props.lights
       const lightNow = event.data.split('.WAY.')
@@ -53,7 +54,7 @@ class LargeRound extends React.PureComponent {
     this.websocket.close()
   }
   touchstart(e){
-    //e.stopPropagation() 
+    e.stopPropagation() 
     e.preventDefault()
     const pageX = e.changedTouches[0].pageX
     const pageY = e.changedTouches[0].pageY
@@ -76,7 +77,7 @@ class LargeRound extends React.PureComponent {
   }
   
   touchemove(e){
-    //e.stopPropagation() 
+    e.stopPropagation() 
     e.preventDefault()
     const pageX = e.changedTouches[0].pageX
     const pageY = e.changedTouches[0].pageY
@@ -122,7 +123,7 @@ class LargeRound extends React.PureComponent {
       return (
          <div styleName='light_wrap' style={{transform:`rotateZ(${rotate}deg)`,'WebkitTransform':`rotateZ(${rotate}deg)`}} key={light.id}>
             <div className={stylename} style={{transform:`rotateZ(${large_rotateZ-rotate}deg)`,'WebkitTransform':`rotateZ(${large_rotateZ-rotate}deg)`}}
-            onClick={this.lightsClick.bind(this, light.wayId, status, light.name, light.deviceId)}>
+            onClick={this.lightsClick.bind(this, light.id, status, light.name, light.deviceId)}>
               <div className="light_img"></div>
               <p>{light.name.replace(this.props.middleType, '')}</p>
             </div>
@@ -142,7 +143,7 @@ class LargeRound extends React.PureComponent {
     }
     
     lights.forEach((light, index) => {
-      if (light.wayId === wayId) {
+      if (light.id === wayId) {
         this.props.lightsClick(wayId, status, index)
       }
     })

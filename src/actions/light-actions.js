@@ -3,23 +3,23 @@ import { config, request } from '../utlis'
 const houseId_session = sessionStorage.getItem('houseId')
 const token_session = sessionStorage.getItem('token')
 
-export function initialLights() {
+export function initialLights(info) {
 
   return function(dispatch, getState) {
     const token = token_session || getState().toObject().idStore.token
     const houseId = houseId_session || getState().toObject().idStore.houseId
-    request.get(config.api.base + config.api.queryHostScenes, { houseId: 445722962903776640, token: token })
+    request.get(config.api.base + config.api.queryHostScenes, { houseId: houseId, token: token })
       .then(res => {
         dispatch(getModelScens(res.dataObject))
       })
     //灯
-    request.get(config.api.base + config.api.querySmartDeviceWays, { houseId: houseId, token: token, deviceType: 'SWITCH' })
+    request.get(config.api.base + config.api.queryLightsStatus, { ...info,token: token, deviceType: 'SWITCH' })
       .then(res => {
        
         if (res && res.success) {
           dispatch(getServeId(res.dataObject.serverId))
           let lights = []
-          lights = res.dataObject.ways.filter(function(light) {
+          lights = res.dataObject.filter(function(light) {
             return light.name.indexOf('灯') > -1
           })
           return lights
@@ -57,6 +57,7 @@ export function initialLights() {
 
   }
 }
+
 
 // 判断是否有阅读灯
 export function yuedudeng() {

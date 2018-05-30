@@ -29,41 +29,42 @@ class Light extends React.PureComponent {
   }
   componentDidMount(){
     document.title = '灯'
-    this.props.lightActions.initialLights()
+    this.props.lightActions.initialLights({serverId: this.props.location.query.serveId})
     this.props.lightActions.yuedudeng()
-    window.addEventListener("beforeunload", () => {
-      this.submitLights()
-    })
+    //this.props.lightActions.queryLightsStatus({serverId: this.props.location.query.serveId})
+    // window.addEventListener("beforeunload", () => {
+    //   this.submitLights()
+    // })
   }
-  componentWillReceiveProps() {}
-  componentWillUnmount(){
-    this.submitLights()
-    window.removeEventListener("beforeunload", () => {
-      this.submitLights()
-    })
-  }
+  //componentWillReceiveProps() {}
+  // componentWillUnmount(){
+  //   this.submitLights()
+  //   window.removeEventListener("beforeunload", () => {
+  //     this.submitLights()
+  //   })
+  // }
 
-  submitLights(){
-     let  onWayIds = ''
-    this.props.lightStore.lights
-    .filter((light) => light.status === 'ON')
-    .forEach(light => {
-      onWayIds = onWayIds + ',' +light.wayId
-    })
-     let offWayIds = ''
-    this.props.lightStore.lights
-    .filter((light) => light.status === 'OFF')
-    .forEach(light => {
-      offWayIds = offWayIds + ',' +light.wayId
-    })
-    request.get(config.api.base + config.api.modifyWaysStatus,{
-      onWayIds:onWayIds.slice(1),
-      offWayIds:offWayIds.slice(1)
-    })
-    .then(res => {
+  // submitLights(){
+  //    let  onWayIds = ''
+  //   this.props.lightStore.lights
+  //   .filter((light) => light.status === 'ON')
+  //   .forEach(light => {
+  //     onWayIds = onWayIds + ',' +light.wayId
+  //   })
+  //    let offWayIds = ''
+  //   this.props.lightStore.lights
+  //   .filter((light) => light.status === 'OFF')
+  //   .forEach(light => {
+  //     offWayIds = offWayIds + ',' +light.wayId
+  //   })
+  //   request.get(config.api.base + config.api.modifyWaysStatus,{
+  //     onWayIds:onWayIds.slice(1),
+  //     offWayIds:offWayIds.slice(1)
+  //   })
+  //   .then(res => {
       
-    })
-  }
+  //   })
+  // }
   
   middelRoundClick(type) {
     this.props.lightActions.changeMiddleStatus(type)
@@ -71,7 +72,6 @@ class Light extends React.PureComponent {
   
 
   render() {
-    
     const {lights} = this.props.lightStore
     const serveId = this.props.idStore.serveId ||sessionStorage.getItem('serveId')
     const houseId =  this.props.location.query.houseId

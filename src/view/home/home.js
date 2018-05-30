@@ -10,7 +10,7 @@ import * as homeActions from '../../actions/home-actions'
 import HomeEnvir from './components/home-envir/home-envir'
 
 @connect(
-  state => ({idState:state.toObject().idStore}),
+  state => ({idState:state.toObject().idStore, homeState: state.toObject().homeStore}),
   dispatch => ({
     homeActions: bindActionCreators(homeActions, dispatch),
   })
@@ -43,7 +43,7 @@ class Home extends React.PureComponent {
     const figures = [
     {name:'curtain',title:'窗帘',path:`curtain?houseId=${this.props.location.query.houseId}`},
     {name:'lock',title:'门锁',path:`lock?name=${this.props.location.query.name}&houseId=${this.props.location.query.houseId}&floor=${this.props.location.query.floor}&hotelId=${this.props.location.query.hotelId}`},
-    {name:'light',title:'灯',path:`light?houseId=${this.props.location.query.houseId}`},
+    {name:'light',title:'灯',path:`light?houseId=${this.props.location.query.houseId}&serveId=${this.props.homeState.serveId}`},
     {name:'tv',title:'电视',path:`tv?houseId=${this.props.location.query.houseId}`},
     {name:'service',title:'服务',path:`service?${this.props.location.search.slice(1)}`},
     {name:'air',title:'空调',path:`air?houseId=${this.props.location.query.houseId}`},

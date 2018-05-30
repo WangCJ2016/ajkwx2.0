@@ -39,12 +39,14 @@ export function encode64(input) {
     }
   },
   api: {
-    base: 'http://www.live-ctrl.com/aijukex/', // http://47.100.123.83/aijukex http://www.live-ctrl.com/aijukex
+    base: 'http://47.100.123.83/aijukex/', // http://47.100.123.83/aijukex http://www.live-ctrl.com/aijukex
+    websocket: '47.100.123.83/aijukex/',
     getLoginCode: 'we/we_generatePassword',
     login: 'we/we_loginx',
     queryHotelHouses: 'we/we_queryHotelHouses', //获取房间
     queryHostDeviceByType:"we/we_queryHostDeviceByType",//主机信息
     queryHostScenes:"we/we_queryHostScenes",
+    queryLightsStatus: "we/we_queryLightsStatus",
     smartHostControl:"we/we_smartHostControl",//控制
     querySmartDeviceWays:"we/we_querySmartDeviceWays",//获取路数信息
     queryDeviceType:"we/we_queryDeviceType",//获取设备类型

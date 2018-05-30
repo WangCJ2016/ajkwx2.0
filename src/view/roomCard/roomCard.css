@@ -76,8 +76,9 @@
   width: 0.66rem;
 }
 .figure_door{
-  top: 3.5rem;
-  right: .5rem;
+  top: 4.5rem;
+  left: 50%;
+  margin-left: -0.66rem;
 }
 .figure_door >div > img{
   width: 0.62rem;
@@ -129,3 +130,4 @@
   top: 50%;
   margin-top: -1.3rem;
 }
+
