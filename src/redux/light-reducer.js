@@ -24,7 +24,7 @@ export default function(state= initialState,action){
           } 
           return light
         })
-        return {...state, 'lights': lights}
+        return {...state, lights: lights}
     default:
       return state
   }

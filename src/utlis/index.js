@@ -40,7 +40,7 @@ export function encode64(input) {
   },
   api: {
     base: 'http://47.100.123.83/aijukex/', // http://47.100.123.83/aijukex http://www.live-ctrl.com/aijukex
-    websocket: '47.100.123.83/aijukex/',
+    websocket: 'www.live-ctrl.com/aijukex',
     getLoginCode: 'we/we_generatePassword',
     login: 'we/we_loginx',
     queryHotelHouses: 'we/we_queryHotelHouses', //获取房间

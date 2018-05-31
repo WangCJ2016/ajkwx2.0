@@ -60,7 +60,7 @@ class TvOne extends React.PureComponent {
       <div styleName="tv_wrap" style={{width:width}}>
 
       {this.props.tvSwitch?
-         <div style={{position:'absolute',left:0,right:0,top:'20px',bottom:0}}>
+         <div style={{marginTop: '20px'}}>
             <div styleName="tvBox">
               <div styleName='tv_switch' onClick={()=>this.props.actions.tvSwitch()}>
                  <span styleName="switch_btn">

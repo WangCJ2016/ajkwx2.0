@@ -81,14 +81,14 @@ export default class FabFan extends PureComponent {
                 }
               </StaggeredMotion>
 
-              <button
+              <div
                 className={`${styles.fab} ${open ? 'active' : ''}`} style={{
                   transform: `rotate(${spinOpen}deg)`
                 }}
                 onClick={onClick}
               >
-                <div>{!open?'电梯':'x'}</div>
-              </button>
+                {!open?'电梯':'x'}
+              </div>
             </div>
           </div>
         )}

@@ -111,6 +111,7 @@ export function lightsClick(wayId, status, index) {
   return function(dispatch, getState) {
     const token = token_session || getState().toObject().idStore.token
     const houseId = houseId_session || getState().toObject().idStore.houseId
+    dispatch(changelightstatus(index, status_on))
     request.get(config.api.base + config.api.smartHostControl, {
         houseId: houseId,
         deviceType: 'SWITCH',
@@ -120,9 +121,8 @@ export function lightsClick(wayId, status, index) {
         brightness: 80
       })
       .then((res) => {
-       
         if (res && res.success) {
-          dispatch(changelightstatus(index, status_on))
+         // dispatch(changelightstatus(index, status_on))
         }
       })
   }

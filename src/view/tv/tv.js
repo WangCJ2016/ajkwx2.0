@@ -35,6 +35,11 @@ class Tv extends React.PureComponent {
         document.title = '机顶盒'
       }
     }
+    window.addEventListener("orientationchange", function (e) {
+      console.log(e)
+      e.preventDefault();
+
+  }, false);
   }
   componentDidUpdate() {
     const { tvs } = this.props.tvState

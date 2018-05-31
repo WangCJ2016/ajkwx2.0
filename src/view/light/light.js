@@ -8,7 +8,7 @@ import styles from './light.css'
 import * as actions from '../../actions/light-actions'
 import MiddleRound from './middle-round'
 import LargeRound from './large-round'
-import { request,config } from '../../utlis'
+
 
 @connect(
   state => ({lightStore:state.toObject().lightStore,idStore:state.toObject().idStore}),

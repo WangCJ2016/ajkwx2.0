@@ -32,16 +32,17 @@ class LargeRound extends React.PureComponent {
     this.raduisY = fontSize * 8.98
     this.raduisX = fontSize * 5.8
     this.websocket = new WebSocket(`ws://${config.api.websocket}/stServlet.st?serverId=` + this.props.serveId) 
-    
+    this.websocket.onopen = () => {
+      console.log('websocket已链接')
+    }
     this.websocket.onmessage = (event) => {
+      
+      console.log(event.data)
       let lights = this.props.lights
       const lightNow = event.data.split('.WAY.')
       const changelihts = lights.map((light, index) => {
-        if(light.wayId === lightNow[0]) {
-          let newLight = light
-          newLight.status = lightNow[1]
-         return newLight
-
+        if(light.id === lightNow[0]) {
+          return {...light, status: lightNow[1]}
         }else {
           return light
         }
